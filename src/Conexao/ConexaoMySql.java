@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexaoMySql {
-
+    // teste commit
     public String status = "Nao conectou...";
     public Connection connection = null;
 
