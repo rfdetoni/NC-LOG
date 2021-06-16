@@ -1,12 +1,13 @@
-
 package NCLog.User;
 
 import javax.swing.JOptionPane;
 
 public class Login {
 
-    Usuario us = new Usuario();
-    int opt;  
+    /*Usuario us = new Usuario();*/
+    
+    
+    /* int opt;
         do{
             opt = Integer.parseInt(JOptionPane.showInputDialog(String.format("Digite uma Opção:%n1 - Fazer Login%n2 - Cadastrar usuário%n0 - sair")));
 
@@ -35,10 +36,7 @@ public class Login {
             default:
                 opt = 0;
 
-            }
+        }        
+    }while (opt != 0);*/
 
-        }while (opt != 0);
-
-    }
-    
 }
