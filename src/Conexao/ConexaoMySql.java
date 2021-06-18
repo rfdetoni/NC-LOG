@@ -22,10 +22,10 @@ public class ConexaoMySql {
             String driverName = "com.mysql.cj.jdbc.Driver";
             Class.forName(driverName);
             //String serverName = "remotemysql.com:3306"; // caminho do servidor do BD
-            String serverName = "127.0.0.1:3306"; // caminho do localhost
-            String mydatabase = "dfhxw9cert"; // nome do seu banco de dados
-            //String timezone = "useTimezone=true&serverTimezone=UTC";
-            String url = "jdbc:mysql://" + serverName + "/" + mydatabase /* + "?" + timezone*/;
+            String serverName = "127.0.0.1"; // caminho do localhost
+            String mydatabase = "nclog"; // nome do seu banco de dados
+            String timezone = "useTimezone=true&serverTimezone=UTC";
+            String url = "jdbc:mysql://" + serverName + "/" + mydatabase  + "?" + timezone;
             String username = "root";// nome de um usuario de seu BD
            String password = "1234"; // sua senha de acesso
             connection = DriverManager.getConnection(url, username, password);

@@ -59,19 +59,16 @@ public class Usuario {
 
     public boolean cadastroUsuario() {
         ConexaoMySql BD = new ConexaoMySql();
-        if (!login()) {//verifica se já não há o usuário cadastrado;
-            try {
-                BD.conectarMySQL();
-                String sql = String.format("insert into usuario (nome_User,login,senha, dica_Senha) values ('%s','%s','%s','%s')", this.nome_usuario, this.nome_usuario, this.senha, this.dica_de_senha);
-                BD.execute(sql);
-                BD.FecharConexao();
 
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-                return false;
-            }
-        } else {
-            JOptionPane.showMessageDialog(null, "Usuário ja cadastrado");
+        try {
+            BD.conectarMySQL();
+            String sql = String.format("insert into usuario (nome_User,login,senha, dica_Senha) values ('%s','%s','%s','%s')", this.nome_usuario, this.nome_usuario, this.senha, this.dica_de_senha);
+            BD.execute(sql);
+            BD.FecharConexao();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
         return true;
     }
@@ -109,10 +106,26 @@ public class Usuario {
 
     public boolean login() {
         ConexaoMySql BD = new ConexaoMySql();
-
         try {
             BD.conectarMySQL();
-            String sql = String.format("select * from usuario where nome_User = '%s' and  senha = '%s'", this.nome_usuario, this.senha);
+            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.nome_usuario, this.senha);
+
+            BD.executeQuery(sql);
+
+            BD.FecharConexao();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public boolean pesquisa() {
+        ConexaoMySql BD = new ConexaoMySql();
+        try {
+            BD.conectarMySQL();
+            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.getNome_usuario(), this.getSenha());
 
             BD.executeQuery(sql);
 
@@ -137,7 +150,7 @@ public class Usuario {
                     this.loginUsuario();
                     this.password();
 
-                    if (this.login()) {
+                    if (this.pesquisa()) {
                         JOptionPane.showMessageDialog(null, "Logado com sucesso", "Login realizado", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos", "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -149,7 +162,7 @@ public class Usuario {
                     this.dicaSenha();
 
                     if (this.cadastroUsuario()) {
-                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso" + this.getNome_usuario(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso: " + this.getNome_usuario(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário", "ERRO", JOptionPane.ERROR_MESSAGE);
                     }
