@@ -7,7 +7,8 @@ public class Usuario {
 
     public int id_user;
     private int id_interfacenc, numero;
-    private String nome_usuario, senha, dica_de_senha;
+    private String nome_usuario,  dica_de_senha, senha;
+    //char[] senha = new char[10];
 
     public int getId_user() {
         return id_user;
@@ -93,13 +94,13 @@ public class Usuario {
 
     }
 
-    public void password() {
-        String aux;
+  /*  public void password() {
+        char aux;
         do {
             aux = JOptionPane.showInputDialog("Digite sua Senha: ");
         } while (aux.equals(""));
         this.setSenha(aux);
-    }
+    }*/
 
     public void statusUsuario() {
     }
@@ -123,9 +124,10 @@ public class Usuario {
 
     public boolean pesquisa() {
         ConexaoMySql BD = new ConexaoMySql();
+  
         try {
             BD.conectarMySQL();
-            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.getNome_usuario(), this.getSenha());
+            String sql = String.format("select login, senha from usuario where login = '%s' and  senha = '%c'", this.getNome_usuario(), this.getSenha());
 
             BD.executeQuery(sql);
 
@@ -138,7 +140,7 @@ public class Usuario {
 
         return true;
     }
-
+/*
     public void inicio() {
 
         int opt;
@@ -172,5 +174,5 @@ public class Usuario {
 
             }
         } while (opt != 0);
-    }
+    }*/
 }
