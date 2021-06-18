@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.DropMode;
@@ -11,6 +13,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+
+import NCLog.User.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
@@ -88,6 +93,10 @@ public class LoginPrincipal {
 			 */
 			public void actionPerformed(ActionEvent e) {
 				// Acão do botão
+				Usuario u = new Usuario();
+				u.setNome_usuario(txtUser.getText());
+				u.setSenha(new String(txtPassword.getPassword()));
+				u.login();
 			}
 		});
 		btLogin.setForeground(Color.BLACK);

@@ -105,40 +105,42 @@ public class Usuario {
     public void statusUsuario() {
     }
 
-    public boolean login() {
-        ConexaoMySql BD = new ConexaoMySql();
-        try {
-            BD.conectarMySQL();
-            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.nome_usuario, this.senha);
-
-            BD.executeQuery(sql);
-
-            BD.FecharConexao();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-        return true;
+    public void login() {
+    	ConexaoMySql BD = new ConexaoMySql();
+    	this.pesquisa();
+      if(BD.retornoLogin()) {
+    	  JOptionPane.showMessageDialog(null, "Bem vindo " + this.getNome_usuario(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+    	  
+      } else {
+    	  
+    	  JOptionPane.showMessageDialog(null, "Usuário ou senha incorreta", "ERRO", JOptionPane.ERROR_MESSAGE);
+      }
+       
+    	
     }
 
     public boolean pesquisa() {
         ConexaoMySql BD = new ConexaoMySql();
-  
+        
         try {
+        	
             BD.conectarMySQL();
-            String sql = String.format("select login, senha from usuario where login = '%s' and  senha = '%c'", this.getNome_usuario(), this.getSenha());
-
+            String sql = String.format("select login, senha from usuario where login = '%s' and  senha ='%s';",this.nome_usuario, this.senha);
+            
             BD.executeQuery(sql);
-
+            
+            
             BD.FecharConexao();
-
+            
+          
+        	
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return false;
         }
+		return true;
 
-        return true;
+        
     }
 /*
     public void inicio() {

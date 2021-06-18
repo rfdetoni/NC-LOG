@@ -9,6 +9,7 @@ import java.sql.Statement;
 public class ConexaoMySql {
     // teste commit
     public String status = "Nao conectou...";
+    public boolean bool;
     public Connection connection = null;
 
     public Connection getConexao() {
@@ -75,8 +76,25 @@ public class ConexaoMySql {
         Statement pesquisa = connection.createStatement();
         String consulta = sql;
         ResultSet rs = pesquisa.executeQuery(consulta);
-
+        if(rs.next()) {
+        	bool = true;
+        }else {
+        	bool = false;
+        }
+       
+        		
         return rs;
+    }
+    public boolean retornoLogin() {
+	
+	if(bool) {
+		return true;
+	} else {
+		return false;
+	}
+
+	
+    	
     }
 
     public void execute(String sql) throws SQLException {
