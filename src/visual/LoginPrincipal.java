@@ -13,8 +13,13 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
 
 public class LoginPrincipal {
+	
+	/**
+	 * Não alterar nada aqui até a linha 54.
+	 */
 
 	private JFrame frmNcLog;
 	private JTextField txtUser;
@@ -59,7 +64,7 @@ public class LoginPrincipal {
 		labelUsuario.setBounds(118, 106, 46, 14);
 		frmNcLog.getContentPane().add(labelUsuario);
 		
-		txtUser = new JTextField();
+		txtUser = new JTextField();			// Espaço para o user digitar o usuario (getText)
 		txtUser.setBounds(171, 103, 86, 20);
 		frmNcLog.getContentPane().add(txtUser);
 		txtUser.setColumns(10);
@@ -69,7 +74,7 @@ public class LoginPrincipal {
 		labelSenha.setBounds(118, 137, 46, 14);
 		frmNcLog.getContentPane().add(labelSenha);
 		
-		txtPassword = new JPasswordField();
+		txtPassword = new JPasswordField(); // Espaço para o user digitar a senha (getText)
 		txtPassword.setEchoChar('*');
 		txtPassword.setBounds(171, 134, 86, 20);
 		frmNcLog.getContentPane().add(txtPassword);
@@ -82,37 +87,39 @@ public class LoginPrincipal {
 			 * e abre a tela principal
 			 */
 			public void actionPerformed(ActionEvent e) {
+				// Acão do botão
 			}
 		});
 		btLogin.setForeground(Color.BLACK);
 		btLogin.setBounds(212, 172, 89, 23);
 		frmNcLog.getContentPane().add(btLogin);
 		
-		JLabel lblNewLabel_1 = new JLabel("NC LOG");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(177, 51, 68, 31);
+		JLabel lblNewLabel_1 = new JLabel("Seja bem vindo ao NC Log!");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblNewLabel_1.setBounds(26, 25, 377, 50);
 		frmNcLog.getContentPane().add(lblNewLabel_1);
 		
 		JButton btRegistrar = new JButton("Registrar");
 		btRegistrar.addActionListener(new ActionListener() {
 			/**
 			 * Ação do botão para Registrar
-			 * Colocar em baixo o metodo que insera o usuario no sistema
-			 * e abre a tela de loginPincipal denovo.
+			 * Colocar em baixo o metodo que leve o usuario para
+			 * a TelaRegistroUser.java
 			 */
 			public void actionPerformed(ActionEvent e) {
+				// Acão do botão
 			}
 		});
 		btRegistrar.setForeground(Color.BLACK);
 		btRegistrar.setBounds(106, 172, 89, 23);
 		frmNcLog.getContentPane().add(btRegistrar);
 		
-		JLabel txtUserError = new JLabel("");
+		JLabel txtUserError = new JLabel("");   // Serve para aparecer mensagem de erro quando o usuario errar o usuario (CONFIGURAR AINDA)
 		txtUserError.setForeground(Color.RED);
 		txtUserError.setBounds(274, 106, 46, 14);
 		frmNcLog.getContentPane().add(txtUserError);
 		
-		JLabel txtPasswordError = new JLabel("");
+		JLabel txtPasswordError = new JLabel(""); // Serve para aparecer mensagem de erro quando o usuario errar a senha (CONFIGURAR AINDA)
 		txtPasswordError.setForeground(Color.RED);
 		txtPasswordError.setBounds(274, 137, 46, 14);
 		frmNcLog.getContentPane().add(txtPasswordError);
