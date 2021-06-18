@@ -1,5 +1,6 @@
 package NCLog.User;
 
+import Conexao.ConexaoMySql;
 import javax.swing.JOptionPane;
 
 public class Usuario {
@@ -56,11 +57,20 @@ public class Usuario {
         this.dica_de_senha = dica_de_senha;
     }
 
-    public void cadastroUsuario() {
-        String user, pass;
-        loginUsuario();
-        password();
+    public boolean cadastroUsuario() {
+        ConexaoMySql BD = new ConexaoMySql();
 
+        try {
+            BD.conectarMySQL();
+            String sql = String.format("insert into usuario (nome_User,login,senha, dica_Senha) values ('%s','%s','%s','%s')", this.nome_usuario, this.nome_usuario, this.senha, this.dica_de_senha);
+            BD.execute(sql);
+            BD.FecharConexao();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     public void loginUsuario() {
@@ -73,6 +83,16 @@ public class Usuario {
 
     }
 
+    public void dicaSenha() {
+        String aux;
+        do {
+            aux = JOptionPane.showInputDialog("digite a dica de senha: ");
+        } while (aux.equals(""));
+
+        this.setDica_de_senha(aux);
+
+    }
+
     public void password() {
         String aux;
         do {
@@ -82,5 +102,75 @@ public class Usuario {
     }
 
     public void statusUsuario() {
+    }
+
+    public boolean login() {
+        ConexaoMySql BD = new ConexaoMySql();
+        try {
+            BD.conectarMySQL();
+            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.nome_usuario, this.senha);
+
+            BD.executeQuery(sql);
+
+            BD.FecharConexao();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
+    public boolean pesquisa() {
+        ConexaoMySql BD = new ConexaoMySql();
+        try {
+            BD.conectarMySQL();
+            String sql = String.format("select * from usuario where login = '%s' and  senha = '%s'", this.getNome_usuario(), this.getSenha());
+
+            BD.executeQuery(sql);
+
+            BD.FecharConexao();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    public void inicio() {
+
+        int opt;
+        do {
+            opt = Integer.parseInt(JOptionPane.showInputDialog(String.format("Digite uma Opção:%n1 - Fazer Login%n2 - Cadastrar usuário%n0 - sair")));
+
+            switch (opt) {
+                case 1:
+                    this.loginUsuario();
+                    this.password();
+
+                    if (this.pesquisa()) {
+                        JOptionPane.showMessageDialog(null, "Logado com sucesso", "Login realizado", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                case 2:
+                    this.loginUsuario();
+                    this.password();
+                    this.dicaSenha();
+
+                    if (this.cadastroUsuario()) {
+                        JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso: " + this.getNome_usuario(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro ao cadastrar usuário", "ERRO", JOptionPane.ERROR_MESSAGE);
+                    }
+                    break;
+                default:
+                    opt = 0;
+
+            }
+        } while (opt != 0);
     }
 }
