@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
-public class MainScreen extends JFrame {
+public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtGetUsername;
@@ -38,7 +38,7 @@ public class MainScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainScreen frame = new MainScreen();
+					Login frame = new Login();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainScreen() {
+	public Login() {
 		setTitle("NC LOG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -122,7 +122,8 @@ public class MainScreen extends JFrame {
 					
 					if(rsuserdao.next()) {
 						//chamar tela que eu quero abrir;
-						HomeNC homenc = new HomeNC();
+						HomeNC_2 homenc = new HomeNC_2();
+						homenc.setUsuario(objuser.getNome_User());
 						homenc.setVisible(true);
 						dispose();
 						

@@ -26,9 +26,9 @@ public String getExec_plano() {
 }
 
 public void setExec_plano(String exec_plano) {
-	Date data = new Date();
-	this.exec_plano = data.toString();
-	System.out.print(this.exec_plano);
+	
+	this.exec_plano =exec_plano;
+	
 }
 
 public String getTime_resp() {

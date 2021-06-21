@@ -2,16 +2,23 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
+import DTO.UsuarioDTO;
 import visual.okNext;
 
 public class NCDAO {
 	Connection conn;
 	PreparedStatement pstm;
-
+	ResultSet rs;
+	ArrayList<NcDTO> lista =  new ArrayList<>();
+	String usuario_logado, resp_nc;
+ 
 	public void registerNC(NcDTO objnc) {
 
 		String sql = "insert into naoConformidade (nome_Nc,descricao_Nc,local_Nc,responsavel_Nc) values (?,?,?,?)";
@@ -30,9 +37,51 @@ public class NCDAO {
 			ok.setVisible(true);
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "NCDAO " + erro);
+			JOptionPane.showMessageDialog(null, "NCDAO - registerNC " + erro);
 		}
 
+	}
+	
+	public void setUsuario(String usuario) {
+		this.usuario_logado = usuario;
+		
+	}
+	public void setRespNc(String resp_nc) {
+		this.resp_nc = resp_nc;
+		
+	}
+	
+	public	ArrayList<NcDTO> pesquisarNC(){
+		
+		String sql = "select * from naoConformidade where nome_Nc = ? and responsavel_Nc = ?";
+		conn = new ConexaoDAO().conectaDB();
+		
+		try {
+			pstm.setString(1, this.resp_nc);
+			pstm.setString(2, this.usuario_logado);
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			
+			
+			while (rs.next()){
+				NcDTO objnc = new NcDTO();
+				objnc.setId_Nc(rs.getInt("id_Nc"));
+				objnc.setDescricao_Nc(rs.getString("descricao_Nc"));
+				objnc.setLocal_Nc(rs.getString("local_Nc"));
+				objnc.setNome_Nc(rs.getString("nome_Nc"));
+				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
+				objnc.setId_Plano(rs.getInt("id_Plano"));
+				
+				lista.add(objnc);
+
+			}
+			
+			
+			
+			
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null, "NCDAO - pesquisarNC " + erro);
+		}return lista;
 	}
 
 }

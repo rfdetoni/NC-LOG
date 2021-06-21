@@ -1,6 +1,10 @@
 
 package visual;
 
+import java.util.Date;
+
+import DAO.PlanoDAO;
+import DTO.PlanoDTO;
 
 public class CreatePlanodeAcao extends javax.swing.JFrame {
 
@@ -28,7 +32,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         txttime_resp = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtdescricao_Nc = new javax.swing.JTextArea();
+        txtestrategia = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -60,9 +64,9 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
 
         jLabel4.setText("Descrição do plano de ação");
 
-        txtdescricao_Nc.setColumns(20);
-        txtdescricao_Nc.setRows(5);
-        jScrollPane1.setViewportView(txtdescricao_Nc);
+        txtestrategia.setColumns(20);
+        txtestrategia.setRows(5);
+        jScrollPane1.setViewportView(txtestrategia);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +228,17 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     }                                           
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
+       PlanoDTO plan = new PlanoDTO();
+      
+   		
+       plan.setNome_Criador(txtnome_criador.getText());
+       plan.setEstrategia(txtestrategia.getText());
+       plan.setTime_resp(txttime_resp.getText());
+       
+       
+       PlanoDAO pldao = new PlanoDAO();
+       pldao.registerPlan(plan);
+       dispose();
     }                                         
 
    
@@ -280,7 +294,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     private javax.swing.JLabel lblnome_Nc;
     private javax.swing.JLabel lblresponsavel_Nc;
     private javax.swing.JTextField txtNome_planodeacao;
-    private javax.swing.JTextArea txtdescricao_Nc;
+    private javax.swing.JTextArea txtestrategia;
     private javax.swing.JTextField txtnome_criador;
     private javax.swing.JTextField txttime_resp;
     // End of variables declaration                   

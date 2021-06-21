@@ -98,7 +98,7 @@ public class RegisterScreen extends JFrame {
 			objuserdao.registerUser(reg);
 			
 			
-			MainScreen maincallback = new MainScreen();
+			Login maincallback = new Login();
 			maincallback.setVisible(true);
 			dispose();
 				
@@ -128,7 +128,7 @@ public class RegisterScreen extends JFrame {
 		btCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				MainScreen maincallback = new MainScreen();
+				Login maincallback = new Login();
 				maincallback.setVisible(true);
 			}
 		});

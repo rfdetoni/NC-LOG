@@ -144,7 +144,7 @@
 	    }                                           
 	
 	    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-	    	HomeNC home = new HomeNC();
+	    	HomeNC_2 home = new HomeNC_2();
 			home.setVisible(true);
 			dispose();
 	    }                                           

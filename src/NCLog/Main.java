@@ -1,10 +1,10 @@
 package NCLog;
 
-import visual.MainScreen;
+import visual.Login;
 
 public class Main {
     public static void main(String[] args) {
-    	MainScreen ms = new MainScreen();
+    	Login ms = new Login();
     	ms.setVisible(true);
   
     }

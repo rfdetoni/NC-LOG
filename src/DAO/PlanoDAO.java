@@ -13,9 +13,9 @@ public class PlanoDAO {
 	Connection conn;
 	PreparedStatement pstm;
 
-	public void registerNC(PlanoDTO objplano) {
+	public void registerPlan(PlanoDTO objplano) {
 
-		String sql = "insert into planoDeAcao (nome_Criador,estrategia,time_resp,exec_Plano) values (?,?,?,?)";
+		String sql = "insert into planoDeAcao (nome_Criador,estrategia,time_resp) values (?,?,?)";
 		conn = new ConexaoDAO().conectaDB();
 		try {
 
@@ -23,12 +23,10 @@ public class PlanoDAO {
 			pstm.setString(1, objplano.getNome_Criador());
 			pstm.setString(2, objplano.getEstrategia());
 			pstm.setString(3, objplano.getTime_resp());
-			pstm.setString(4, objplano.getExec_plano());
 
 			pstm.execute();
 			pstm.close();
-			okNext ok = new okNext();
-			ok.setVisible(true);
+			JOptionPane.showMessageDialog(null, "Plano de ação cadastrado");
 
 		} catch (Exception erro) {
 			JOptionPane.showMessageDialog(null, "NCDAO " + erro);
