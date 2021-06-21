@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
+import visual.okNext;
 
 public class NCDAO {
 	Connection conn;
@@ -22,10 +23,11 @@ public class NCDAO {
 			pstm.setString(2, objnc.getDescricao_Nc());
 			pstm.setString(3, objnc.getLocal_Nc());
 			pstm.setString(4, objnc.getResponsavel_Nc());
-			
+
 			pstm.execute();
 			pstm.close();
-			JOptionPane.showMessageDialog(null, "NC cadastrada com sucesso!");
+			okNext ok = new okNext();
+			ok.setVisible(true);
 
 		} catch (Exception erro) {
 			JOptionPane.showMessageDialog(null, "NCDAO " + erro);
