@@ -43,14 +43,14 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Criar plano de ação");
+        setTitle("Criar plano de aÃ§Ã£o");
         setLocationByPlatform(true);
 
-        jLabel1.setText("Titulo do plano de ação");
+        jLabel1.setText("Titulo do plano de aÃ§Ã£o");
 
         jLabel2.setText("Criador");
 
-        jLabel3.setText("Time Responsável");
+        jLabel3.setText("Time ResponsÃ¡vel");
 
         txttime_resp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +58,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Descrição do plano de ação");
+        jLabel4.setText("DescriÃ§Ã£o do plano de aÃ§Ã£o");
 
         txtdescricao_Nc.setColumns(20);
         txtdescricao_Nc.setRows(5);
@@ -71,7 +71,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
             }
         });
 
-        btnSalvar.setText("Salvar");
+        btnSalvar.setText("Salvar"); // bt salvar
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalvarActionPerformed(evt);
@@ -80,11 +80,11 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel5.setText("Não conformidade Nº:");
+        jLabel5.setText("NÃ£o conformidade NÂº:");
 
         lblid_Nc.setText("00");
 
-        jLabel6.setText("Responsável NC: ");
+        jLabel6.setText("ResponsÃ¡vel NC: ");
 
         lblresponsavel_Nc.setText(" ");
 
