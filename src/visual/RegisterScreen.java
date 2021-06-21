@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import DAO.RegisterDAO;
+import DAO.UsuarioDAO;
+import DTO.UsuarioDTO;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -82,6 +87,21 @@ public class RegisterScreen extends JFrame {
 			 * e abre a tela de LoginPincipal.java denovo.
 			 */
 			public void actionPerformed(ActionEvent e) {
+			UsuarioDTO reg = new UsuarioDTO();
+			String passText = new String(txtSetUserPassword.getPassword());
+			
+			reg.setNome_User(txtSetUserRegister.getText());
+			reg.setSenha(passText);
+			reg.setDica_Senha(txtSetPasswordTip.getText());	
+			
+			RegisterDAO objuserdao = new RegisterDAO();
+			objuserdao.registerUser(reg);
+			
+			
+			MainScreen maincallback = new MainScreen();
+			maincallback.setVisible(true);
+			dispose();
+				
 			}
 		});
 		btRegistrarUser.setFont(new Font("Tahoma", Font.BOLD, 11));
