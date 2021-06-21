@@ -1,4 +1,4 @@
-package Conexao;
+/*package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class ConexaoMySql {
         return connection;
     }
 
-    public void conectarMySQL() throws ClassNotFoundException, SQLException {
+    public Connection conectarMySQL() throws ClassNotFoundException, SQLException {
         connection = null;
 
         try {
@@ -84,4 +84,4 @@ public class ConexaoMySql {
         String consulta = sql;
         pesquisa.execute(consulta);
     }
-}
+}*/

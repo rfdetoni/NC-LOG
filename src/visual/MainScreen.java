@@ -6,13 +6,23 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+//import com.sun.tools.javap.TryBlockWriter;
+
+import DAO.UsuarioDAO;
+import DTO.UsuarioDTO;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class MainScreen extends JFrame {
@@ -69,7 +79,8 @@ public class MainScreen extends JFrame {
 		lblPassword.setBounds(131, 157, 46, 14);
 		contentPane.add(lblPassword);
 		
-		txtGetPassword = new JPasswordField(); // Espaço para o user digitar a senha (getText)
+		
+		txtGetPassword = new JPasswordField();// Espaço para o user digitar a senha (getText)
 		txtGetPassword.setEchoChar('*');
 		txtGetPassword.setBounds(184, 154, 86, 20);
 		contentPane.add(txtGetPassword);
@@ -100,9 +111,36 @@ public class MainScreen extends JFrame {
 			 * e abre a tela principal
 			 */
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				HomeNC homenc = new HomeNC();
-				homenc.setVisible(true);
+				try{
+					UsuarioDTO objuser = new UsuarioDTO();
+					String passText = new String(txtGetPassword.getPassword());
+					objuser.setNome_User(txtGetUsername.getText());
+					objuser.setSenha(passText);
+					
+					UsuarioDAO objuserDAO = new UsuarioDAO();
+					ResultSet rsuserdao = objuserDAO.autUsuario(objuser);
+					
+					if(rsuserdao.next()) {
+						//chamar tela que eu quero abrir;
+						HomeNC homenc = new HomeNC();
+						homenc.setVisible(true);
+						dispose();
+						
+					}else {
+						//enviar mensagem de erro;
+						JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos");
+					}
+						
+				
+					
+				} catch(SQLException erro) {
+					JOptionPane.showMessageDialog(null,"mainScreen login" + erro);
+					
+					
+				}
+					
+				
+				
 			}
 		});
 		btLogin.setForeground(Color.BLACK);
