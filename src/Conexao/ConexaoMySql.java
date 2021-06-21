@@ -9,7 +9,7 @@ import java.sql.Statement;
 public class ConexaoMySql {
     // teste commit
     public String status = "Nao conectou...";
-    public boolean bool;
+    private static boolean bool;
     public Connection connection = null;
 
     public Connection getConexao() {
@@ -76,10 +76,12 @@ public class ConexaoMySql {
         Statement pesquisa = connection.createStatement();
         String consulta = sql;
         ResultSet rs = pesquisa.executeQuery(consulta);
+        //String next = rs.toString();
+        System.out.print(rs.next());
         if(rs.next()) {
-        	bool = true;
+        	this.bool = true;
         }else {
-        	bool = false;
+        	this.bool = false;
         }
        
         		
@@ -88,6 +90,7 @@ public class ConexaoMySql {
     public boolean retornoLogin() {
 	
 	if(bool) {
+		System.out.print("se chegou até aqui"+bool);
 		return true;
 	} else {
 		return false;
