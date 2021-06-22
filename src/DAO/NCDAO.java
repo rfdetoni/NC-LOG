@@ -73,7 +73,7 @@ public class NCDAO {
 		try {
 			
 			String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getRespNc() +"'"+ " and nome_Nc = "+"'"+ pesquisa +"'";
-			JOptionPane.showMessageDialog(null, sql);
+			// JOptionPane.showMessageDialog(null, sql); debug da pesquisa
 			conn = new ConexaoDAO().conectaDB();
 			
 			pstm = conn.prepareStatement(sql);
