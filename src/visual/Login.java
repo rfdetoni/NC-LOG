@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DAO.NCDAO;
+
 //import com.sun.tools.javap.TryBlockWriter;
 
 import DAO.UsuarioDAO;
@@ -114,16 +116,21 @@ public class Login extends JFrame {
 				try{
 					UsuarioDTO objuser = new UsuarioDTO();
 					String passText = new String(txtGetPassword.getPassword());
-					objuser.setNome_User(txtGetUsername.getText());
+					String user = (txtGetUsername.getText());
+					objuser.setNome_User(user);
+					
 					objuser.setSenha(passText);
 					
 					UsuarioDAO objuserDAO = new UsuarioDAO();
 					ResultSet rsuserdao = objuserDAO.autUsuario(objuser);
+					NCDAO ndao = new NCDAO();
+					ndao.setRespNc(user);
 					
 					if(rsuserdao.next()) {
-						//chamar tela que eu quero abrir;
+						JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
+						
 						HomeNC_2 homenc = new HomeNC_2();
-						homenc.setUsuario(objuser.getNome_User());
+						
 						homenc.setVisible(true);
 						dispose();
 						

@@ -17,8 +17,11 @@ public class NCDAO {
 	PreparedStatement pstm;
 	ResultSet rs;
 	ArrayList<NcDTO> lista =  new ArrayList<>();
-	String usuario_logado, resp_nc;
- 
+	private static String resp_nc;
+	private String pesquisa;
+	
+	
+	
 	public void registerNC(NcDTO objnc) {
 
 		String sql = "insert into naoConformidade (nome_Nc,descricao_Nc,local_Nc,responsavel_Nc) values (?,?,?,?)";
@@ -42,23 +45,37 @@ public class NCDAO {
 
 	}
 	
-	public void setUsuario(String usuario) {
-		this.usuario_logado = usuario;
+	public void setPesquisa(String pesquisa) {
+		this.pesquisa = pesquisa;
 		
 	}
+	public String getPesquisa() {
+		return pesquisa;
+	}
+	
+	
 	public void setRespNc(String resp_nc) {
-		this.resp_nc = resp_nc;
+		resp_nc = resp_nc;
 		
 	}
 	
-	public	ArrayList<NcDTO> pesquisarNC(){
+	public String getRespNc() {
+		return resp_nc;
+	}
+	
+	
+	public	ArrayList<NcDTO> pesquisarNC(String pesquisa){
 		
-		String sql = "select * from naoConformidade where nome_Nc = ? and responsavel_Nc = ?";
-		conn = new ConexaoDAO().conectaDB();
+	
+		
+		
 		
 		try {
-			pstm.setString(1, this.resp_nc);
-			pstm.setString(2, this.usuario_logado);
+			
+			String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getRespNc() +"'"+ " and nome_Nc = "+"'"+ pesquisa +"'";
+			JOptionPane.showMessageDialog(null, sql);
+			conn = new ConexaoDAO().conectaDB();
+			
 			pstm = conn.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			
