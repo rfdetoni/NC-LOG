@@ -1,6 +1,7 @@
 
 package visual;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -199,23 +200,30 @@ public class PesquisaNC extends javax.swing.JFrame {
 		}
 
 	}
-	
-	private void CarregarCampos() {
+
+	private boolean CarregarCampos() {
 		int setar = tblPesquisa.getSelectedRow();
-		
-		
 		int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar, 0).toString()));
-			
-		EditNC editar = new EditNC();
-		editar.SetIdNc(id);
-		
+		if(id != 0){
+			EditNC editar = new EditNC();
+			editar.SetIdNc(id);
+			return true;
+		} else {
+			return false;
+		}
 
 	}
-	
+
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
-		EditNC abrir = new EditNC();
-		abrir.setVisible(true);
-		
+
+		try{if(CarregarCampos()) {
+			EditNC abrir = new EditNC();
+			abrir.setVisible(true);
+		}
+
+		}catch (Exception erro) {
+			JOptionPane.showMessageDialog(null, "Voce não selecionou uma linha da tabela");
+		}
 	}
 	
 	// Variables declaration - do not modify
