@@ -37,14 +37,12 @@ public class Login extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		EventQueue.invokeLater(() -> {
+			try {
+				Login frame = new Login();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 	}
@@ -80,8 +78,7 @@ public class Login extends JFrame {
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblPassword.setBounds(131, 157, 46, 14);
 		contentPane.add(lblPassword);
-		
-		
+
 		txtGetPassword = new JPasswordField();// Espaço para o user digitar a senha (getText)
 		txtGetPassword.setEchoChar('*');
 		txtGetPassword.setBounds(184, 154, 86, 20);
@@ -104,7 +101,7 @@ public class Login extends JFrame {
 		btRegistrar.setForeground(Color.BLACK);
 		btRegistrar.setBounds(119, 192, 89, 23);
 		contentPane.add(btRegistrar);
-		
+
 		JButton btLogin = new JButton("Entrar");
 		btLogin.addActionListener(new ActionListener() {
 			/**
@@ -127,8 +124,7 @@ public class Login extends JFrame {
 					ndao.setRespNc(user);
 					EditNC edit = new EditNC();
 					edit.setTxtResponsavelNc(user);
-					
-					
+
 					if(rsuserdao.next()) {
 						
 							//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
@@ -143,23 +139,17 @@ public class Login extends JFrame {
 						//enviar mensagem de erro;
 						JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos");
 					}
-						
-				
-					
 				} catch(SQLException erro) {
 					JOptionPane.showMessageDialog(null,"mainScreen login" + erro);
-					
-					
 				}
-					
-				
-				
 			}
 		});
+
 		btLogin.setForeground(Color.BLACK);
 		btLogin.setBounds(225, 192, 89, 23);
 		contentPane.add(btLogin);
-		
+		getRootPane().setDefaultButton(btLogin);
+
 		JLabel txtUserError = new JLabel(""); // Serve para aparecer mensagem de erro quando o usuario errar o usuario (CONFIGURAR AINDA)
 		txtUserError.setForeground(Color.RED);
 		txtUserError.setBounds(280, 126, 46, 14);
