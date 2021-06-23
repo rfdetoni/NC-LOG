@@ -129,7 +129,7 @@ public class Login extends JFrame {
 					if(rsuserdao.next()) {
 						JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
 						
-						HomeNC_2 homenc = new HomeNC_2();
+						Home homenc = new Home();
 						
 						homenc.setVisible(true);
 						dispose();

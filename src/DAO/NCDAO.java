@@ -1,5 +1,6 @@
 package DAO;
 
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,8 @@ import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
 import DTO.UsuarioDTO;
+import visual.CreateNC;
+import visual.EditNC;
 import visual.okNext;
 
 public class NCDAO {
@@ -17,6 +20,7 @@ public class NCDAO {
 	PreparedStatement pstm;
 	ResultSet rs;
 	ArrayList<NcDTO> lista =  new ArrayList<>();
+	ArrayList<EditNC> editar = new ArrayList<>();
 	private static String resp_nc;
 	private String pesquisa;
 	
@@ -64,21 +68,13 @@ public class NCDAO {
 	}
 	
 	
-	public	ArrayList<NcDTO> pesquisarNC(String pesquisa){
-		
-	
-		
-		
+	public	ArrayList<NcDTO> pesquisarNC(){
 		
 		try {
 			
-			String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getRespNc() +"'"+ " and nome_Nc = "+"'"+ pesquisa +"'";
+			String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getRespNc()+"'";
 			
-			
-			// debug de pesquisa 
-			//JOptionPane.showMessageDialog(null, sql);
-		
-			
+					
 			conn = new ConexaoDAO().conectaDB();
 			
 			pstm = conn.prepareStatement(sql);
@@ -88,12 +84,15 @@ public class NCDAO {
 			while (rs.next()){
 				NcDTO objnc = new NcDTO();
 				objnc.setId_Nc(rs.getInt("id_Nc"));
+				
 				objnc.setDescricao_Nc(rs.getString("descricao_Nc"));
 				objnc.setLocal_Nc(rs.getString("local_Nc"));
 				objnc.setNome_Nc(rs.getString("nome_Nc"));
 				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
 				objnc.setId_Plano(rs.getInt("id_Plano"));
 				
+				//debug descrição
+				//JOptionPane.showMessageDialog(null, objnc.getDescricao_Nc());
 				lista.add(objnc);
 
 			}
@@ -104,6 +103,48 @@ public class NCDAO {
 		} catch (SQLException erro) {
 			JOptionPane.showMessageDialog(null, "NCDAO - pesquisarNC " + erro);
 		}return lista;
+	}
+	
+	public	ArrayList<EditNC> pesquisaeditar(String pesquisa){
+		
+		int idpesquisa = Integer.parseInt(pesquisa);
+	
+		
+		try {
+			
+			String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getRespNc() +"'"+ " and nome_Nc = " + idpesquisa;
+			
+			EditNC editarNc = new EditNC();
+			
+			conn = new ConexaoDAO().conectaDB();
+			
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+			
+			
+			while (rs.next()){
+								
+				editarNc.SetIdNc(rs.getInt("id_Nc"));
+				
+				editarNc.setDescricao(rs.getString("descricao_Nc"));
+				editarNc.setLocalNC(rs.getString("local_Nc"));
+				
+				editarNc.setTxtNome(rs.getString("nome_Nc"));
+				editarNc.setTxtResponsavelNc(rs.getString("responsavel_NC"));
+				editarNc.SetIdplano(rs.getInt("id_Plano"));
+				
+				//debug descrição
+				//JOptionPane.showMessageDialog(null, objnc.getDescricao_Nc());
+				editar.add(editarNc);
+
+			}
+			
+			
+			
+			
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null, "NCDAO - pesquisarNC " + erro);
+		}return editar;
 	}
 
 }

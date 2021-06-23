@@ -9,9 +9,84 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 
-public class CreateNC extends javax.swing.JFrame {
+public class EditNC extends javax.swing.JFrame {
+	
+	private static String Nome_Nc, responsavel_Nc, local_Nc, descricao_Nc, ID_NC, IdPlano;
+	
+	public void setTxtNome(String txtNome) {
+		Nome_Nc = txtNome;
+	}
 
-	public CreateNC() {
+	public void setTxtResponsavelNc(String resp) {
+		responsavel_Nc = resp;
+	}
+
+	public void setLocalNC(String local) {
+		local_Nc = local;
+	}
+
+	public void setDescricao(String descricao) {
+		descricao_Nc = descricao;
+	}
+
+	public void SetIdNc(int id) {
+
+		ID_NC = String.valueOf(id);
+	}
+
+	public void SetIdplano(int id) {
+
+		IdPlano = String.valueOf(id);
+	
+	}
+
+	
+	public void setALL() {
+		txtNome_Nc.setText(Nome_Nc);
+		txtresponsavel_Nc.setText(responsavel_Nc);
+		txtlocal_Nc.setText(local_Nc);
+		txtdescricao_Nc.setText(descricao_Nc);
+		
+		txtID_NC.setText(ID_NC);
+		txtIdPlano.setText(IdPlano);
+	}
+	public void pesquisar(String Pesquisa) {
+		NCDAO pesq = new NCDAO();
+		pesq.pesquisaeditar(Pesquisa);
+		
+		EditNC editarNc = new EditNC();
+		editarNc.setVisible(true);
+		
+	}
+	
+
+	
+
+	public String getNome_Nc() {
+		return Nome_Nc;
+	}
+
+	public String getResponsavel_Nc() {
+		return responsavel_Nc;
+	}
+
+	public String getLocal_Nc() {
+		return local_Nc;
+	}
+
+	public String getDescricao_Nc() {
+		return descricao_Nc;
+	}
+
+	public String getID_NC() {
+		return ID_NC;
+	}
+
+	public String getIdPlano() {
+		return IdPlano;
+	}
+
+	public EditNC() {
 		initComponents();
 	}
 
@@ -164,6 +239,7 @@ public class CreateNC extends javax.swing.JFrame {
 		dispose();
 	}
 
+									//mudar para atualizar
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) { // botão salvar;
 		NcDTO objnc = new NcDTO();
 		objnc.setNome_Nc(txtNome_Nc.getText());
@@ -177,31 +253,6 @@ public class CreateNC extends javax.swing.JFrame {
 
 	}
 
-	public void setTxtNome(String txtNome) {
-		txtNome_Nc.setText(txtNome);
-	}
-
-	public void setTxtResponsavelNc(String resp) {
-		txtresponsavel_Nc.setText(resp);
-	}
-
-	public void setLocalNC(String local) {
-		txtlocal_Nc.setText(local);
-	}
-
-	public void setDescricao(String descricao) {
-		txtdescricao_Nc.setText(descricao);
-	}
-
-	public void SetIdNc(int id) {
-
-		txtID_NC.setText(String.valueOf(id));
-	}
-
-	public void SetIdplano(int id) {
-
-		txtIdPlano.setText(String.valueOf(id));
-	}
 
 	/**
 	 * @param args the command line arguments
@@ -223,20 +274,20 @@ public class CreateNC extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(CreateNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(EditNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(CreateNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(EditNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(CreateNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(EditNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(CreateNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(EditNC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		// </editor-fold>
 
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new CreateNC().setVisible(true);
+				new EditNC().setVisible(true);
 			}
 		});
 	}
