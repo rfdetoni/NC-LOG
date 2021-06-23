@@ -125,9 +125,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>
 
-	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
-	}
+	
 
 	private void btnPesquisarNCActionPerformed(java.awt.event.ActionEvent evt) {
 		resPesquisa();
@@ -201,7 +199,25 @@ public class PesquisaNC extends javax.swing.JFrame {
 		}
 
 	}
+	
+	private void CarregarCampos() {
+		int setar = tblPesquisa.getSelectedRow();
+		
+		
+		int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar, 0).toString()));
+			
+		EditNC editar = new EditNC();
+		editar.SetIdNc(id);
+		
 
+	}
+	
+	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
+		EditNC abrir = new EditNC();
+		abrir.setVisible(true);
+		
+	}
+	
 	// Variables declaration - do not modify
 	private javax.swing.JButton btnOpen;
 	private javax.swing.JButton btnPesquisarNC;

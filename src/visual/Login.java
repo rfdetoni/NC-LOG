@@ -125,10 +125,13 @@ public class Login extends JFrame {
 					ResultSet rsuserdao = objuserDAO.autUsuario(objuser);
 					NCDAO ndao = new NCDAO();
 					ndao.setRespNc(user);
+					EditNC edit = new EditNC();
+					edit.setTxtResponsavelNc(user);
 					
 					
 					if(rsuserdao.next()) {
-						//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
+						
+							//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
 						
 						Home homenc = new Home();
 						homenc.setUser(user);

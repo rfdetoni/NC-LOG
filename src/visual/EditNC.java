@@ -1,18 +1,29 @@
 
 package visual;
 
+import DAO.ConexaoDAO;
 import DAO.NCDAO;
 import DTO.NcDTO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 
 public class EditNC extends javax.swing.JFrame {
-	
-	private static String Nome_Nc, responsavel_Nc, local_Nc, descricao_Nc, ID_NC, IdPlano;
-	
+
+	private static String Nome_Nc, responsavel_Nc, local_Nc, descricao_Nc;
+	private static int ID_NC, IdPlano;
+
 	public void setTxtNome(String txtNome) {
 		Nome_Nc = txtNome;
 	}
@@ -30,37 +41,26 @@ public class EditNC extends javax.swing.JFrame {
 	}
 
 	public void SetIdNc(int id) {
-
-		ID_NC = String.valueOf(id);
+		ID_NC = id;
 	}
 
 	public void SetIdplano(int id) {
 
-		IdPlano = String.valueOf(id);
-	
+		IdPlano = id;
+
 	}
 
-	
 	public void setALL() {
 		txtNome_Nc.setText(Nome_Nc);
 		txtresponsavel_Nc.setText(responsavel_Nc);
 		txtlocal_Nc.setText(local_Nc);
 		txtdescricao_Nc.setText(descricao_Nc);
-		
-		txtID_NC.setText(ID_NC);
-		txtIdPlano.setText(IdPlano);
-	}
-	public void pesquisar(String Pesquisa) {
-		NCDAO pesq = new NCDAO();
-		pesq.pesquisaeditar(Pesquisa);
-		
-		EditNC editarNc = new EditNC();
-		editarNc.setVisible(true);
-		
-	}
-	
 
-	
+	}
+
+	public void pesquisar(String Pesquisa) {
+
+	}
 
 	public String getNome_Nc() {
 		return Nome_Nc;
@@ -78,16 +78,21 @@ public class EditNC extends javax.swing.JFrame {
 		return descricao_Nc;
 	}
 
-	public String getID_NC() {
+	public int getID_NC() {
 		return ID_NC;
 	}
 
-	public String getIdPlano() {
+	public int getIdPlano() {
 		return IdPlano;
 	}
 
 	public EditNC() {
 		initComponents();
+
+		NCDAO objNCDAO = new NCDAO();
+		objNCDAO.PEditNC(this.getID_NC());
+		objNCDAO.getRespNc();
+
 	}
 
 	/**
@@ -239,7 +244,7 @@ public class EditNC extends javax.swing.JFrame {
 		dispose();
 	}
 
-									//mudar para atualizar
+	// mudar para atualizar
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) { // botão salvar;
 		NcDTO objnc = new NcDTO();
 		objnc.setNome_Nc(txtNome_Nc.getText());
@@ -252,7 +257,6 @@ public class EditNC extends javax.swing.JFrame {
 		dispose();
 
 	}
-
 
 	/**
 	 * @param args the command line arguments
@@ -309,4 +313,41 @@ public class EditNC extends javax.swing.JFrame {
 	private JLabel lblNewLabel_1;
 	private JTextField txtIdPlano;
 	// End of variables declaration
+
+	public void resPesquisa() {
+
+		Connection conn;
+		PreparedStatement pstm;
+		ResultSet rs;
+
+		String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ this.getResponsavel_Nc() +"'"+ " and id_Nc = " + "'"+ this.getID_NC() +"'";
+		
+				
+		conn = new ConexaoDAO().conectaDB();
+		try {
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				NcDTO objnc = new NcDTO();
+				ID_NC = rs.getInt("id_Nc");
+				
+				txtID_NC.setText(Integer.toString(ID_NC));
+				
+				txtdescricao_Nc.setText(rs.getString("descricao_Nc"));
+				txtlocal_Nc.setText(rs.getString("local_Nc"));
+				objnc.setNome_Nc(rs.getString("nome_Nc"));
+				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
+				txtIdPlano.setText(Integer.toString(rs.getInt("id_Plano")));
+
+				
+
+			}
+
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null, " NCDAO PesquisaNC " + erro);
+		}
+		
+
+	}
 }
