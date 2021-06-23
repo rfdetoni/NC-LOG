@@ -126,10 +126,12 @@ public class Login extends JFrame {
 					NCDAO ndao = new NCDAO();
 					ndao.setRespNc(user);
 					
+					
 					if(rsuserdao.next()) {
-						JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
+						//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
 						
 						Home homenc = new Home();
+						homenc.setUser(user);
 						
 						homenc.setVisible(true);
 						dispose();
