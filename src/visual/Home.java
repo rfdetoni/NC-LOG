@@ -167,6 +167,7 @@ public class Home extends javax.swing.JFrame {
     private void menuEditarNcActionPerformed(java.awt.event.ActionEvent evt) {                                             
         CreateNC cnc = new CreateNC();
         cnc.setVisible(true);
+        dispose();
     }                                            
 
     private void menuPesquisarActionPerformed(java.awt.event.ActionEvent evt) {                                              
