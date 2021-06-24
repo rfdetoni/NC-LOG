@@ -102,7 +102,7 @@ public class NCDAO {
 	
 	public ArrayList<NcDTO> PesquisaNC(String Pesquisa){
 		
-		String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ resp_nc +"'"+ " and nome_Nc = " + "'"+ Pesquisa +"'";
+		String sql = "select * from naoConformidade where responsavel_Nc = " +"'"+ resp_nc +"'"+ " and nome_Nc like  " + "'%"+ Pesquisa +"%'";
 		conn = new ConexaoDAO().conectaDB();
 		
 		

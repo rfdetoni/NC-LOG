@@ -9,6 +9,20 @@ import javax.swing.table.DefaultTableModel;
 
 import DAO.NCDAO;
 import DTO.NcDTO;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JPanel;
+import javax.swing.SpringLayout;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PesquisaNC extends javax.swing.JFrame {
 
@@ -69,19 +83,25 @@ public class PesquisaNC extends javax.swing.JFrame {
 		tblPesquisa = new javax.swing.JTable();
 		btnPesquisarNC = new javax.swing.JButton();
 		btnOpen = new javax.swing.JButton();
+		btnOpen.setToolTipText("Visualizar ou editar NC selecionada");
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
 		jLabel1.setText("Pesquisa por nome da NC:");
 
-		tblPesquisa.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { null, null, null, null }, { null, null, null, null }, { null, null, null, null },
-						{ null, null, null, null } },
-				new String[] { "ID NC", "Nome ", "Responsável", "ID plano de ação" }));
+		tblPesquisa.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, ""},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o", "Descri\u00E7\u00E3o"
+			}
+		));
 		tblPesquisa.setColumnSelectionAllowed(true);
 		scrollPesquisa.setViewportView(tblPesquisa);
-		tblPesquisa.getColumnModel().getSelectionModel()
-				.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
 		btnPesquisarNC.setText("pesquisar");
 		btnPesquisarNC.addActionListener(new java.awt.event.ActionListener() {
@@ -90,38 +110,161 @@ public class PesquisaNC extends javax.swing.JFrame {
 			}
 		});
 
-		btnOpen.setText("Abrir selecionado");
+		btnOpen.setText("Visualizar/editar");
 		btnOpen.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				btnOpenActionPerformed(evt);
 			}
 		});
-
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
-				.createSequentialGroup()
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup().addGap(18, 18, 18).addComponent(jLabel1)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 257,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addGap(12, 12, 12).addComponent(btnPesquisarNC).addGap(0, 0, Short.MAX_VALUE))
-						.addComponent(scrollPesquisa, javax.swing.GroupLayout.Alignment.TRAILING)
-						.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-								layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE).addComponent(btnOpen)))
-				.addContainerGap()));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
-				.createSequentialGroup().addGap(17, 17, 17)
-				.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jLabel1)
-						.addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+		
+		JLabel lblNewLabel = new JLabel("Nome da NC:");
+		
+		txtNomeNC = new JTextField();
+		txtNomeNC.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Respons\u00E1vel:");
+		
+		txtResponsavel = new JTextField();
+		txtResponsavel.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Local:");
+		
+		txtLocal = new JTextField();
+		txtLocal.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("ID da NC");
+		
+		txtIdNC = new JTextField();
+		txtIdNC.setEditable(false);
+		txtIdNC.setColumns(10);
+		
+		JLabel lblNewLabel_4 = new JLabel("ID Plano de A\u00E7\u00E3o");
+		
+		txtPlano = new JTextField();
+		txtPlano.setEditable(false);
+		txtPlano.setColumns(10);
+		
+		JLabel lblNewLabel_5 = new JLabel("Descri\u00E7\u00E3o");
+		
+		JTextPane txtDescricao = new JTextPane();
+		
+		JButton btnNewButton = new JButton("Salvar");
+		
+		JSeparator separator = new JSeparator();
+		
+		btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addComponent(jLabel1)
+					.addGap(18)
+					.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnPesquisarNC)
+					.addContainerGap(63, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel_3)
+					.addGap(22)
+					.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblNewLabel_4)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(216))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel)
+					.addGap(2)
+					.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(lblNewLabel_1)
+					.addGap(10)
+					.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(53))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(250)
+					.addComponent(lblNewLabel_5))
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(txtDescricao, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+					.addGap(12))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(423, Short.MAX_VALUE)
+					.addComponent(btnVoltar)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnNewButton)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(448, Short.MAX_VALUE)
+					.addComponent(btnOpen)
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel1)
+						.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnPesquisarNC))
-				.addGap(19, 19, 19)
-				.addComponent(scrollPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 275,
-						javax.swing.GroupLayout.PREFERRED_SIZE)
-				.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(btnOpen)
-				.addContainerGap(15, Short.MAX_VALUE)));
+					.addGap(20)
+					.addComponent(scrollPesquisa, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnOpen)
+					.addGap(11)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_3))
+						.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_4)
+								.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel))
+						.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_2)
+							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addComponent(lblNewLabel_5)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtDescricao, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnVoltar))
+					.addGap(12))
+		);
+		getContentPane().setLayout(groupLayout);
 
 		pack();
 	}// </editor-fold>
@@ -233,5 +376,10 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private javax.swing.JScrollPane scrollPesquisa;
 	private javax.swing.JTable tblPesquisa;
 	private javax.swing.JTextField txtPesquisa;
-	// End of variables declaration
+	private JTextField txtNomeNC;
+	private JTextField txtResponsavel;
+	private JTextField txtLocal;
+	private JTextField txtIdNC;
+	private JTextField txtPlano;
+	private JButton btnVoltar;
 }
