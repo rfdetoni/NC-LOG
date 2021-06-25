@@ -41,6 +41,13 @@ public class Home extends javax.swing.JFrame {
         menuPesquisarNC = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuPesquisaPlano = new javax.swing.JMenuItem();
+        menuPesquisaPlano.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		PesquisaPlano pp = new PesquisaPlano();
+        		pp.setVisible(true);
+        		
+        	}
+        });
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
 

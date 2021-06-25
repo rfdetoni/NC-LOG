@@ -1,6 +1,6 @@
 package DAO;
 
-import java.io.Reader;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import DTO.NcDTO;
 import DTO.UsuarioDTO;
 import visual.CreateNC;
-import visual.EditNC;
+
 import visual.PesquisaNC;
 import visual.okNext;
 
@@ -121,36 +121,7 @@ public class NCDAO {
 
 	}
 
-	public ArrayList<NcDTO> PEditNC(int ID) {
-
-		String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'" + " and id_Nc = "
-				+ "'" + ID + "'";
-		conn = new ConexaoDAO().conectaDB();
-
-		try {
-
-			pstm = conn.prepareStatement(sql);
-			rs = pstm.executeQuery();
-
-			while (rs.next()) {
-				NcDTO objnc = new NcDTO();
-				objnc.setId_Nc(rs.getInt("id_Nc"));
-				objnc.setDescricao_Nc(rs.getString("descricao_Nc"));
-				objnc.setLocal_Nc(rs.getString("local_Nc"));
-				objnc.setNome_Nc(rs.getString("nome_Nc"));
-				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
-				objnc.setId_Plano(rs.getInt("id_Plano"));
-
-				resultado.add(objnc);
-
-			}
-
-		} catch (SQLException erro) {
-			JOptionPane.showMessageDialog(null, " NCDAO PesquisaNC " + erro);
-		}
-		return resultado;
-
-	}
+	
 
 	public void EditarNC(NcDTO objncDTO) {
 		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, descricao_Nc = ? where id_Nc = ?";
