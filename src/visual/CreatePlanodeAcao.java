@@ -251,19 +251,18 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
        PlanoDTO plan = new PlanoDTO();
-      
-   		
+
        plan.setNome_Criador(txtnome_criador.getText());
        plan.setEstrategia(txtestrategia.getText());
        plan.setTime_resp(txttime_resp.getText());
-       
-       
+
        PlanoDAO pldao = new PlanoDAO();
        pldao.registerPlan(plan);
        dispose();
+       Home home= new Home();
+       home.setVisible(true);
     }                                         
 
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
