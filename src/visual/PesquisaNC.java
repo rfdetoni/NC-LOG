@@ -434,9 +434,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 		
 		NCDAO objncdao = new NCDAO();
 		objncdao.EditarNC(objncDTO);
-		
-		
-		
+		resPesquisa();
 		
 		
 	}
