@@ -91,13 +91,14 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 		tblPesquisa.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, ""},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
+				{null, null, null, null, null, null},
 			},
 			new String[] {
-				"ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o", "Descri\u00E7\u00E3o"
+				"ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o", "Descri\u00E7\u00E3o", "Local"
 			}
 		));
 		tblPesquisa.setColumnSelectionAllowed(true);
@@ -146,9 +147,12 @@ public class PesquisaNC extends javax.swing.JFrame {
 		
 		JLabel lblNewLabel_5 = new JLabel("Descri\u00E7\u00E3o");
 		
-		JTextPane txtDescricao = new JTextPane();
-		
 		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				SalvarEdit();
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		
@@ -158,17 +162,11 @@ public class PesquisaNC extends javax.swing.JFrame {
 				dispose();
 			}
 		});
+		
+		txtDesc = new JTextPane();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
-					.addComponent(jLabel1)
-					.addGap(18)
-					.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnPesquisarNC)
-					.addContainerGap(63, Short.MAX_VALUE))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(10)
 					.addComponent(lblNewLabel_3)
@@ -196,24 +194,31 @@ public class PesquisaNC extends javax.swing.JFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(250)
 					.addComponent(lblNewLabel_5))
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtDescricao, GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
-					.addGap(12))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(423, Short.MAX_VALUE)
+					.addContainerGap(431, Short.MAX_VALUE)
 					.addComponent(btnVoltar)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnNewButton)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-					.addContainerGap())
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(448, Short.MAX_VALUE)
+					.addContainerGap(456, Short.MAX_VALUE)
 					.addComponent(btnOpen)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jLabel1)
+							.addGap(18)
+							.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPesquisarNC)))
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -256,9 +261,9 @@ public class PesquisaNC extends javax.swing.JFrame {
 							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addComponent(lblNewLabel_5)
+					.addGap(13)
+					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(txtDescricao, GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(btnVoltar))
@@ -332,7 +337,9 @@ public class PesquisaNC extends javax.swing.JFrame {
 						lista.get(num).getId_Nc(),
 						lista.get(num).getNome_Nc(),
 						lista.get(num).getResponsavel_Nc(),
-						lista.get(num).getId_Plano()
+						lista.get(num).getId_Plano(),
+						lista.get(num).getDescricao_Nc(),
+						lista.get(num).getLocal_Nc()
 
 				});
 
@@ -344,7 +351,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 	}
 
-	private boolean CarregarCampos() {
+	/*private boolean CarregarCampos() {
 		int setar = tblPesquisa.getSelectedRow();
 		int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar, 0).toString()));
 		if(id != 0){
@@ -355,18 +362,15 @@ public class PesquisaNC extends javax.swing.JFrame {
 			return false;
 		}
 
-	}
+	}*/
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
+		
+		
+			Carregar();
+		
 
-		try{if(CarregarCampos()) {
-			EditNC abrir = new EditNC();
-			abrir.setVisible(true);
-		}
-
-		}catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "Voce não selecionou uma linha da tabela");
-		}
+		
 	}
 	
 	// Variables declaration - do not modify
@@ -382,4 +386,58 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JTextField txtIdNC;
 	private JTextField txtPlano;
 	private JButton btnVoltar;
+	private JTextPane txtDesc;
+	
+	
+	//carrega dados da planilha para campo de edição
+	private  void Carregar() {
+		try {
+			int setar = tblPesquisa.getSelectedRow();
+			
+			
+			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
+			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
+			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
+			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());	
+			
+			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
+		
+			}
+			catch(Exception e){
+				JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
+				
+			}
+			
+		
+	}
+	
+	
+	private void SalvarEdit() {
+		int id_NC;
+		
+		String nome_Nc, responsavel_nc, local, descricao;
+		
+		id_NC =Integer.parseInt(txtIdNC.getText());
+		nome_Nc = txtNomeNC.getText();
+		responsavel_nc = txtResponsavel.getText();
+		local = txtLocal.getText();
+		descricao = txtDesc.getText();
+		
+		NcDTO objncDTO = new NcDTO();
+		
+		objncDTO.setId_Nc(id_NC);
+		objncDTO.setDescricao_Nc(descricao);
+		objncDTO.setLocal_Nc(local);
+		objncDTO.setNome_Nc(nome_Nc);
+		objncDTO.setResponsavel_Nc(responsavel_nc);
+		
+		NCDAO objncdao = new NCDAO();
+		objncdao.EditarNC(objncDTO);
+		
+		
+		
+		
+		
+	}
 }

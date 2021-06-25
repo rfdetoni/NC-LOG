@@ -36,7 +36,7 @@ public class CreateNC extends javax.swing.JFrame {
 		btnCancelar = new javax.swing.JButton();
 		btnSalvar = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 		setTitle("Inserir Não Conformidade");
 		setLocationByPlatform(true);
 
@@ -72,83 +72,71 @@ public class CreateNC extends javax.swing.JFrame {
 			}
 		});
 
-		lblNewLabel = new JLabel("ID NC");
-
-		txtID_NC = new JTextField();
-		txtID_NC.setEditable(false);
-		txtID_NC.setColumns(10);
-
-		lblNewLabel_1 = new JLabel("ID Plano de A\u00E7\u00E3o");
-
-		txtIdPlano = new JTextField();
-		txtIdPlano.setEditable(false);
-		txtIdPlano.setColumns(10);
-
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
-				.addGap(197)
-				.addGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(txtlocal_Nc, 201, 201, 201)
-								.addGroup(layout.createParallelGroup(Alignment.TRAILING, false).addGroup(layout
-										.createSequentialGroup().addComponent(txtresponsavel_Nc, 201, 201, 201)
-										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addComponent(txtIdPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE))
-										.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-												.addComponent(txtNome_Nc, 201, 201, 201).addGap(70)
-												.addGroup(layout.createParallelGroup(Alignment.LEADING)
-														.addComponent(lblNewLabel_1).addComponent(txtID_NC,
-																GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE)))))
-						.addGap(22))
-						.addGroup(layout.createSequentialGroup().addGap(66)
-								.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE).addGap(246))
-						.addGroup(layout.createSequentialGroup().addGap(52)
-								.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE).addGap(231))))
-				.addGroup(layout.createSequentialGroup().addGap(154)
-						.addGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
-								.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGap(146).addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-								.addGap(137))
-								.addGroup(layout.createSequentialGroup().addGap(99)
-										.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGap(245))))
-				.addGroup(layout.createSequentialGroup().addContainerGap(252, Short.MAX_VALUE).addComponent(jLabel1)
-						.addGap(106).addComponent(lblNewLabel).addGap(55))
-				.addGroup(layout.createSequentialGroup().addContainerGap()
-						.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE).addGap(6)));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.TRAILING)
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-								.addGap(21).addComponent(jLabel1).addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(txtNome_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(jLabel2)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtresponsavel_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(jLabel3)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtlocal_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(18).addComponent(jLabel4))
-								.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(lblNewLabel)
-										.addPreferredGap(ComponentPlacement.UNRELATED)
-										.addComponent(txtID_NC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_1)
-										.addPreferredGap(ComponentPlacement.RELATED).addComponent(txtIdPlano,
-												GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)))
-						.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCancelar)
-								.addComponent(btnSalvar))
-						.addGap(52)));
+					.addGap(197)
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+							.addGap(246))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(52)
+							.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+							.addGap(231))))
+				.addGroup(layout.createSequentialGroup()
+					.addGap(154)
+					.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(146)
+					.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+					.addGap(137))
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+					.addGap(6))
+				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+					.addGap(220)
+					.addComponent(jLabel1)
+					.addContainerGap(221, Short.MAX_VALUE))
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap(186, Short.MAX_VALUE)
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(txtlocal_Nc, 201, 201, 201)
+						.addComponent(txtresponsavel_Nc, 201, 201, 201)
+						.addComponent(txtNome_Nc, 201, 201, 201))
+					.addGap(189))
+				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+					.addGap(246)
+					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(252))
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(layout.createSequentialGroup()
+					.addGap(26)
+					.addComponent(jLabel1)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtNome_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(jLabel2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtresponsavel_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(11)
+					.addComponent(jLabel3)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtlocal_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(jLabel4)
+					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 144, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCancelar)
+						.addComponent(btnSalvar))
+					.addGap(52))
+		);
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -193,16 +181,7 @@ public class CreateNC extends javax.swing.JFrame {
 		txtdescricao_Nc.setText(descricao);
 	}
 
-	public void SetIdNc(int id) {
-
-		txtID_NC.setText(String.valueOf(id));
-	}
-
-	public void SetIdplano(int id) {
-
-		txtIdPlano.setText(String.valueOf(id));
-	}
-
+	
 	/**
 	 * @param args the command line arguments
 	 */
@@ -253,9 +232,5 @@ public class CreateNC extends javax.swing.JFrame {
 	private javax.swing.JTextArea txtdescricao_Nc;
 	private javax.swing.JTextField txtlocal_Nc;
 	private javax.swing.JTextField txtresponsavel_Nc;
-	private JLabel lblNewLabel;
-	private JTextField txtID_NC;
-	private JLabel lblNewLabel_1;
-	private JTextField txtIdPlano;
 	// End of variables declaration
 }
