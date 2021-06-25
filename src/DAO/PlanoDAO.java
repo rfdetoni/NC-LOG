@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
 import DTO.PlanoDTO;
+import DTO.VariaveisEstaticas;
 import visual.okNext;
 
 public class PlanoDAO {
@@ -19,6 +20,7 @@ public class PlanoDAO {
 	ResultSet rs;
 	ArrayList<PlanoDTO> lista = new ArrayList<>();
 	ArrayList<PlanoDTO> resultado = new ArrayList<>();
+	ArrayList<VariaveisEstaticas> idplano = new ArrayList<>();
 	
 	public void setRespNc(String resp_nc) {
 		this.resp_nc = resp_nc;
@@ -85,6 +87,34 @@ public class PlanoDAO {
 
 	}
 	
+	
+	public ArrayList<VariaveisEstaticas> PegarIdPLano(String Pesquisa) {
+
+		String sql = "select * from planoDeAcao where id_Nc = " + "'" + Pesquisa + "'";
+		conn = new ConexaoDAO().conectaDB();
+		
+	JOptionPane.showMessageDialog(null,"DEBUG pesquisaPLano"+ sql);
+
+		try {
+
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+		VariaveisEstaticas ve = new VariaveisEstaticas();
+				
+				ve.setId_plano(rs.getInt("id_Plano"));
+				
+				idplano.add(ve);
+
+			}
+
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null, " PlanoDAO PegarIDPLano " + erro);
+		}
+		return idplano;
+
+	}
 	
 	
 

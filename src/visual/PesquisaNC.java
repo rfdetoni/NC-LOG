@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.NCDAO;
+import DAO.PlanoDAO;
 import DTO.NcDTO;
+import DTO.VariaveisEstaticas;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -90,17 +93,11 @@ public class PesquisaNC extends javax.swing.JFrame {
 		jLabel1.setText("Pesquisa por nome da NC:");
 
 		tblPesquisa.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o", "Descri\u00E7\u00E3o", "Local"
-			}
-		));
+				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, },
+				new String[] { "ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o",
+						"Descri\u00E7\u00E3o", "Local" }));
 		tblPesquisa.setColumnSelectionAllowed(true);
 		scrollPesquisa.setViewportView(tblPesquisa);
 
@@ -117,164 +114,129 @@ public class PesquisaNC extends javax.swing.JFrame {
 				btnOpenActionPerformed(evt);
 			}
 		});
-		
+
 		JLabel lblNewLabel = new JLabel("Nome da NC:");
-		
+
 		txtNomeNC = new JTextField();
 		txtNomeNC.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Respons\u00E1vel:");
-		
+
 		txtResponsavel = new JTextField();
 		txtResponsavel.setColumns(10);
-		
+
 		JLabel lblNewLabel_2 = new JLabel("Local:");
-		
+
 		txtLocal = new JTextField();
 		txtLocal.setColumns(10);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("ID da NC");
-		
+
 		txtIdNC = new JTextField();
 		txtIdNC.setEditable(false);
 		txtIdNC.setColumns(10);
-		
+
 		JLabel lblNewLabel_4 = new JLabel("ID Plano de A\u00E7\u00E3o");
-		
+
 		txtPlano = new JTextField();
 		txtPlano.setEditable(false);
 		txtPlano.setColumns(10);
-		
+
 		JLabel lblNewLabel_5 = new JLabel("Descri\u00E7\u00E3o");
-		
+
 		JButton btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SalvarEdit();
 			}
 		});
-		
+
 		JSeparator separator = new JSeparator();
-		
+
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		
+
 		txtDesc = new JTextPane();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblNewLabel_3)
-					.addGap(22)
-					.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblNewLabel_4)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(216))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addComponent(lblNewLabel)
-					.addGap(2)
-					.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(lblNewLabel_1)
-					.addGap(10)
-					.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblNewLabel_2)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(53))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(250)
-					.addComponent(lblNewLabel_5))
+		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
+				.createSequentialGroup().addGap(10).addComponent(lblNewLabel_3).addGap(22)
+				.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGap(18).addComponent(lblNewLabel_4).addPreferredGap(ComponentPlacement.RELATED)
+				.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						GroupLayout.PREFERRED_SIZE)
+				.addGap(216))
+				.addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(lblNewLabel).addGap(2)
+						.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE).addGap(10)
+						.addComponent(lblNewLabel_1).addGap(10)
+						.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_2)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+								GroupLayout.PREFERRED_SIZE)
+						.addGap(53))
+				.addGroup(groupLayout.createSequentialGroup().addGap(250).addComponent(lblNewLabel_5))
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(431, Short.MAX_VALUE)
-					.addComponent(btnVoltar)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnNewButton)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(456, Short.MAX_VALUE)
-					.addComponent(btnOpen)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap(431, Short.MAX_VALUE)
+						.addComponent(btnVoltar).addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(btnNewButton).addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap(456, Short.MAX_VALUE)
+						.addComponent(btnOpen).addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup().addGap(18).addGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(jLabel1)
-							.addGap(18)
-							.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnPesquisarNC)))
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jLabel1)
-						.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnPesquisarNC))
-					.addGap(20)
-					.addComponent(scrollPesquisa, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnOpen)
-					.addGap(11)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabel_3))
-						.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel_4)
-								.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addGap(11)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabel))
-						.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNewLabel_1))
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(lblNewLabel_2)
-							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(18)
-					.addComponent(lblNewLabel_5)
-					.addGap(13)
-					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
-						.addComponent(btnVoltar))
-					.addGap(12))
-		);
+						.addGroup(groupLayout.createSequentialGroup().addComponent(jLabel1).addGap(18)
+								.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnPesquisarNC)))
+						.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
+						.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup().addGap(18)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(jLabel1)
+								.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnPesquisarNC))
+						.addGap(20)
+						.addComponent(scrollPesquisa, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOpen).addGap(11)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel_3))
+								.addComponent(
+										txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup().addGap(3)
+										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(lblNewLabel_4)
+												.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE,
+														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						.addGap(11)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel))
+								.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel_1))
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNewLabel_2).addComponent(txtLocal, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addGap(18).addComponent(lblNewLabel_5).addGap(13)
+						.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton)
+								.addComponent(btnVoltar))
+						.addGap(12)));
 		getContentPane().setLayout(groupLayout);
 
 		pack();
 	}// </editor-fold>
-
-	
 
 	private void btnPesquisarNCActionPerformed(java.awt.event.ActionEvent evt) {
 		resPesquisa();
@@ -333,8 +295,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 			ArrayList<NcDTO> lista = objNCDAO.PesquisaNC(pesquisa);
 			for (int num = 0; num < lista.size(); num++) {
 
-				model.addRow(new Object[] {
-						lista.get(num).getId_Nc(),
+				model.addRow(new Object[] { 
+						lista.get(num).getId_Nc(), 
 						lista.get(num).getNome_Nc(),
 						lista.get(num).getResponsavel_Nc(),
 						lista.get(num).getId_Plano(),
@@ -351,28 +313,21 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 	}
 
-	/*private boolean CarregarCampos() {
-		int setar = tblPesquisa.getSelectedRow();
-		int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar, 0).toString()));
-		if(id != 0){
-			EditNC editar = new EditNC();
-			editar.SetIdNc(id);
-			return true;
-		} else {
-			return false;
-		}
-
-	}*/
+	/*
+	 * private boolean CarregarCampos() { int setar = tblPesquisa.getSelectedRow();
+	 * int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar,
+	 * 0).toString())); if(id != 0){ EditNC editar = new EditNC();
+	 * editar.SetIdNc(id); return true; } else { return false; }
+	 * 
+	 * }
+	 */
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
-		
-		
-			Carregar();
-		
+		Load();
+		Carregar();
 
-		
 	}
-	
+
 	// Variables declaration - do not modify
 	private javax.swing.JButton btnOpen;
 	private javax.swing.JButton btnPesquisarNC;
@@ -387,55 +342,72 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JTextField txtPlano;
 	private JButton btnVoltar;
 	private JTextPane txtDesc;
-	
-	
-	//carrega dados da planilha para campo de edição
-	private  void Carregar() {
+
+	// carrega dados da planilha para campo de edição
+	private void Carregar() {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
-			
-			
+
 			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
 			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
-			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());	
-			
+			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
+
 			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
-		
-			}
-			catch(Exception e){
-				JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
-				
-			}
+
+			//pega o valor da id do plano de ação;
 			
-		
+			//teste com isso comentado pq não lembro o que faz
+		/*	PlanoDAO plano = new PlanoDAO();
+			
+			String id_plano =(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			plano.PegarIdPLano(id_plano);
+			
+			*/
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
+
+		}
+
 	}
-	
-	
+
 	private void SalvarEdit() {
 		int id_NC;
+		NCDAO objncdao = new NCDAO();
+		NcDTO objncDTO = new NcDTO();
 		
 		String nome_Nc, responsavel_nc, local, descricao;
-		
-		id_NC =Integer.parseInt(txtIdNC.getText());
+
+		id_NC = Integer.parseInt(txtIdNC.getText());
 		nome_Nc = txtNomeNC.getText();
 		responsavel_nc = txtResponsavel.getText();
 		local = txtLocal.getText();
 		descricao = txtDesc.getText();
-		
-		NcDTO objncDTO = new NcDTO();
-		
+
 		objncDTO.setId_Nc(id_NC);
 		objncDTO.setDescricao_Nc(descricao);
 		objncDTO.setLocal_Nc(local);
 		objncDTO.setNome_Nc(nome_Nc);
 		objncDTO.setResponsavel_Nc(responsavel_nc);
-		
-		NCDAO objncdao = new NCDAO();
+
+		// valida se há plano de ação listado na tela de edição, se não houver,
+		// disponibiliza a janela de opção para criar.
+		String id_plano = txtPlano.getText();
+		if ("0".equals(id_plano)) {
+			objncdao.PegarID(nome_Nc, descricao);
+			okNext ok = new okNext();
+			ok.setVisible(true);
+		} // fim validação
+
 		objncdao.EditarNC(objncDTO);
 		resPesquisa();
-		
-		
+
 	}
+
+	private void Load() {
+	    	VariaveisEstaticas ve = new VariaveisEstaticas();
+	    	txtPlano.setText(Integer.toString(ve.getId_plano()));
+	    	
+	}   	
 }

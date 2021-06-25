@@ -159,6 +159,11 @@ public class CreateNC extends javax.swing.JFrame {
 		NCDAO objncdao = new NCDAO();
 
 		objncdao.registerNC(objnc);
+		
+		String nome, descricao;
+		nome = txtNome_Nc.getText();
+		descricao = txtdescricao_Nc.getText();
+		objncdao.PegarID(nome, descricao);
 		dispose();
 
 	}

@@ -3,8 +3,11 @@ package visual;
 
 import java.util.Date;
 
+import DAO.NCDAO;
 import DAO.PlanoDAO;
 import DTO.PlanoDTO;
+import DTO.VariaveisEstaticas;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
@@ -17,6 +20,8 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
      */
     public CreatePlanodeAcao() {
         initComponents();
+        Load();
+   
     }
 
     /**
@@ -50,7 +55,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         lblLocal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Criar plano de ação");
+        setTitle("Criar plano de a\u00E7\u00E3o");
         setLocationByPlatform(true);
 
         jLabel1.setText("Titulo do plano de a\u00E7\u00E3o");
@@ -246,7 +251,9 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     }                                            
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
-       dispose();
+       Home home = new Home();
+       home.setVisible(true);
+    	dispose();
     }                                           
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
@@ -255,12 +262,18 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        plan.setNome_Criador(txtnome_criador.getText());
        plan.setEstrategia(txtestrategia.getText());
        plan.setTime_resp(txttime_resp.getText());
+       plan.setId_Nc(Integer.parseInt(txtidnc.getText()));
 
        PlanoDAO pldao = new PlanoDAO();
        pldao.registerPlan(plan);
        dispose();
        Home home= new Home();
        home.setVisible(true);
+       
+       pldao.PegarIdPLano(txtidnc.getText());
+       													//NCDAO nc = new NCDAO();
+       													// nc.AtualizaIDPLANO(txtidnc.getText());
+       
     }                                         
 
     public static void main(String args[]) {
@@ -294,6 +307,16 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
                 new CreatePlanodeAcao().setVisible(true);
             }
         });
+    }
+    
+    private void Load() {
+    	VariaveisEstaticas ve = new VariaveisEstaticas();
+    	txtidnc.setText(Integer.toString(ve.getId_nc())); 
+    	txtNomeNC.setText(ve.getNome_nc());
+    	txtresp.setText(ve.getResponsavel());
+    	txtLocal.setText(ve.getLocal());
+    	
+
     }
 
     // Variables declaration - do not modify                     

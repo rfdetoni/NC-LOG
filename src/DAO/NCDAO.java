@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
 import DTO.UsuarioDTO;
+import DTO.VariaveisEstaticas;
 import visual.CreateNC;
 
 import visual.PesquisaNC;
@@ -20,6 +21,7 @@ public class NCDAO {
 	PreparedStatement pstm;
 	ResultSet rs;
 	ArrayList<NcDTO> lista = new ArrayList<>();
+	ArrayList<VariaveisEstaticas> lista_id = new ArrayList<>();
 	ArrayList<NcDTO> resultado = new ArrayList<>();
 	private static String resp_nc;
 	private String pesquisa;
@@ -131,6 +133,7 @@ public class NCDAO {
 
 	}
 
+	//atualiza NC
 	public void EditarNC(NcDTO objncDTO) {
 		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, status = ?, descricao_Nc = ? where id_Nc = ?";
 		conn = new ConexaoDAO().conectaDB();
@@ -144,6 +147,7 @@ public class NCDAO {
 			pstm.setString(3, objncDTO.getResponsavel_Nc());
 			pstm.setString(4, objncDTO.getStatus());
 			pstm.setString(5, objncDTO.getDescricao_Nc());
+		
 			pstm.setInt(6, objncDTO.getId_Nc());
 
 			pstm.execute();
@@ -157,5 +161,56 @@ public class NCDAO {
 
 	}
 
+	public ArrayList<VariaveisEstaticas> PegarID(String nome, String descricao) {
 
+		try {
+
+			String sql = "select * from naoConformidade where nome_Nc  = " + "'" + nome + "'" +" and descricao_Nc = " + "'"+ descricao +"'";
+
+			conn = new ConexaoDAO().conectaDB();
+
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+				VariaveisEstaticas ve =  new VariaveisEstaticas();
+						ve.setId_nc(rs.getInt("id_Nc"));
+						ve.setLocal(rs.getString("local_Nc"));
+						ve.setNome_nc(rs.getString("nome_Nc"));
+						ve.setResponsavel(rs.getString("responsavel_Nc"));
+				
+				// debug descrição
+				// JOptionPane.showMessageDialog(null, objnc.getDescricao_Nc());
+				lista_id.add(ve);
+
+			}
+
+		} catch (SQLException erro) {
+			JOptionPane.showMessageDialog(null, "NCDAO - pesquisarNC " + erro);
+		}
+		return lista_id;
+	}
+/*
+	public void AtualizaIDPLANO(String ID_NC) {
+		String sql = "update naoConformidade set id_Plano = ? where id_Nc = ?";
+		conn = new ConexaoDAO().conectaDB();
+
+		try {
+			VariaveisEstaticas ve =  new VariaveisEstaticas();
+			
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, ve.getId_plano());
+			pstm.setString(2, ID_NC);
+			
+
+			pstm.execute();
+			pstm.close();
+
+			JOptionPane.showMessageDialog(null, "NC atualizada");
+
+		} catch (Exception erro) {
+			JOptionPane.showMessageDialog(null, "NCDAO - EditarNC " + erro);
+		}
+
+	}*/
 }
