@@ -23,12 +23,6 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import java.awt.Toolkit;
 
 public class PesquisaNC extends javax.swing.JFrame {
 
@@ -76,8 +70,6 @@ public class PesquisaNC extends javax.swing.JFrame {
 	}
 
 	public PesquisaNC() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PesquisaNC.class.getResource("/imagens/checkIcon.jpg")));
-		setTitle("Pesquisar/Editar NC");
 		initComponents();
 	}
 
@@ -155,13 +147,10 @@ public class PesquisaNC extends javax.swing.JFrame {
 		
 		JLabel lblNewLabel_5 = new JLabel("Descri\u00E7\u00E3o");
 		
-		JButton btnSalvarEdit = new JButton("Salvar");
-		btnSalvarEdit.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Salvar");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resPesquisa();
 				SalvarEdit();
-				
-				
 			}
 		});
 		
@@ -175,14 +164,33 @@ public class PesquisaNC extends javax.swing.JFrame {
 		});
 		
 		txtDesc = new JTextPane();
-		
-		JLabel lblNewLabel_6 = new JLabel("Status:");
-		
-		comboStatus = new JComboBox();
-		comboStatus.setModel(new DefaultComboBoxModel(new String[] {"Pendente", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o"}));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel_3)
+					.addGap(22)
+					.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(lblNewLabel_4)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(216))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(lblNewLabel)
+					.addGap(2)
+					.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(lblNewLabel_1)
+					.addGap(10)
+					.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(53))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(250)
 					.addComponent(lblNewLabel_5))
@@ -191,7 +199,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addContainerGap(431, Short.MAX_VALUE)
 					.addComponent(btnVoltar)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnSalvarEdit)
+					.addComponent(btnNewButton)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(456, Short.MAX_VALUE)
@@ -212,34 +220,6 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addContainerGap()
 					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
 					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(10)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel_3)
-							.addGap(22)
-							.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(lblNewLabel_4)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblNewLabel_6)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(comboStatus, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(2)
-							.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-							.addGap(10)
-							.addComponent(lblNewLabel_1)
-							.addGap(10)
-							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblNewLabel_2)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addGap(53))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -255,7 +235,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addComponent(btnOpen)
 					.addGap(11)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(3)
@@ -265,9 +245,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 							.addGap(3)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblNewLabel_4)
-								.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_6)
-								.addComponent(comboStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(11)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
@@ -287,7 +265,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSalvarEdit)
+						.addComponent(btnNewButton)
 						.addComponent(btnVoltar))
 					.addGap(12))
 		);
@@ -302,9 +280,18 @@ public class PesquisaNC extends javax.swing.JFrame {
 		resPesquisa();
 	}
 
-
+	/**
+	 * @param args the command line arguments
+	 */
 	public static void main(String args[]) {
-		
+		/* Set the Nimbus look and feel */
+		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+		// (optional) ">
+		/*
+		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+		 * look and feel. For details see
+		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+		 */
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -364,7 +351,18 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 	}
 
-	
+	/*private boolean CarregarCampos() {
+		int setar = tblPesquisa.getSelectedRow();
+		int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar, 0).toString()));
+		if(id != 0){
+			EditNC editar = new EditNC();
+			editar.SetIdNc(id);
+			return true;
+		} else {
+			return false;
+		}
+
+	}*/
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
 		
@@ -389,7 +387,6 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JTextField txtPlano;
 	private JButton btnVoltar;
 	private JTextPane txtDesc;
-	private JComboBox comboStatus;
 	
 	
 	//carrega dados da planilha para campo de edição
@@ -419,14 +416,14 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private void SalvarEdit() {
 		int id_NC;
 		
-		String nome_Nc, responsavel_nc, local, descricao, status;
+		String nome_Nc, responsavel_nc, local, descricao;
 		
 		id_NC =Integer.parseInt(txtIdNC.getText());
 		nome_Nc = txtNomeNC.getText();
 		responsavel_nc = txtResponsavel.getText();
 		local = txtLocal.getText();
 		descricao = txtDesc.getText();
-		status = comboStatus.getSelectedItem().toString();
+		
 		NcDTO objncDTO = new NcDTO();
 		
 		objncDTO.setId_Nc(id_NC);
@@ -434,25 +431,10 @@ public class PesquisaNC extends javax.swing.JFrame {
 		objncDTO.setLocal_Nc(local);
 		objncDTO.setNome_Nc(nome_Nc);
 		objncDTO.setResponsavel_Nc(responsavel_nc);
-		objncDTO.setStatus(status);
 		
 		NCDAO objncdao = new NCDAO();
 		objncdao.EditarNC(objncDTO);
-	
-		Clear();
 		resPesquisa();
-		
-	}
-	//limpa os campos
-	public void Clear() {
-		txtDesc.setText("");
-		txtIdNC.setText("");
-		txtLocal.setText("");
-		txtNomeNC.setText("");
-		txtPlano.setText("");
-		txtResponsavel.setText("");
-		
-	
 		
 		
 	}
