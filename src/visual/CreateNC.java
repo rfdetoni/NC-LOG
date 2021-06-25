@@ -8,6 +8,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class CreateNC extends javax.swing.JFrame {
 
@@ -71,43 +73,59 @@ public class CreateNC extends javax.swing.JFrame {
 				btnSalvarActionPerformed(evt);
 			}
 		});
+		
+		lblNewLabel = new JLabel("Status");
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Aberto", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o", "Cancelado"}));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
+			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(154)
-					.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
 					.addGap(146)
-					.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+					.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
 					.addGap(137))
 				.addGroup(layout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
 					.addGap(6))
 				.addGroup(layout.createSequentialGroup()
-					.addGap(220)
-					.addComponent(jLabel1)
-					.addContainerGap(221, Short.MAX_VALUE))
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(186, Short.MAX_VALUE)
+					.addContainerGap(216, Short.MAX_VALUE)
 					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtlocal_Nc, 201, 201, 201)
 						.addComponent(txtresponsavel_Nc, 201, 201, 201)
 						.addComponent(txtNome_Nc, 201, 201, 201))
 					.addGap(189))
 				.addGroup(layout.createSequentialGroup()
 					.addGap(255)
-					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
 					.addGap(254))
-				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-					.addGap(242)
-					.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-					.addGap(238))
-				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+				.addGroup(layout.createSequentialGroup()
 					.addGap(252)
-					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
 					.addGap(246))
+				.addGroup(layout.createSequentialGroup()
+					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(167)
+							.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+						.addGroup(layout.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(txtlocal_Nc, 201, 201, 201)))
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(94)
+							.addComponent(lblNewLabel))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(66)
+							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(144))
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap(253, Short.MAX_VALUE)
+					.addComponent(jLabel1)
+					.addGap(218))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
@@ -121,9 +139,13 @@ public class CreateNC extends javax.swing.JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtresponsavel_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(jLabel3)
+					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel3)
+						.addComponent(lblNewLabel))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtlocal_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtlocal_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addComponent(jLabel4)
 					.addPreferredGap(ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
@@ -155,6 +177,7 @@ public class CreateNC extends javax.swing.JFrame {
 		objnc.setResponsavel_Nc(txtresponsavel_Nc.getText());
 		objnc.setLocal_Nc(txtlocal_Nc.getText());
 		objnc.setDescricao_Nc(txtdescricao_Nc.getText());
+		objnc.setStatus(comboBox.getSelectedItem().toString());
 
 		NCDAO objncdao = new NCDAO();
 
@@ -228,5 +251,7 @@ public class CreateNC extends javax.swing.JFrame {
 	private javax.swing.JTextArea txtdescricao_Nc;
 	private javax.swing.JTextField txtlocal_Nc;
 	private javax.swing.JTextField txtresponsavel_Nc;
+	private JLabel lblNewLabel;
+	private JComboBox comboBox;
 	// End of variables declaration
 }

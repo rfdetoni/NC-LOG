@@ -37,7 +37,7 @@ public class NCDAO {
 
 	public void registerNC(NcDTO objnc) {
 
-		String sql = "insert into naoConformidade (nome_Nc,descricao_Nc,local_Nc,responsavel_Nc) values (?,?,?,?)";
+		String sql = "insert into naoConformidade (nome_Nc,descricao_Nc,local_Nc,responsavel_Nc, status) values (?,?,?,?,?)";
 		conn = new ConexaoDAO().conectaDB();
 		try {
 
@@ -46,6 +46,7 @@ public class NCDAO {
 			pstm.setString(2, objnc.getDescricao_Nc());
 			pstm.setString(3, objnc.getLocal_Nc());
 			pstm.setString(4, objnc.getResponsavel_Nc());
+			pstm.setString(5, objnc.getStatus());
 
 			pstm.execute();
 			pstm.close();

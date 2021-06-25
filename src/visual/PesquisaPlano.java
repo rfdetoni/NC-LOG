@@ -26,6 +26,7 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class PesquisaPlano extends javax.swing.JFrame {
 
@@ -73,6 +74,8 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	}
 
 	public PesquisaPlano() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PesquisaPlano.class.getResource("/imagens/icon.jpg")));
+		setTitle("Pesquisa/Edi\u00E7\u00E3o de planos de a\u00E7\u00E3o");
 		initComponents();
 	}
 
@@ -329,13 +332,12 @@ public class PesquisaPlano extends javax.swing.JFrame {
 			for (int num = 0; num < lista.size(); num++) {
 
 				model.addRow(new Object[] {
-						lista.get(num).getId_Nc(),
-						lista.get(num).getNome_Criador(),
-						lista.get(num).getTime_resp(),
 						lista.get(num).getId_Plano(),
+						lista.get(num).getNome_Criador(),
+						lista.get(num).getNome_Plano(),
 						lista.get(num).getEstrategia(),
-						lista.get(num).getExec_plano()
-
+						lista.get(num).getExec_plano(),
+						lista.get(num).getId_Nc(),
 				});
 
 			}

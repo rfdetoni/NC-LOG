@@ -42,7 +42,7 @@ public class okNext extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCriarNC = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnSair.setText("N\u00E3o, Voltar ao inicio");
         btnSair.addActionListener(new java.awt.event.ActionListener() {

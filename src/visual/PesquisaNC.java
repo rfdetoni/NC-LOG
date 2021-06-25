@@ -26,6 +26,10 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class PesquisaNC extends javax.swing.JFrame {
 
@@ -93,11 +97,17 @@ public class PesquisaNC extends javax.swing.JFrame {
 		jLabel1.setText("Pesquisa por nome da NC:");
 
 		tblPesquisa.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, },
-				new String[] { "ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o",
-						"Descri\u00E7\u00E3o", "Local" }));
+			new Object[][] {
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				"ID NC", "Nome ", "Respons\u00E1vel", "ID plano de a\u00E7\u00E3o", "Descri\u00E7\u00E3o", "Local", "Status"
+			}
+		));
 		tblPesquisa.setColumnSelectionAllowed(true);
 		scrollPesquisa.setViewportView(tblPesquisa);
 
@@ -161,78 +171,133 @@ public class PesquisaNC extends javax.swing.JFrame {
 		});
 
 		txtDesc = new JTextPane();
+		
+		JLabel lblNewLabel_6 = new JLabel("Status");
+		
+		comboStatus = new JComboBox();
+		comboStatus.setModel(new DefaultComboBoxModel(new String[] {"Aberto", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o", "Cancelada"}));
+		
+		lblCancelado = new JLabel("");
+		lblCancelado.setForeground(Color.RED);
+		lblCancelado.setFont(new Font("Tahoma", Font.BOLD, 13));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(10).addComponent(lblNewLabel_3).addGap(22)
-				.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-				.addGap(18).addComponent(lblNewLabel_4).addPreferredGap(ComponentPlacement.RELATED)
-				.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.PREFERRED_SIZE)
-				.addGap(216))
-				.addGroup(groupLayout.createSequentialGroup().addGap(10).addComponent(lblNewLabel).addGap(2)
-						.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE).addGap(10)
-						.addComponent(lblNewLabel_1).addGap(10)
-						.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel_2)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(53))
-				.addGroup(groupLayout.createSequentialGroup().addGap(250).addComponent(lblNewLabel_5))
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(250)
+					.addComponent(lblNewLabel_5))
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap(431, Short.MAX_VALUE)
-						.addComponent(btnVoltar).addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(btnNewButton).addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap(456, Short.MAX_VALUE)
-						.addComponent(btnOpen).addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup().addGap(18).addGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(431, Short.MAX_VALUE)
+					.addComponent(btnVoltar)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnNewButton)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(37)
+					.addComponent(lblCancelado)
+					.addPreferredGap(ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+					.addComponent(btnOpen)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup().addComponent(jLabel1).addGap(18)
-								.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnPesquisarNC)))
-						.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(jLabel1)
-								.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnPesquisarNC))
-						.addGap(20)
-						.addComponent(scrollPesquisa, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED).addComponent(btnOpen).addGap(11)
-						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel_3))
-								.addComponent(
-										txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup().addGap(3)
-										.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-												.addComponent(lblNewLabel_4)
-												.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE,
-														GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-						.addGap(11)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel))
-								.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE)
-								.addGroup(groupLayout.createSequentialGroup().addGap(3).addComponent(lblNewLabel_1))
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel_2).addComponent(txtLocal, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addGap(18).addComponent(lblNewLabel_5).addGap(13)
-						.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(btnNewButton)
-								.addComponent(btnVoltar))
-						.addGap(12)));
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(jLabel1)
+							.addGap(18)
+							.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, 257, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnPesquisarNC)))
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel_3)
+							.addGap(22)
+							.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(lblNewLabel_4)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(lblNewLabel_6)
+							.addGap(18)
+							.addComponent(comboStatus, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel)
+							.addGap(2)
+							.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+							.addGap(10)
+							.addComponent(lblNewLabel_1)
+							.addGap(10)
+							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(lblNewLabel_2)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(53))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel1)
+						.addComponent(txtPesquisa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnPesquisarNC))
+					.addGap(20)
+					.addComponent(scrollPesquisa, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnOpen)
+							.addGap(11))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblCancelado)
+							.addPreferredGap(ComponentPlacement.RELATED)))
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 11, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_3))
+						.addComponent(txtIdNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_4)
+								.addComponent(txtPlano, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_6)
+								.addComponent(comboStatus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel))
+						.addComponent(txtNomeNC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(3)
+							.addComponent(lblNewLabel_1))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_2)
+							.addComponent(txtLocal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addComponent(lblNewLabel_5)
+					.addGap(13)
+					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(btnVoltar))
+					.addGap(12))
+		);
 		getContentPane().setLayout(groupLayout);
 
 		pack();
@@ -342,6 +407,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JTextField txtPlano;
 	private JButton btnVoltar;
 	private JTextPane txtDesc;
+	private JComboBox comboStatus;
+	private JLabel lblCancelado;
 
 	// carrega dados da planilha para campo de edição
 	private void Carregar() {
@@ -353,18 +420,9 @@ public class PesquisaNC extends javax.swing.JFrame {
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
-
 			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
-
-			//pega o valor da id do plano de ação;
+			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 7));
 			
-			//teste com isso comentado pq não lembro o que faz
-		/*	PlanoDAO plano = new PlanoDAO();
-			
-			String id_plano =(tblPesquisa.getModel().getValueAt(setar, 3).toString());
-			plano.PegarIdPLano(id_plano);
-			
-			*/
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
 
@@ -377,20 +435,21 @@ public class PesquisaNC extends javax.swing.JFrame {
 		NCDAO objncdao = new NCDAO();
 		NcDTO objncDTO = new NcDTO();
 		
-		String nome_Nc, responsavel_nc, local, descricao;
+		String nome_Nc, responsavel_nc, local, descricao, status;
 
 		id_NC = Integer.parseInt(txtIdNC.getText());
 		nome_Nc = txtNomeNC.getText();
 		responsavel_nc = txtResponsavel.getText();
 		local = txtLocal.getText();
 		descricao = txtDesc.getText();
+		status = comboStatus.getSelectedItem().toString();
 
 		objncDTO.setId_Nc(id_NC);
 		objncDTO.setDescricao_Nc(descricao);
 		objncDTO.setLocal_Nc(local);
 		objncDTO.setNome_Nc(nome_Nc);
 		objncDTO.setResponsavel_Nc(responsavel_nc);
-
+		objncDTO.setStatus(descricao);
 		// valida se há plano de ação listado na tela de edição, se não houver,
 		// disponibiliza a janela de opção para criar.
 		String id_plano = txtPlano.getText();
@@ -402,12 +461,32 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 		objncdao.EditarNC(objncDTO);
 		resPesquisa();
-
+		Bloqueio();
+		
 	}
 
 	private void Load() {
 	    	VariaveisEstaticas ve = new VariaveisEstaticas();
 	    	txtPlano.setText(Integer.toString(ve.getId_plano()));
 	    	
+	    	
+	    	
 	}   	
+	
+	private void Bloqueio() {
+		if(comboStatus.getSelectedItem() == "Cancelada") {
+			txtDesc.setEditable(false);
+			txtLocal.setEditable(false);
+			txtNomeNC.setEditable(false);
+			txtResponsavel.setEditable(false);	
+			
+			lblCancelado.setText("NC CANCELADA");
+			
+		} else {
+			
+			
+		}
+		
+	}
+	
 }
