@@ -38,17 +38,8 @@ public class Home extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         menuInserirNC = new javax.swing.JMenuItem();
         menuInserirNC.setAction(action);
-        menuEditarNC = new javax.swing.JMenuItem();
-        menuEditarNC.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		EditNC edit = new EditNC();
-        		edit.setVisible(true);
-        	}
-        });
-        menuEditarNC.setAction(action_1);
         menuPesquisarNC = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuEditPlano = new javax.swing.JMenuItem();
         menuPesquisaPlano = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -87,13 +78,8 @@ public class Home extends javax.swing.JFrame {
         jMenu1.add(menuInserirNC);
         menuInserirNC.getAccessibleContext().setAccessibleDescription("Inserir nova NC");
 
-        menuEditarNC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuEditarNC.setText("Editar NC");
-        jMenu1.add(menuEditarNC);
-        menuEditarNC.getAccessibleContext().setAccessibleDescription("Editar NC");
-
         menuPesquisarNC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuPesquisarNC.setText("Pesquisar");
+        menuPesquisarNC.setText("Pesquisar/Editar");
         menuPesquisarNC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPesquisarActionPerformed(evt);
@@ -106,13 +92,8 @@ public class Home extends javax.swing.JFrame {
 
         jMenu2.setText("Plano de Ação");
 
-        menuEditPlano.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuEditPlano.setText("Editar Plano de ação");
-        jMenu2.add(menuEditPlano);
-        menuEditPlano.getAccessibleContext().setAccessibleDescription("Editar plano de ação existente");
-
         menuPesquisaPlano.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuPesquisaPlano.setText("Pesquisar plano de ação");
+        menuPesquisaPlano.setText("Pesquisar/Editar plano de a\u00E7\u00E3o");
         jMenu2.add(menuPesquisaPlano);
         menuPesquisaPlano.getAccessibleContext().setAccessibleDescription("Pesquisar planos de ação existentes");
 
@@ -173,6 +154,7 @@ public class Home extends javax.swing.JFrame {
     private void menuPesquisarActionPerformed(java.awt.event.ActionEvent evt) {                                              
         PesquisaNC pesq = new PesquisaNC();
         pesq.setVisible(true);
+       
     }                                             
 
     /**
@@ -217,10 +199,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem menuEditarNC;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenuItem menuEditPlano;
     private javax.swing.JMenuItem menuInserirNC;
     private javax.swing.JMenuItem menuPesquisaPlano;
     private javax.swing.JMenuItem menuPesquisarNC;
