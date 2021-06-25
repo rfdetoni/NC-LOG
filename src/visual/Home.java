@@ -56,16 +56,16 @@ public class Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NC LOG");
 
-        tblNC.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID NC", "Nome da NC", "Responsável", "Local"
-            }
+        tblNC.setModel(new DefaultTableModel(
+        	new Object[][] {
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        		{null, null, null, null, null},
+        	},
+        	new String[] {
+        		"ID NC", "Nome da NC", "Respons\u00E1vel", "Local", "Status"
+        	}
         ));
         jScrollPane1.setViewportView(tblNC);
 
@@ -231,14 +231,17 @@ public class Home extends javax.swing.JFrame {
 
 			// transforma em tabela;
 			for (int num = 0; num < lista.size(); num++) {
-				model.addRow(new Object[] { lista.get(num).getId_Nc(), lista.get(num).getNome_Nc(),
-						lista.get(num).getResponsavel_Nc(), lista.get(num).getLocal_Nc(),
-						lista.get(num).getId_Plano(), lista.get(num).getDescricao_Nc() });
+				model.addRow(new Object[] { 
+						lista.get(num).getId_Nc(),
+						lista.get(num).getNome_Nc(),
+						lista.get(num).getResponsavel_Nc(),
+						lista.get(num).getLocal_Nc(),
+						lista.get(num).getStatus()});
 
 			}
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "HomeNC_2 listarNc " + erro);
+			JOptionPane.showMessageDialog(null, "Home listarNc " + erro);
 		}
 
 	}

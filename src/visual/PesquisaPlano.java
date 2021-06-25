@@ -8,7 +8,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import DAO.NCDAO;
+import DAO.PlanoDAO;
 import DTO.NcDTO;
+import DTO.PlanoDTO;
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -87,7 +90,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-		jLabel1.setText("Pesquisa por nome do plano");
+		jLabel1.setText("Pesquisa por estrat\u00E9gia");
 
 		tblPesquisa.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -316,38 +319,36 @@ public class PesquisaPlano extends javax.swing.JFrame {
 
 	public void resPesquisa() {
 		try {
-			NCDAO objNCDAO = new NCDAO();
+			PlanoDAO objPlanoDAO = new PlanoDAO();
 			String pesquisa = txtPesquisa.getText();
 
 			DefaultTableModel model = (DefaultTableModel) tblPesquisa.getModel();
 			model.setNumRows(0);
 
-			ArrayList<NcDTO> lista = objNCDAO.PesquisaNC(pesquisa);
+			ArrayList<PlanoDTO> lista = objPlanoDAO.PesquisaPlano(pesquisa);
 			for (int num = 0; num < lista.size(); num++) {
 
 				model.addRow(new Object[] {
 						lista.get(num).getId_Nc(),
-						lista.get(num).getNome_Nc(),
-						lista.get(num).getResponsavel_Nc(),
+						lista.get(num).getNome_Criador(),
+						lista.get(num).getTime_resp(),
 						lista.get(num).getId_Plano(),
-						lista.get(num).getDescricao_Nc(),
-						lista.get(num).getLocal_Nc()
+						lista.get(num).getEstrategia(),
+						lista.get(num).getExec_plano()
 
 				});
 
 			}
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(btnOpen, "PesquisarNC resPesquisa " + erro);
+			JOptionPane.showMessageDialog(null, "PesquisarNC resPesquisa " + erro);
 		}
 
 	}
 
 	
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
-		
-		
-			Carregar();
+		resPesquisa();
 		
 
 		
@@ -374,8 +375,8 @@ public class PesquisaPlano extends javax.swing.JFrame {
 			int setar = tblPesquisa.getSelectedRow();
 			
 			
-			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
-			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			//txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
+			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
 			
 			txtNomePlano.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());	

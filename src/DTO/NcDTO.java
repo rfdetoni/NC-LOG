@@ -1,7 +1,13 @@
 package DTO;
 
 public class NcDTO {
-	private String nome_Nc, descricao_Nc, local_Nc, responsavel_Nc;
+	private String nome_Nc, descricao_Nc, local_Nc, responsavel_Nc, status;
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	private int id_Nc, id_Plano;
 	
 	

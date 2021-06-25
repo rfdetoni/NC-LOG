@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import DAO.NCDAO;
+import DAO.PlanoDAO;
 
 //import com.sun.tools.javap.TryBlockWriter;
 
@@ -122,6 +123,8 @@ public class Login extends JFrame {
 					ResultSet rsuserdao = objuserDAO.autUsuario(objuser);
 					NCDAO ndao = new NCDAO();
 					ndao.setRespNc(user);
+					PlanoDAO plano = new PlanoDAO();
+					plano.setRespNc(user);
 					
 					if(rsuserdao.next()) {
 						

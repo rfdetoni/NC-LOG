@@ -74,18 +74,7 @@ public class CreateNC extends javax.swing.JFrame {
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(layout.createSequentialGroup()
-					.addGap(197)
-					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(layout.createSequentialGroup()
-							.addGap(66)
-							.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-							.addGap(246))
-						.addGroup(layout.createSequentialGroup()
-							.addGap(52)
-							.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-							.addGap(231))))
+			layout.createParallelGroup(Alignment.LEADING)
 				.addGroup(layout.createSequentialGroup()
 					.addGap(154)
 					.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,7 +85,7 @@ public class CreateNC extends javax.swing.JFrame {
 					.addContainerGap()
 					.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
 					.addGap(6))
-				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+				.addGroup(layout.createSequentialGroup()
 					.addGap(220)
 					.addComponent(jLabel1)
 					.addContainerGap(221, Short.MAX_VALUE))
@@ -107,10 +96,18 @@ public class CreateNC extends javax.swing.JFrame {
 						.addComponent(txtresponsavel_Nc, 201, 201, 201)
 						.addComponent(txtNome_Nc, 201, 201, 201))
 					.addGap(189))
-				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
-					.addGap(246)
+				.addGroup(layout.createSequentialGroup()
+					.addGap(255)
+					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+					.addGap(254))
+				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+					.addGap(242)
+					.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+					.addGap(238))
+				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+					.addGap(252)
 					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGap(252))
+					.addGap(246))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
@@ -119,11 +116,11 @@ public class CreateNC extends javax.swing.JFrame {
 					.addComponent(jLabel1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtNome_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(jLabel2)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtresponsavel_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(11)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(jLabel3)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtlocal_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -160,6 +157,7 @@ public class CreateNC extends javax.swing.JFrame {
 		objnc.setDescricao_Nc(txtdescricao_Nc.getText());
 
 		NCDAO objncdao = new NCDAO();
+
 		objncdao.registerNC(objnc);
 		dispose();
 
@@ -186,14 +184,7 @@ public class CreateNC extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-		 * look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
+		
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {

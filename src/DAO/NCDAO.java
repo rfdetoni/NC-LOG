@@ -1,6 +1,5 @@
 package DAO;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +23,15 @@ public class NCDAO {
 	ArrayList<NcDTO> resultado = new ArrayList<>();
 	private static String resp_nc;
 	private String pesquisa;
+	private int ID;
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
 
 	public void registerNC(NcDTO objnc) {
 
@@ -77,6 +85,7 @@ public class NCDAO {
 				objnc.setNome_Nc(rs.getString("nome_Nc"));
 				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
 				objnc.setId_Plano(rs.getInt("id_Plano"));
+				objnc.setStatus(rs.getString("status"));
 
 				// debug descrição
 				// JOptionPane.showMessageDialog(null, objnc.getDescricao_Nc());
@@ -109,6 +118,7 @@ public class NCDAO {
 				objnc.setNome_Nc(rs.getString("nome_Nc"));
 				objnc.setResponsavel_Nc(rs.getString("responsavel_NC"));
 				objnc.setId_Plano(rs.getInt("id_Plano"));
+				objnc.setStatus(rs.getString("status"));
 
 				resultado.add(objnc);
 
@@ -121,10 +131,8 @@ public class NCDAO {
 
 	}
 
-	
-
 	public void EditarNC(NcDTO objncDTO) {
-		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, descricao_Nc = ? where id_Nc = ?";
+		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, status = ?, descricao_Nc = ? where id_Nc = ?";
 		conn = new ConexaoDAO().conectaDB();
 
 		try {
@@ -134,12 +142,13 @@ public class NCDAO {
 
 			pstm.setString(2, objncDTO.getLocal_Nc());
 			pstm.setString(3, objncDTO.getResponsavel_Nc());
-			pstm.setString(4, objncDTO.getDescricao_Nc());
-			pstm.setInt(5, objncDTO.getId_Nc());
+			pstm.setString(4, objncDTO.getStatus());
+			pstm.setString(5, objncDTO.getDescricao_Nc());
+			pstm.setInt(6, objncDTO.getId_Nc());
 
 			pstm.execute();
 			pstm.close();
-			
+
 			JOptionPane.showMessageDialog(null, "NC atualizada");
 
 		} catch (Exception erro) {
@@ -147,5 +156,6 @@ public class NCDAO {
 		}
 
 	}
+
 
 }

@@ -5,6 +5,9 @@
  */
 package visual;
 
+import DAO.NCDAO;
+import DTO.NcDTO;
+
 /**
  *
  * @author rodri
@@ -99,6 +102,8 @@ public class okNext extends javax.swing.JFrame {
     }
     private void btnCriarNCActionPerformed(java.awt.event.ActionEvent evt) {
         CreatePlanodeAcao cpa = new CreatePlanodeAcao();
+      
+        
         cpa.setVisible(true);
         dispose();
     }

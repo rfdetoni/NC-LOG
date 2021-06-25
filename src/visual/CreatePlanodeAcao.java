@@ -9,6 +9,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
+import javax.swing.JFrame;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
 
 public class CreatePlanodeAcao extends javax.swing.JFrame {
 
@@ -16,6 +19,8 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
      * Creates new form CreateNC
      */
     public CreatePlanodeAcao() {
+    	setType(Type.POPUP);
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(CreatePlanodeAcao.class.getResource("/imagens/checkIcon.jpg")));
         initComponents();
     }
 
@@ -35,8 +40,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txttime_resp = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtestrategia = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -49,8 +52,8 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblLocal = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Criar plano de ação");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setTitle("Criar plano de a\u00E7\u00E3o");
         setLocationByPlatform(true);
 
         jLabel1.setText("Titulo do plano de a\u00E7\u00E3o");
@@ -66,10 +69,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Descri\u00E7\u00E3o do Plano de A\u00E7\u00E3o");
-
-        txtestrategia.setColumns(20);
-        txtestrategia.setRows(5);
-        jScrollPane1.setViewportView(txtestrategia);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -129,24 +128,26 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         				.addComponent(jLabel9))
         			.addPreferredGap(ComponentPlacement.UNRELATED)
         			.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(txtidnc, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
         				.addGroup(jPanel1Layout.createSequentialGroup()
         					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
         						.addComponent(txtNomeNC, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-        						.addComponent(txtresp, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
-        						.addComponent(txtLocal, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(txtLocal, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+        						.addComponent(txtresp, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addGroup(jPanel1Layout.createParallelGroup(Alignment.TRAILING)
         						.addGroup(jPanel1Layout.createSequentialGroup()
-        							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(lblresponsavel_Nc, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
         							.addPreferredGap(ComponentPlacement.RELATED)
         							.addComponent(jLabel7, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-        						.addGroup(Alignment.TRAILING, jPanel1Layout.createParallelGroup(Alignment.LEADING)
+        						.addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
         							.addGroup(jPanel1Layout.createSequentialGroup()
         								.addGap(6)
         								.addComponent(lblLocal, GroupLayout.PREFERRED_SIZE, 126, GroupLayout.PREFERRED_SIZE))
-        							.addComponent(lblnome_Nc, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)))))
-        			.addGap(59))
+        							.addComponent(lblnome_Nc, GroupLayout.PREFERRED_SIZE, 149, GroupLayout.PREFERRED_SIZE)))
+        					.addContainerGap())
+        				.addGroup(jPanel1Layout.createSequentialGroup()
+        					.addComponent(txtidnc, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+        					.addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
         	jPanel1Layout.createParallelGroup(Alignment.LEADING)
@@ -174,69 +175,69 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         			.addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1.setLayout(jPanel1Layout);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1)
-                .addGap(6, 6, 6))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(146, 146, 146)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(137, 137, 137))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(245, 245, 245))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txttime_resp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNome_planodeacao, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtnome_criador, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(72, 72, 72)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+        txtestrategia = new javax.swing.JTextArea();
+        
+                txtestrategia.setColumns(20);
+                txtestrategia.setRows(5);
+        GroupLayout groupLayout = new GroupLayout(getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+        			.addGap(25)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+        				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        					.addComponent(txtNome_planodeacao, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(txtnome_criador, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jLabel3)
+        					.addComponent(txttime_resp, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(60)
+        			.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 373, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap())
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(519)
+        			.addComponent(btnCancelar, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+        			.addGap(18)
+        			.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE))
+        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+        			.addGap(285)
+        			.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+        			.addGap(278))
+        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+        			.addGap(15)
+        			.addComponent(txtestrategia, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+        			.addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome_planodeacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome_criador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttime_resp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalvar))
-                .addGap(52, 52, 52))
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(20)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addComponent(jLabel1)
+        					.addGap(6)
+        					.addComponent(txtNome_planodeacao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addGap(11)
+        					.addComponent(jLabel2)
+        					.addGap(11)
+        					.addComponent(txtnome_criador, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addGap(11)
+        					.addComponent(jLabel3)
+        					.addGap(6)
+        					.addComponent(txttime_resp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+        			.addGap(84)
+        			.addComponent(jLabel4)
+        			.addGap(25)
+        			.addComponent(txtestrategia, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnSalvar)
+        				.addComponent(btnCancelar))
+        			.addContainerGap())
         );
+        getContentPane().setLayout(groupLayout);
 
         pack();
     }// </editor-fold>                        
@@ -252,7 +253,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
        PlanoDTO plan = new PlanoDTO();
       
-   		
+       plan.setNome_Plano(txtNome_planodeacao.getText());
        plan.setNome_Criador(txtnome_criador.getText());
        plan.setEstrategia(txtestrategia.getText());
        plan.setTime_resp(txttime_resp.getText());
@@ -260,6 +261,8 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        
        PlanoDAO pldao = new PlanoDAO();
        pldao.registerPlan(plan);
+       Home home = new Home();
+       home.setVisible(true);
        dispose();
     }                                         
 
@@ -310,7 +313,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblnome_Nc;
     private javax.swing.JLabel lblresponsavel_Nc;
