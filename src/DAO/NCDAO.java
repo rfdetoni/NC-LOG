@@ -105,7 +105,7 @@ public class NCDAO {
 	public ArrayList<NcDTO> PesquisaNC(String Pesquisa) {
 
 		String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'"
-				+ " and nome_Nc like  " + "'%" + Pesquisa + "%'";
+				+ " and nome_Nc like  " + "'%" + Pesquisa + "%'" ;
 		conn = new ConexaoDAO().conectaDB();
 
 		try {
@@ -136,7 +136,7 @@ public class NCDAO {
 
 	//atualiza NC
 	public void EditarNC(NcDTO objncDTO) {
-		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, status = ?, descricao_Nc = ? where id_Nc = ?";
+		String sql = "update naoConformidade set nome_Nc = ?, local_Nc = ?, responsavel_Nc = ?, status = ?, descricao_Nc = ?, id_Plano = ? where id_Nc = ?";
 		conn = new ConexaoDAO().conectaDB();
 
 		try {
@@ -148,8 +148,8 @@ public class NCDAO {
 			pstm.setString(3, objncDTO.getResponsavel_Nc());
 			pstm.setString(4, objncDTO.getStatus());
 			pstm.setString(5, objncDTO.getDescricao_Nc());
-		
-			pstm.setInt(6, objncDTO.getId_Nc());
+			pstm.setInt(6, objncDTO.getId_Plano());
+			pstm.setInt(7, objncDTO.getId_Nc());
 
 			pstm.execute();
 			pstm.close();

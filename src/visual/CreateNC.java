@@ -252,6 +252,6 @@ public class CreateNC extends javax.swing.JFrame {
 	private javax.swing.JTextField txtlocal_Nc;
 	private javax.swing.JTextField txtresponsavel_Nc;
 	private JLabel lblNewLabel;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	// End of variables declaration
 }

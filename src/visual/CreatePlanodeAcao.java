@@ -40,8 +40,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txttime_resp = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtestrategia = new javax.swing.JTextArea();
         btnCancelar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -71,10 +69,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         });
 
         jLabel4.setText("Descri\u00E7\u00E3o do Plano de A\u00E7\u00E3o");
-
-        txtestrategia.setColumns(20);
-        txtestrategia.setRows(5);
-        jScrollPane1.setViewportView(txtestrategia);
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,69 +173,72 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         			.addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel1.setLayout(jPanel1Layout);
+        txtestrategia = new javax.swing.JTextArea();
+        
+                txtestrategia.setColumns(20);
+                txtestrategia.setRows(5);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1)
-                .addGap(6, 6, 6))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(146, 146, 146)
-                        .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(137, 137, 137))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(245, 245, 245))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txttime_resp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtNome_planodeacao, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtnome_criador, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)))
-                .addGap(72, 72, 72)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(154)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnCancelar, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        					.addGap(146)
+        					.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+        					.addGap(137))
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(99)
+        					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+        					.addGap(245))))
+        		.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        			.addContainerGap()
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+        						.addComponent(jLabel1, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+        						.addComponent(txtNome_planodeacao, 178, 178, 178)
+        						.addComponent(txtnome_criador, 178, 178, 178)
+        						.addComponent(jLabel3)
+        						.addComponent(txttime_resp, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+        					.addGap(72)
+        					.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, 508, GroupLayout.PREFERRED_SIZE))
+        				.addComponent(txtestrategia, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 775, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome_planodeacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtnome_criador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txttime_resp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnSalvar))
-                .addGap(52, 52, 52))
+        	layout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(15)
+        			.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        					.addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addGap(68)
+        					.addComponent(jLabel4))
+        				.addGroup(Alignment.LEADING, layout.createSequentialGroup()
+        					.addComponent(jLabel1)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(txtNome_planodeacao, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jLabel2)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(txtnome_criador, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addPreferredGap(ComponentPlacement.RELATED)
+        					.addComponent(jLabel3)
+        					.addGap(18)
+        					.addComponent(txttime_resp, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+        			.addGap(23)
+        			.addComponent(txtestrategia, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.UNRELATED)
+        			.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        				.addComponent(btnCancelar)
+        				.addComponent(btnSalvar))
+        			.addGap(52))
         );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>                        
@@ -260,6 +257,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        PlanoDTO plan = new PlanoDTO();
 
        plan.setNome_Criador(txtnome_criador.getText());
+       plan.setNome_Plano(txtNome_planodeacao.getText());
        plan.setEstrategia(txtestrategia.getText());
        plan.setTime_resp(txttime_resp.getText());
        plan.setId_Nc(Integer.parseInt(txtidnc.getText()));
@@ -270,7 +268,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        Home home= new Home();
        home.setVisible(true);
        
-       pldao.PegarIdPLano(txtidnc.getText());
+      // pldao.PegarIdPLano(txtidnc.getText());
        													//NCDAO nc = new NCDAO();
        													// nc.AtualizaIDPLANO(txtidnc.getText());
        
@@ -332,7 +330,6 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLocal;
     private javax.swing.JLabel lblnome_Nc;
     private javax.swing.JLabel lblresponsavel_Nc;

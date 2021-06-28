@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import DAO.RegisterDAO;
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
 
@@ -18,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class RegisterScreen extends JFrame {
 
@@ -25,6 +25,8 @@ public class RegisterScreen extends JFrame {
 	private JTextField txtSetUserRegister;
 	private JPasswordField txtSetUserPassword;
 	private JTextField txtSetPasswordTip;
+	private JTextField txtNomeCompleto;
+	private JTextField txtEmail;
 
 	/**
 	 * Launch the application.
@@ -46,8 +48,10 @@ public class RegisterScreen extends JFrame {
 	 * Create the frame.
 	 */
 	public RegisterScreen() {
-		setTitle("NC LOG");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RegisterScreen.class.getResource("/imagens/icon.jpg")));
+		setTitle("NC LOG - Registro");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,27 +60,27 @@ public class RegisterScreen extends JFrame {
 		
 		JLabel lblRegistreSe = new JLabel("Registre-se");
 		lblRegistreSe.setFont(new Font("Tahoma", Font.BOLD, 32));
-		lblRegistreSe.setBounds(118, 43, 190, 38);
+		lblRegistreSe.setBounds(133, 17, 190, 38);
 		contentPane.add(lblRegistreSe);
 		
 		JLabel lblRegisterUser = new JLabel("Usuario");
 		lblRegisterUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblRegisterUser.setBounds(133, 108, 46, 14);
+		lblRegisterUser.setBounds(133, 66, 46, 14);
 		contentPane.add(lblRegisterUser);
 		
 		txtSetUserRegister = new JTextField(); // Espaço para o user digitar o usuario (getText)
 		txtSetUserRegister.setColumns(10);
-		txtSetUserRegister.setBounds(180, 105, 86, 20);
+		txtSetUserRegister.setBounds(180, 66, 128, 20);
 		contentPane.add(txtSetUserRegister);
 		
 		JLabel lblPassword = new JLabel("Senha");
 		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPassword.setBounds(133, 140, 46, 14);
+		lblPassword.setBounds(133, 158, 46, 14);
 		contentPane.add(lblPassword);
 		
 		txtSetUserPassword = new JPasswordField(); // Espaço para o user digitar a senha (getText)
 		txtSetUserPassword.setEchoChar('*');
-		txtSetUserPassword.setBounds(180, 137, 86, 20);
+		txtSetUserPassword.setBounds(180, 155, 86, 20);
 		contentPane.add(txtSetUserPassword);
 		
 		JButton btRegistrarUser = new JButton("Registrar");
@@ -93,8 +97,10 @@ public class RegisterScreen extends JFrame {
 			reg.setNome_User(txtSetUserRegister.getText());
 			reg.setSenha(passText);
 			reg.setDica_Senha(txtSetPasswordTip.getText());	
+			reg.setEmail(txtEmail.getText());
+			reg.setNome_Completo(txtNomeCompleto.getText());
 			
-			RegisterDAO objuserdao = new RegisterDAO();
+			UsuarioDAO objuserdao = new UsuarioDAO();
 			objuserdao.registerUser(reg);
 			
 			
@@ -105,7 +111,7 @@ public class RegisterScreen extends JFrame {
 			}
 		});
 		btRegistrarUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btRegistrarUser.setBounds(118, 210, 89, 23);
+		btRegistrarUser.setBounds(234, 215, 89, 23);
 		contentPane.add(btRegistrarUser);
 		
 		/**
@@ -114,12 +120,12 @@ public class RegisterScreen extends JFrame {
 		
 		JLabel lblDicaDeSenha = new JLabel("Dica de senha");
 		lblDicaDeSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDicaDeSenha.setBounds(93, 171, 86, 14);
+		lblDicaDeSenha.setBounds(94, 184, 86, 14);
 		contentPane.add(lblDicaDeSenha);
 		
 		txtSetPasswordTip = new JTextField();
 		txtSetPasswordTip.setColumns(10);
-		txtSetPasswordTip.setBounds(180, 168, 86, 20);
+		txtSetPasswordTip.setBounds(180, 184, 86, 20);
 		contentPane.add(txtSetPasswordTip);
 		
 // Fim dica da senha
@@ -133,7 +139,27 @@ public class RegisterScreen extends JFrame {
 			}
 		});
 		btCancel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btCancel.setBounds(231, 210, 89, 23);
+		btCancel.setBounds(121, 215, 89, 23);
 		contentPane.add(btCancel);
+		
+		JLabel lblNewLabel = new JLabel("Nome");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(143, 95, 36, 16);
+		contentPane.add(lblNewLabel);
+		
+		txtNomeCompleto = new JTextField();
+		txtNomeCompleto.setBounds(180, 92, 128, 22);
+		contentPane.add(txtNomeCompleto);
+		txtNomeCompleto.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("E-mail");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel_1.setBounds(132, 123, 47, 16);
+		contentPane.add(lblNewLabel_1);
+		
+		txtEmail = new JTextField();
+		txtEmail.setBounds(180, 123, 128, 22);
+		contentPane.add(txtEmail);
+		txtEmail.setColumns(10);
 	}
 }

@@ -30,6 +30,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Toolkit;
 
 public class PesquisaNC extends javax.swing.JFrame {
 
@@ -77,6 +78,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 	}
 
 	public PesquisaNC() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PesquisaNC.class.getResource("/imagens/icon.jpg")));
+		setTitle("Pesquisar/Edtiar NC");
 		initComponents();
 	}
 
@@ -92,7 +95,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 		btnOpen = new javax.swing.JButton();
 		btnOpen.setToolTipText("Visualizar ou editar NC selecionada");
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
 		jLabel1.setText("Pesquisa por nome da NC:");
 
@@ -359,6 +362,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 			ArrayList<NcDTO> lista = objNCDAO.PesquisaNC(pesquisa);
 			for (int num = 0; num < lista.size(); num++) {
+				
+
 
 				model.addRow(new Object[] { 
 						lista.get(num).getId_Nc(), 
@@ -366,8 +371,10 @@ public class PesquisaNC extends javax.swing.JFrame {
 						lista.get(num).getResponsavel_Nc(),
 						lista.get(num).getId_Plano(),
 						lista.get(num).getDescricao_Nc(),
-						lista.get(num).getLocal_Nc()
-
+						lista.get(num).getLocal_Nc(),
+						lista.get(num).getStatus()
+						
+						
 				});
 
 			}
@@ -378,14 +385,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 
 	}
 
-	/*
-	 * private boolean CarregarCampos() { int setar = tblPesquisa.getSelectedRow();
-	 * int id = Integer.parseInt((tblPesquisa.getModel().getValueAt(setar,
-	 * 0).toString())); if(id != 0){ EditNC editar = new EditNC();
-	 * editar.SetIdNc(id); return true; } else { return false; }
-	 * 
-	 * }
-	 */
+	
 
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
 		Load();
@@ -416,13 +416,22 @@ public class PesquisaNC extends javax.swing.JFrame {
 			int setar = tblPesquisa.getSelectedRow();
 
 			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
-			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			
+			PlanoDAO plano = new PlanoDAO();
+			plano.PegarIdPLano(txtIdNC.getText());
+			
+			//txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			
+			VariaveisEstaticas ve = new VariaveisEstaticas();
+			txtPlano.setText(Integer.toString(ve.getId_plano()));
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
 			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
-			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 7));
+			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 7).toString());
 			
+			
+			Bloqueio();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
 
@@ -431,7 +440,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 	}
 
 	private void SalvarEdit() {
-		int id_NC;
+		int id_NC, id_Plano;
 		NCDAO objncdao = new NCDAO();
 		NcDTO objncDTO = new NcDTO();
 		
@@ -443,13 +452,15 @@ public class PesquisaNC extends javax.swing.JFrame {
 		local = txtLocal.getText();
 		descricao = txtDesc.getText();
 		status = comboStatus.getSelectedItem().toString();
+		id_Plano =Integer.parseInt(txtPlano.getText());
 
 		objncDTO.setId_Nc(id_NC);
 		objncDTO.setDescricao_Nc(descricao);
 		objncDTO.setLocal_Nc(local);
 		objncDTO.setNome_Nc(nome_Nc);
 		objncDTO.setResponsavel_Nc(responsavel_nc);
-		objncDTO.setStatus(descricao);
+		objncDTO.setStatus(status);
+		objncDTO.setId_Plano(id_Plano);
 		// valida se há plano de ação listado na tela de edição, se não houver,
 		// disponibiliza a janela de opção para criar.
 		String id_plano = txtPlano.getText();

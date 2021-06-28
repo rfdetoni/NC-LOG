@@ -3,9 +3,21 @@ package DTO;
 public class UsuarioDTO {
 	private int id_user;
 	private int id_nc;
-	private String senha, nome_User, dica_Senha;
+	private String senha, nome_User, dica_Senha, nome_Completo,email;
 	
 	
+	public String getNome_Completo() {
+		return nome_Completo;
+	}
+	public void setNome_Completo(String nome_Completo) {
+		this.nome_Completo = nome_Completo;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getId_user() {
 		return id_user;
 	}

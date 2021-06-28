@@ -93,25 +93,24 @@ public class PesquisaPlano extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-		jLabel1.setText("Pesquisa por estrat\u00E9gia");
+		jLabel1.setText("Pesquisar nome do plano");
 
 		tblPesquisa.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
 			},
 			new String[] {
-				"ID Plano", "Respons\u00E1vel", "Nome ", "Estrat\u00E9gia", "Data de Cria\u00E7\u00E3o", "ID NC"
+				"ID Plano", "Respons\u00E1vel", "Nome do Plano", "Estrat\u00E9gia", "Data de Cria\u00E7\u00E3o", "ID NC", "Time responsavel"
 			}
 		));
 		tblPesquisa.getColumnModel().getColumn(1).setPreferredWidth(93);
-		tblPesquisa.getColumnModel().getColumn(2).setPreferredWidth(78);
+		tblPesquisa.getColumnModel().getColumn(2).setPreferredWidth(96);
 		tblPesquisa.getColumnModel().getColumn(3).setPreferredWidth(82);
 		tblPesquisa.getColumnModel().getColumn(4).setPreferredWidth(100);
-		tblPesquisa.setColumnSelectionAllowed(true);
 		scrollPesquisa.setViewportView(tblPesquisa);
 
 		btnPesquisarNC.setText("pesquisar");
@@ -133,7 +132,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 		txtNomePlano = new JTextField();
 		txtNomePlano.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Respons\u00E1vel:");
+		JLabel lblNewLabel_1 = new JLabel("Criador");
 		
 		txtResponsavel = new JTextField();
 		txtResponsavel.setColumns(10);
@@ -169,6 +168,11 @@ public class PesquisaPlano extends javax.swing.JFrame {
 		});
 		
 		txtEstrategia = new JTextPane();
+		
+		JLabel lblNewLabel_2 = new JLabel("Time respons\u00E1vel");
+		
+		txtTime = new JTextField();
+		txtTime.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -191,7 +195,11 @@ public class PesquisaPlano extends javax.swing.JFrame {
 					.addComponent(lblNewLabel_1)
 					.addGap(10)
 					.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(175))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblNewLabel_2)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(txtTime, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+					.addGap(46))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(250)
 					.addComponent(lblNewLabel_5))
@@ -256,7 +264,10 @@ public class PesquisaPlano extends javax.swing.JFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(3)
 							.addComponent(lblNewLabel_1))
-						.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+							.addComponent(txtResponsavel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblNewLabel_2)
+							.addComponent(txtTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addComponent(lblNewLabel_5)
 					.addGap(13)
@@ -338,6 +349,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 						lista.get(num).getEstrategia(),
 						lista.get(num).getExec_plano(),
 						lista.get(num).getId_Nc(),
+						lista.get(num).getTime_resp()
 				});
 
 			}
@@ -350,7 +362,8 @@ public class PesquisaPlano extends javax.swing.JFrame {
 
 	
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
-		resPesquisa();
+		//resPesquisa();
+		Carregar();
 		
 
 		
@@ -369,6 +382,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	private JTextField txtPlano;
 	private JButton btnVoltar;
 	private JTextPane txtEstrategia;
+	private JTextField txtTime;
 	
 	
 	//carrega dados da planilha para campo de edição
@@ -376,14 +390,12 @@ public class PesquisaPlano extends javax.swing.JFrame {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
 			
-			
-			//txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
 			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
-			
-			txtNomePlano.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
-			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());	
-			
-			txtEstrategia.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
+			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());	
+			txtNomePlano.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
+			txtEstrategia.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
+			txtTime.setText(tblPesquisa.getModel().getValueAt(setar, 6).toString());
 		
 			}
 			catch(Exception e){
@@ -396,26 +408,28 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	
 	
 	private void SalvarEdit() {
-		int id_NC;
+		int id_NC, id_Plano;
 		
-		String nome_Nc, responsavel_nc, local, descricao;
+		String nome_Plano, criador_Plano, descricao, time_responsavel;
 		
 		id_NC =Integer.parseInt(txtIdNC.getText());
-		nome_Nc = txtNomePlano.getText();
-		responsavel_nc = txtResponsavel.getText();
-	
+		nome_Plano = txtNomePlano.getText();
+		criador_Plano = txtResponsavel.getText();
+		time_responsavel = txtTime.getText();
+		id_Plano = Integer.parseInt(txtPlano.getText());
 		descricao = txtEstrategia.getText();
 		
-		NcDTO objncDTO = new NcDTO();
+		PlanoDTO objplanoDTO = new PlanoDTO();
 		
-		objncDTO.setId_Nc(id_NC);
-		objncDTO.setDescricao_Nc(descricao);
+		objplanoDTO.setId_Nc(id_NC);
+		objplanoDTO.setEstrategia(descricao);
+		objplanoDTO.setId_Plano(id_Plano);
+		objplanoDTO.setNome_Criador(criador_Plano);
+		objplanoDTO.setNome_Plano(nome_Plano);
+		objplanoDTO.setTime_resp(time_responsavel);
 		
-		objncDTO.setNome_Nc(nome_Nc);
-		objncDTO.setResponsavel_Nc(responsavel_nc);
-		
-		NCDAO objncdao = new NCDAO();
-		objncdao.EditarNC(objncDTO);
+		PlanoDAO objncdao = new PlanoDAO();
+		objncdao.EditarPlano(objplanoDTO);
 		
 		
 		

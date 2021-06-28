@@ -17,6 +17,7 @@ public class PlanoDAO {
 	Connection conn;
 	PreparedStatement pstm;
 	private static String resp_nc;
+	private int id_plano;
 	ResultSet rs;
 	ArrayList<PlanoDTO> lista = new ArrayList<>();
 	ArrayList<PlanoDTO> resultado = new ArrayList<>();
@@ -44,9 +45,14 @@ public class PlanoDAO {
 			pstm.setString(4, objplano.getTime_resp());
 			pstm.setInt(5, objplano.getId_Nc());
 
+			
+			JOptionPane.showMessageDialog(null, sql);
 			pstm.execute();
 			pstm.close();
+			
 			JOptionPane.showMessageDialog(null, "Plano de ação cadastrado");
+			
+			
 
 		} catch (Exception erro) {
 			JOptionPane.showMessageDialog(null, "NCDAO " + erro);
@@ -54,10 +60,11 @@ public class PlanoDAO {
 
 	}
 	
+	
 	public ArrayList<PlanoDTO> PesquisaPlano(String Pesquisa) {
-
-		String sql = "select * from planoDeAcao where nome_Criador = " + "'" + resp_nc + "'"
-				+ " and estrategia like " + "'%" + Pesquisa + "%'";
+		VariaveisEstaticas ve = new VariaveisEstaticas();
+		String sql = "select * from planoDeAcao where nome_Criador = " + "'" + ve.getUsuario_logado() + "'"
+				+ " and nome_Plano like " + "'%" + Pesquisa + "%'";
 		conn = new ConexaoDAO().conectaDB();
 		
 	//	JOptionPane.showMessageDialog(null,"DEBUG pesquisaPLano"+ sql);
@@ -73,8 +80,10 @@ public class PlanoDAO {
 				objPlanoDTO.setId_Plano(rs.getInt("id_Plano"));
 				objPlanoDTO.setTime_resp(rs.getString("time_resp"));
 				objPlanoDTO.setNome_Criador(rs.getString("nome_Criador"));
+				objPlanoDTO.setNome_Plano(rs.getString("nome_Plano"));
 				objPlanoDTO.setEstrategia(rs.getString("estrategia"));
 				objPlanoDTO.setExec_plano(rs.getString("exec_Plano"));
+				objPlanoDTO.setId_Nc(rs.getInt("id_Nc"));
 
 				resultado.add(objPlanoDTO);
 
@@ -116,6 +125,37 @@ public class PlanoDAO {
 
 	}
 	
+	//atualiza plano de açao
+		public void EditarPlano(PlanoDTO objplanoDTO) {
+			String sql = "update planoDeAcao set nome_Plano = ?, time_Resp = ?, nome_Criador = ?, estrategia = ?, time_resp = ? where id_Plano = ?";
+			conn = new ConexaoDAO().conectaDB();
+
+			try {
+
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(1, objplanoDTO.getNome_Plano());
+
+				pstm.setString(2, objplanoDTO.getTime_resp());
+				pstm.setString(3, objplanoDTO.getNome_Criador());
+				pstm.setString(4, objplanoDTO.getEstrategia());
+				pstm.setString(5, objplanoDTO.getTime_resp());
+				pstm.setInt(6, objplanoDTO.getId_Plano());
+				
+			
+
+				pstm.execute();
+				pstm.close();
+
+				JOptionPane.showMessageDialog(null, "Plano de ação atualizado");
+
+			} catch (Exception erro) {
+				JOptionPane.showMessageDialog(null, "PlanoDAO - EditarPlano " + erro);
+			}
+
+		}
+		
+		
+		
 	
 
 }

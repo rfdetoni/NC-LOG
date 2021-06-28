@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
 import DTO.UsuarioDTO;
-
+/*
 public class RegisterDAO {
 	
 	Connection conn;
@@ -35,3 +35,4 @@ public class RegisterDAO {
 	}
 
 }
+*/

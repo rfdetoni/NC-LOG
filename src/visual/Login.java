@@ -14,6 +14,7 @@ import DAO.PlanoDAO;
 
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
+import DTO.VariaveisEstaticas;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class Login extends JFrame {
 
@@ -48,11 +50,12 @@ public class Login extends JFrame {
 		});	
 	}
 
-	/**
+	/**rrod
 	 * Create the frame.
 	 */
 	public Login() {
-		setTitle("NC LOG");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagens/icon.jpg")));
+		setTitle("Bem vindo ao NCLOG");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -126,14 +129,22 @@ public class Login extends JFrame {
 					PlanoDAO plano = new PlanoDAO();
 					plano.setRespNc(user);
 					
+					
+					VariaveisEstaticas ve = new VariaveisEstaticas();
+					ve.setUsuario_logado(user);
+					
 					if(rsuserdao.next()) {
 						
 							//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
 						
 						Home homenc = new Home();
 						homenc.setUser(user);
-						
 						homenc.setVisible(true);
+						
+						UsuarioDAO udao = new UsuarioDAO();
+						udao.setUserOn(user);
+						
+						
 						dispose();
 						
 					}else {

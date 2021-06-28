@@ -3,12 +3,8 @@ package DTO;
 public class VariaveisEstaticas {
 	
 	private static int id_nc, id_plano;
-	private static String usuario_logado, responsavel, nome_nc, local;
-	
-	
-	
-	
-	
+	private static String responsavel, nome_nc, local;
+	public static String usuario_logado = "";
 	
 	
 	public  String getResponsavel() {
@@ -45,7 +41,7 @@ public class VariaveisEstaticas {
 		return usuario_logado;
 	}
 	public  void setUsuario_logado(String usuario_logado) {
-		VariaveisEstaticas.usuario_logado = usuario_logado;
+		this.usuario_logado = usuario_logado;
 	}
 
 }
