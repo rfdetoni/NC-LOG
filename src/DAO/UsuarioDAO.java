@@ -112,7 +112,9 @@ public class UsuarioDAO {
 
 			String sql = "select * from usuario where nome_User ="+"'"+this.getUserOn()+"'";
 			
-			JOptionPane.showMessageDialog(null, sql);
+			
+			//debug sql
+			//JOptionPane.showMessageDialog(null, sql);
 			
 		
 			
