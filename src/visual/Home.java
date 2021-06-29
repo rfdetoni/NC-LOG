@@ -24,6 +24,8 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class Home extends javax.swing.JFrame {
 
@@ -86,7 +88,7 @@ public class Home extends javax.swing.JFrame {
 		jMenuItem1.setText("jMenuItem1");
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("NC LOG");
+		setTitle("NC-LOG");
 
 		tblNC.setModel(new DefaultTableModel(
 				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
@@ -145,6 +147,24 @@ public class Home extends javax.swing.JFrame {
 		jMenuBar1.add(jMenu3);
 
 		setJMenuBar(jMenuBar1);
+		
+		mnNewMenu = new JMenu("NC-LOG");
+		mnNewMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sobre sobre = new Sobre();
+				sobre.setVisible(true);
+			}
+		});
+		jMenuBar1.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem("Sobre");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sobre sobre = new Sobre();
+				sobre.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		
 		JButton btnNewButton = new JButton("Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -243,6 +263,8 @@ public class Home extends javax.swing.JFrame {
 	private javax.swing.JTextField txtUserON;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
+	private JMenu mnNewMenu;
+	private JMenuItem mntmNewMenuItem;
 	// End of variables declaration
 
 	private static void listarNc() { // adiciona os dados das NCs ao jTable;

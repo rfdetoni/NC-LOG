@@ -50,6 +50,11 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		jLabel6 = new javax.swing.JLabel();
 		txtDica = new javax.swing.JTextField();
 		btnCancelar = new javax.swing.JButton();
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btnSalvar = new javax.swing.JButton();
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
