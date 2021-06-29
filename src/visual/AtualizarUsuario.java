@@ -6,12 +6,16 @@ import java.util.ArrayList;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 import DAO.PlanoDAO;
 import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
 import DTO.VariaveisEstaticas;
+
+
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
@@ -19,10 +23,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class AtualizarUsuario extends javax.swing.JFrame {
 
 	public AtualizarUsuario() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(AtualizarUsuario.class.getResource("/imagens/icon.jpg")));
+		setTitle("Atualizar dados de usu\u00E1rio");
 		initComponents();
 		Pesquisar();
 	}
@@ -44,6 +51,12 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		txtDica = new javax.swing.JTextField();
 		btnCancelar = new javax.swing.JButton();
 		btnSalvar = new javax.swing.JButton();
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Salvar();
+				Pesquisar();
+			}
+		});
 		jScrollPane1 = new javax.swing.JScrollPane();
 		tblFuncionario = new javax.swing.JTable();
 		btnEditar = new javax.swing.JButton();
@@ -73,12 +86,31 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		btnSalvar.setText("Salvar");
 
 		tblFuncionario.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null}, },
-				new String[] { "Nome de Usu\u00E1rio", "Nome Completo", "E-mail", "Dica de senha", "ID Usuario",
-						"senha" }));
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"Nome de Usu\u00E1rio", "Nome Completo", "E-mail", "Dica de senha", "ID Usuario", "Senha"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				true, true, true, true, true, false
+			};
+			
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+			
+			
+		});
 		tblFuncionario.getColumnModel().getColumn(3).setPreferredWidth(91);
-
+		tblFuncionario.getColumnModel().getColumn(5).setPreferredWidth(0);
+		TableColumnModel tcm = tblFuncionario.getColumnModel();
+		tcm.removeColumn( tcm.getColumn(5) );
+	
+		
 		jScrollPane1.setViewportView(tblFuncionario);
 
 		btnEditar.setText("Editar Selecionado");
@@ -90,80 +122,95 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		txtID.setColumns(10);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-				.addGap(18)
-				.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-						.addGroup(layout
-								.createParallelGroup(Alignment.LEADING).addComponent(jLabel3).addComponent(jLabel2)
-								.addComponent(jLabel5).addComponent(jLabel4).addComponent(jLabel6))
-						.addPreferredGap(ComponentPlacement.RELATED)
-						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(layout.createSequentialGroup().addGroup(layout
-										.createParallelGroup(Alignment.LEADING).addComponent(txtEmail, 362, 362, 362)
+		layout.setHorizontalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addGap(18)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGroup(layout.createParallelGroup(Alignment.LEADING)
+								.addComponent(jLabel3)
+								.addComponent(jLabel2)
+								.addComponent(jLabel5)
+								.addComponent(jLabel4)
+								.addComponent(jLabel6))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(layout.createSequentialGroup()
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtEmail, 362, 362, 362)
 										.addComponent(txtNomeCompleto, 362, 362, 362)
 										.addGroup(layout.createSequentialGroup()
-												.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 140,
-														GroupLayout.PREFERRED_SIZE)
-												.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel)
-												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(txtID,
-														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-														GroupLayout.PREFERRED_SIZE)))
-										.addGap(11))
+											.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addComponent(lblNewLabel)
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+									.addGap(11))
 								.addGroup(layout.createSequentialGroup()
-										.addGroup(layout.createParallelGroup(Alignment.LEADING)
-												.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, 165,
-														GroupLayout.PREFERRED_SIZE)
-												.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, 134,
-														GroupLayout.PREFERRED_SIZE))
-										.addContainerGap())))
-						.addGroup(layout.createSequentialGroup().addGap(29).addComponent(btnCancelar)
-								.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
-								.addComponent(btnSalvar).addGap(33))))
-				.addGroup(layout.createSequentialGroup().addContainerGap()
-						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(layout.createSequentialGroup().addGap(0, 334, Short.MAX_VALUE)
-										.addComponent(btnEditar))
-								.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
-						.addContainerGap())
-				.addGroup(layout.createSequentialGroup().addGap(77)
-						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(86, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(12)
-						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnEditar)
-						.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
-								.addGap(28)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(jLabel3)
-										.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(lblNewLabel).addComponent(txtID, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(layout.createParallelGroup(Alignment.TRAILING).addComponent(jLabel2)
-										.addComponent(txtNomeCompleto, GroupLayout.PREFERRED_SIZE,
-												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(jLabel5))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(jLabel4))
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-												GroupLayout.PREFERRED_SIZE)
-										.addComponent(jLabel6)))
-								.addGroup(layout.createSequentialGroup().addGap(198)
-										.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-												.addComponent(btnCancelar).addComponent(btnSalvar))))
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+									.addGroup(layout.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE))
+									.addContainerGap())))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(29)
+							.addComponent(btnCancelar)
+							.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+							.addComponent(btnSalvar)
+							.addGap(33))))
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap(344, Short.MAX_VALUE)
+					.addComponent(btnEditar)
+					.addContainerGap())
+				.addGroup(layout.createSequentialGroup()
+					.addGap(77)
+					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(86, Short.MAX_VALUE))
+				.addGroup(layout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(13, Short.MAX_VALUE))
+		);
+		layout.setVerticalGroup(
+			layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+					.addGap(12)
+					.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnEditar)
+					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createSequentialGroup()
+							.addGap(28)
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(jLabel3)
+								.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel)
+								.addComponent(txtID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(jLabel2)
+								.addComponent(txtNomeCompleto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel5))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel4))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(jLabel6)))
+						.addGroup(layout.createSequentialGroup()
+							.addGap(198)
+							.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnCancelar)
+								.addComponent(btnSalvar))))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -265,4 +312,27 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		}
 
 	}
+	private void Salvar() {
+		try {
+			UsuarioDAO userDAO = new UsuarioDAO();
+			UsuarioDTO userDTO = new UsuarioDTO();
+			String senha = new String(txtPass.getPassword());
+			
+			userDTO.setDica_Senha(txtDica.getText());
+			userDTO.setEmail(txtEmail.getText());
+			userDTO.setId_user(Integer.parseInt(txtID.getText()));
+			userDTO.setNome_User(txtUsuario.getText());
+			userDTO.setNome_Completo(txtNomeCompleto.getText());
+			userDTO.setSenha(senha);
+			
+			userDAO.salvarUsuario(userDTO);
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Favor verificar informações - Erro: " + e);
+		}
+		
+		
+	}
+	
 }

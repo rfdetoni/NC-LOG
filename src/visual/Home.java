@@ -23,11 +23,13 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+import java.awt.Toolkit;
 
 public class Home extends javax.swing.JFrame {
 
 	
 	public Home() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/imagens/icon.jpg")));
 		initComponents();
 		
 		// timer para atualizar as informações da tabela de ncs do usuário, atualiza a

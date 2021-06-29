@@ -12,6 +12,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
+import javax.swing.JFrame;
+import java.awt.Toolkit;
 
 public class CreatePlanodeAcao extends javax.swing.JFrame {
 
@@ -19,6 +21,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
      * Creates new form CreateNC
      */
     public CreatePlanodeAcao() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(CreatePlanodeAcao.class.getResource("/imagens/icon.jpg")));
         initComponents();
         Load();
    
@@ -52,7 +55,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lblLocal = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Criar plano de a\u00E7\u00E3o");
         setLocationByPlatform(true);
 

@@ -10,10 +10,12 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Toolkit;
 
 public class CreateNC extends javax.swing.JFrame {
 
 	public CreateNC() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CreateNC.class.getResource("/imagens/icon.jpg")));
 		initComponents();
 	}
 

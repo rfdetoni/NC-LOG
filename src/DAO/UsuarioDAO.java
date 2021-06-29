@@ -147,5 +147,29 @@ public class UsuarioDAO {
 		}
 		return lista;
 	}
+	
+	public void salvarUsuario(UsuarioDTO userDTO) {
+		try {
+			String sql = "update usuario set nome_User =?, dica_Senha = ?, senha = ?, email = ?, nome_Completo = ? where id_User =?  ";
+			conn =  new ConexaoDAO().conectaDB();
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, userDTO.getNome_User());
+			pstm.setString(2, userDTO.getDica_Senha());
+			pstm.setString(3, userDTO.getSenha());
+			pstm.setString(4, userDTO.getEmail());
+			pstm.setString(5, userDTO.getNome_Completo());
+			pstm.setInt(6, userDTO.getId_user());
+			
+			
+			pstm.execute();
+			pstm.close();
+			
+			
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "UsuarioDAO SalvarUsuario - "+e);
+		}
+		
+	}
 
 }
