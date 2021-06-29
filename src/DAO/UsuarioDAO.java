@@ -110,7 +110,7 @@ public class UsuarioDAO {
 
 		try {
 
-			String sql = "select * from usuario where nome_User ="+"'"+this.getUserOn();
+			String sql = "select * from usuario where nome_User ="+"'"+this.getUserOn()+"'";
 			
 			JOptionPane.showMessageDialog(null, sql);
 			
@@ -132,7 +132,7 @@ public class UsuarioDAO {
 				userDTO.setEmail(rs.getString("email"));
 				userDTO.setDica_Senha(rs.getString("dica_Senha"));
 				userDTO.setId_user(rs.getInt("id_User"));
-				userDTO.setNome_Completo(rs.getString("nome_Completo"));
+				userDTO.setNome_User(rs.getString("nome_User"));
 				userDTO.setSenha(rs.getString("senha"));
 				
 				

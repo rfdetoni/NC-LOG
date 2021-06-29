@@ -1,273 +1,241 @@
+
 package visual;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import DAO.ConexaoDAO;
-import DAO.UsuarioDAO;
-import DTO.UsuarioDTO;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
-import javax.swing.JTable;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.table.DefaultTableModel;
 
-public class AtualizarUsuario extends JFrame {
+import DAO.PlanoDAO;
+import DAO.UsuarioDAO;
+import DTO.UsuarioDTO;
+import DTO.VariaveisEstaticas;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
+public class AtualizarUsuario extends javax.swing.JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtSetUserRegister;
-	private JPasswordField txtSetUserPassword;
-	private JTextField txtSetPasswordTip;
-	private JTextField txtNomeCompleto;
-	private JTextField txtEmail;
-	private JTextField txtIDUser;
-
-	ResultSet rs;
-
-	Connection conn;
-	PreparedStatement pstm;
-
-	private String iduser, email, nomecompleto, pass, tip, user;
-	public static String userOn;
-	private JTable tblUsuario;
-
-	public String getUserOn() {
-		return userOn;
+	public AtualizarUsuario() {
+		initComponents();
+		Pesquisar();
 	}
 
-	public void setUserOn(String userOn) {
-		UsuarioDAO.userOn = userOn;
-	}
+	@SuppressWarnings("unchecked")
+	// <editor-fold defaultstate="collapsed" desc="Generated Code">
+	private void initComponents() {
 
-	public String getIduser() {
-		return iduser;
-	}
+		jLabel1 = new javax.swing.JLabel();
+		jLabel2 = new javax.swing.JLabel();
+		txtNomeCompleto = new javax.swing.JTextField();
+		jLabel3 = new javax.swing.JLabel();
+		txtUsuario = new javax.swing.JTextField();
+		txtEmail = new javax.swing.JTextField();
+		jLabel4 = new javax.swing.JLabel();
+		jLabel5 = new javax.swing.JLabel();
+		txtPass = new javax.swing.JPasswordField();
+		jLabel6 = new javax.swing.JLabel();
+		txtDica = new javax.swing.JTextField();
+		btnCancelar = new javax.swing.JButton();
+		btnSalvar = new javax.swing.JButton();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		tblFuncionario = new javax.swing.JTable();
+		btnEditar = new javax.swing.JButton();
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Carregar();
+			}
+		});
 
-	public void setIduser(String iduser) {
-		this.iduser = iduser;
-	}
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-	public String getEmail() {
-		return email;
-	}
+		jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+		jLabel1.setText("Atualizar dados de usuário");
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+		jLabel2.setText("Nome Completo");
 
-	public String getNomecompleto() {
-		return nomecompleto;
-	}
+		jLabel3.setText("Nome de usuário");
 
-	public void setNomecompleto(String nomecompleto) {
-		this.nomecompleto = nomecompleto;
-	}
+		jLabel4.setText("Senha");
 
-	public String getPass() {
-		return pass;
-	}
+		jLabel5.setText("E-mail");
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+		jLabel6.setText("Dica de senha");
 
-	public String getTip() {
-		return tip;
-	}
+		btnCancelar.setText("Cancelar");
 
-	public void setTip(String tip) {
-		this.tip = tip;
-	}
+		btnSalvar.setText("Salvar");
 
-	public String getUser() {
-		return user;
-	}
+		tblFuncionario.setModel(new DefaultTableModel(
+				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
+						{ null, null, null, null, null}, },
+				new String[] { "Nome de Usu\u00E1rio", "Nome Completo", "E-mail", "Dica de senha", "ID Usuario",
+						"senha" }));
+		tblFuncionario.getColumnModel().getColumn(3).setPreferredWidth(91);
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+		jScrollPane1.setViewportView(tblFuncionario);
+
+		btnEditar.setText("Editar Selecionado");
+
+		JLabel lblNewLabel = new JLabel("ID");
+
+		txtID = new JTextField();
+		txtID.setEditable(false);
+		txtID.setColumns(10);
+
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+				.addGap(18)
+				.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+						.addGroup(layout
+								.createParallelGroup(Alignment.LEADING).addComponent(jLabel3).addComponent(jLabel2)
+								.addComponent(jLabel5).addComponent(jLabel4).addComponent(jLabel6))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(layout.createSequentialGroup().addGroup(layout
+										.createParallelGroup(Alignment.LEADING).addComponent(txtEmail, 362, 362, 362)
+										.addComponent(txtNomeCompleto, 362, 362, 362)
+										.addGroup(layout.createSequentialGroup()
+												.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, 140,
+														GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel)
+												.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(txtID,
+														GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+														GroupLayout.PREFERRED_SIZE)))
+										.addGap(11))
+								.addGroup(layout.createSequentialGroup()
+										.addGroup(layout.createParallelGroup(Alignment.LEADING)
+												.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, 165,
+														GroupLayout.PREFERRED_SIZE)
+												.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, 134,
+														GroupLayout.PREFERRED_SIZE))
+										.addContainerGap())))
+						.addGroup(layout.createSequentialGroup().addGap(29).addComponent(btnCancelar)
+								.addPreferredGap(ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+								.addComponent(btnSalvar).addGap(33))))
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(layout.createSequentialGroup().addGap(0, 334, Short.MAX_VALUE)
+										.addComponent(btnEditar))
+								.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE))
+						.addContainerGap())
+				.addGroup(layout.createSequentialGroup().addGap(77)
+						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 312, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(86, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addGap(12)
+						.addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED).addComponent(btnEditar)
+						.addGroup(layout.createParallelGroup(Alignment.LEADING).addGroup(layout.createSequentialGroup()
+								.addGap(28)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(jLabel3)
+										.addComponent(txtUsuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblNewLabel).addComponent(txtID, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.TRAILING).addComponent(jLabel2)
+										.addComponent(txtNomeCompleto, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(jLabel5))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtPass, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(jLabel4))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+										.addComponent(txtDica, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+												GroupLayout.PREFERRED_SIZE)
+										.addComponent(jLabel6)))
+								.addGroup(layout.createSequentialGroup().addGap(198)
+										.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+												.addComponent(btnCancelar).addComponent(btnSalvar))))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		getContentPane().setLayout(layout);
+
+		pack();
+	}// </editor-fold>
 
 	/**
-	 * Launch the application.
+	 * @param args the command line arguments
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AtualizarUsuario frame = new AtualizarUsuario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	public static void main(String args[]) {
+
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
 				}
 			}
+		} catch (ClassNotFoundException ex) {
+			java.util.logging.Logger.getLogger(AtualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
+		} catch (InstantiationException ex) {
+			java.util.logging.Logger.getLogger(AtualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
+		} catch (IllegalAccessException ex) {
+			java.util.logging.Logger.getLogger(AtualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
+		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+			java.util.logging.Logger.getLogger(AtualizarUsuario.class.getName()).log(java.util.logging.Level.SEVERE,
+					null, ex);
+		}
+		// </editor-fold>
+
+		/* Create and display the form */
+		java.awt.EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				new AtualizarUsuario().setVisible(true);
+			}
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public AtualizarUsuario() {
-		// busca os dados do usuário logado;
-		Carregar();
+	// Variables declaration - do not modify
+	private javax.swing.JButton btnCancelar;
+	private javax.swing.JButton btnEditar;
+	private javax.swing.JButton btnSalvar;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private javax.swing.JLabel jLabel4;
+	private javax.swing.JLabel jLabel5;
+	private javax.swing.JLabel jLabel6;
+	private javax.swing.JScrollPane jScrollPane1;
+	private javax.swing.JTable tblFuncionario;
+	private javax.swing.JTextField txtDica;
+	private javax.swing.JTextField txtEmail;
+	private javax.swing.JTextField txtNomeCompleto;
+	private javax.swing.JPasswordField txtPass;
+	private javax.swing.JTextField txtUsuario;
+	private JTextField txtID;
+	// End of variables declaration
 
-		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(AtualizarUsuario.class.getResource("/imagens/icon.jpg")));
-		setTitle("NC LOG - Atualizar informa\u00E7\u00F5es");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 409);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	public void Pesquisar() {
 
-		JLabel lblRegistreSe = new JLabel("Atualizar informa\u00E7\u00F5es");
-		lblRegistreSe.setFont(new Font("Tahoma", Font.BOLD, 32));
-		lblRegistreSe.setBounds(46, 17, 373, 38);
-		contentPane.add(lblRegistreSe);
-
-		JLabel lblRegisterUser = new JLabel("Usuario");
-		lblRegisterUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblRegisterUser.setBounds(124, 209, 46, 14);
-		contentPane.add(lblRegisterUser);
-
-		txtSetUserRegister = new JTextField(); // Espaço para o user digitar o usuario (getText)
-		txtSetUserRegister.setColumns(10);
-		txtSetUserRegister.setBounds(180, 206, 128, 20);
-		contentPane.add(txtSetUserRegister);
-
-		JLabel lblPassword = new JLabel("Senha");
-		lblPassword.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblPassword.setBounds(133, 293, 46, 14);
-		contentPane.add(lblPassword);
-
-		txtSetUserPassword = new JPasswordField(); // Espaço para o user digitar a senha (getText)
-		txtSetUserPassword.setEchoChar('*');
-		txtSetUserPassword.setBounds(180, 290, 86, 20);
-		contentPane.add(txtSetUserPassword);
-
-		JButton btRegistrarUser = new JButton("Atualizar");
-		btRegistrarUser.addActionListener(new ActionListener() {
-			/**
-			 * Ação do botão para Registrar Colocar em baixo o metodo que insera o usuario
-			 * no sistema e abre a tela de LoginPincipal.java denovo.
-			 */
-			public void actionPerformed(ActionEvent e) {
-				UsuarioDTO reg = new UsuarioDTO();
-				String passText = new String(txtSetUserPassword.getPassword());
-
-				reg.setNome_User(txtSetUserRegister.getText());
-				reg.setSenha(passText);
-				reg.setDica_Senha(txtSetPasswordTip.getText());
-				reg.setEmail(txtEmail.getText());
-				reg.setNome_Completo(txtNomeCompleto.getText());
-				reg.setId_user(Integer.parseInt(txtIDUser.getText()));
-
-				UsuarioDAO objuserdao = new UsuarioDAO();
-				objuserdao.EditarUser(reg);
-
-			}
-		});
-		btRegistrarUser.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btRegistrarUser.setBounds(237, 346, 89, 23);
-		contentPane.add(btRegistrarUser);
-
-		/**
-		 * DICA DA SENHA
-		 */
-
-		JLabel lblDicaDeSenha = new JLabel("Dica de senha");
-		lblDicaDeSenha.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblDicaDeSenha.setBounds(93, 318, 86, 14);
-		contentPane.add(lblDicaDeSenha);
-
-		txtSetPasswordTip = new JTextField();
-		txtSetPasswordTip.setColumns(10);
-		txtSetPasswordTip.setBounds(180, 315, 86, 20);
-		contentPane.add(txtSetPasswordTip);
-
-// Fim dica da senha
-
-		JButton btCancel = new JButton("Cancelar"); // Botaão cancelar (VOLTA PARA O MainScreen)
-		btCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-
-			}
-		});
-		btCancel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btCancel.setBounds(94, 346, 89, 23);
-		contentPane.add(btCancel);
-
-		JLabel lblNewLabel = new JLabel("Nome");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(134, 236, 36, 16);
-		contentPane.add(lblNewLabel);
-
-		txtNomeCompleto = new JTextField();
-		txtNomeCompleto.setBounds(180, 233, 128, 22);
-		contentPane.add(txtNomeCompleto);
-		txtNomeCompleto.setColumns(10);
-
-		JLabel lblNewLabel_1 = new JLabel("E-mail");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(132, 266, 47, 16);
-		contentPane.add(lblNewLabel_1);
-
-		txtEmail = new JTextField();
-		txtEmail.setBounds(180, 263, 128, 22);
-		contentPane.add(txtEmail);
-		txtEmail.setColumns(10);
-
-		JLabel lblNewLabel_2 = new JLabel("ID:");
-		lblNewLabel_2.setBounds(318, 209, 20, 14);
-		contentPane.add(lblNewLabel_2);
-
-		txtIDUser = new JTextField();
-		txtIDUser.setEditable(false);
-		txtIDUser.setBounds(348, 206, 71, 20);
-		contentPane.add(txtIDUser);
-		txtIDUser.setColumns(10);
-
-		tblUsuario = new JTable();
-		tblUsuario.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "Usu\u00E1rio", "Nome completo", "email", "Dica de senha", "Senha" }));
-		tblUsuario.getColumnModel().getColumn(1).setPreferredWidth(105);
-		tblUsuario.getColumnModel().getColumn(3).setPreferredWidth(90);
-		tblUsuario.setBounds(387, 160, -349, -91);
-		contentPane.add(tblUsuario);
-	}
-
-	public void Carregar() {
 		try {
-			UsuarioDAO objusuarioDAO = new UsuarioDAO();
-			DefaultTableModel model = (DefaultTableModel) tblUsuario.getModel();
-
+			UsuarioDAO objUserDAO = new UsuarioDAO();
+			DefaultTableModel model = (DefaultTableModel) tblFuncionario.getModel();
 			model.setNumRows(0);
 
-			ArrayList<UsuarioDTO> lista = objusuarioDAO.PesquisarUsuario();
+			ArrayList<UsuarioDTO> lista = objUserDAO.PesquisarUsuario();
 			for (int num = 0; num < lista.size(); num++) {
-
 				model.addRow(new Object[] { lista.get(num).getNome_User(), lista.get(num).getNome_Completo(),
-						lista.get(num).getEmail(), lista.get(num).getDica_Senha(), lista.get(num).getSenha()
+						lista.get(num).getEmail(), lista.get(num).getDica_Senha(), lista.get(num).getId_user(),
+						lista.get(num).getSenha()
 
 				});
 
@@ -275,6 +243,25 @@ public class AtualizarUsuario extends JFrame {
 
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "AtualizarUsuario - Carregar() " + e);
+		}
+
+	}
+
+	private void Carregar() {
+
+		try {
+			int setar = tblFuncionario.getSelectedRow();
+
+			txtID.setText(tblFuncionario.getModel().getValueAt(setar, 4).toString());
+			txtDica.setText(tblFuncionario.getModel().getValueAt(setar, 3).toString());
+			txtEmail.setText(tblFuncionario.getModel().getValueAt(setar, 2).toString());
+			txtNomeCompleto.setText(tblFuncionario.getModel().getValueAt(setar, 1).toString());
+			txtUsuario.setText(tblFuncionario.getModel().getValueAt(setar, 0).toString());
+			txtPass.setText(tblFuncionario.getModel().getValueAt(setar, 5).toString());
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Favor selecionar uma linha para visualizar ou editar");
+
 		}
 
 	}
