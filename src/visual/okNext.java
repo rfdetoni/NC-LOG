@@ -101,8 +101,7 @@ public class okNext extends javax.swing.JFrame {
     }
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        Home home = new Home();
-        home.setVisible(true);
+       
         
         dispose();
     }

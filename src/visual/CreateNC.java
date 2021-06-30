@@ -168,8 +168,7 @@ public class CreateNC extends javax.swing.JFrame {
 	}
 
 	private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-		Home home = new Home();
-		home.setVisible(true);
+		
 		dispose();
 	}
 

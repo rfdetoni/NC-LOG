@@ -46,7 +46,7 @@ public class PlanoDAO {
 			pstm.setInt(5, objplano.getId_Nc());
 
 			
-			JOptionPane.showMessageDialog(null, sql);
+		
 			pstm.execute();
 			pstm.close();
 			
@@ -67,7 +67,6 @@ public class PlanoDAO {
 				+ " and nome_Plano like " + "'%" + Pesquisa + "%'";
 		conn = new ConexaoDAO().conectaDB();
 		
-	//	JOptionPane.showMessageDialog(null,"DEBUG pesquisaPLano"+ sql);
 
 		try {
 
@@ -102,7 +101,7 @@ public class PlanoDAO {
 		String sql = "select * from planoDeAcao where id_Nc = " + "'" + Pesquisa + "'";
 		conn = new ConexaoDAO().conectaDB();
 		
-	JOptionPane.showMessageDialog(null,"DEBUG pesquisaPLano"+ sql);
+	
 
 		try {
 

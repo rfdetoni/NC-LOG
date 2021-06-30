@@ -183,29 +183,41 @@ public class PesquisaNC extends javax.swing.JFrame {
 		lblCancelado = new JLabel("");
 		lblCancelado.setForeground(Color.RED);
 		lblCancelado.setFont(new Font("Tahoma", Font.BOLD, 13));
+		
+		JButton btnPlano = new JButton("Criar plano de a\u00E7\u00E3o");
+		btnPlano.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreatePlanodeAcao create = new CreatePlanodeAcao();
+				dados();
+				create.setVisible(true);
+				
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(250)
 					.addComponent(lblNewLabel_5))
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(431, Short.MAX_VALUE)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(333, Short.MAX_VALUE)
 					.addComponent(btnVoltar)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnPlano)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnNewButton)
-					.addContainerGap())
+					.addGap(40))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(37)
 					.addComponent(lblCancelado)
-					.addPreferredGap(ComponentPlacement.RELATED, 373, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 450, Short.MAX_VALUE)
 					.addComponent(btnOpen)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(jLabel1)
 							.addGap(18)
@@ -215,7 +227,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+					.addComponent(txtDesc, GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(10)
@@ -298,6 +310,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
+						.addComponent(btnPlano)
 						.addComponent(btnVoltar))
 					.addGap(12))
 		);
@@ -314,14 +327,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
-		// (optional) ">
-		/*
-		 * If Nimbus (introduced in Java SE 6) is not available, stay with the default
-		 * look and feel. For details see
-		 * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-		 */
+		
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -415,20 +421,22 @@ public class PesquisaNC extends javax.swing.JFrame {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
 
-			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
+		
 			
 			PlanoDAO plano = new PlanoDAO();
 			plano.PegarIdPLano(txtIdNC.getText());
 			
-			//txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			
 			
 			VariaveisEstaticas ve = new VariaveisEstaticas();
+			
+			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
 			txtPlano.setText(Integer.toString(ve.getId_plano()));
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
 			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
-			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 7).toString());
+			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 6).toString());
 			
 			
 			Bloqueio();
@@ -499,5 +507,12 @@ public class PesquisaNC extends javax.swing.JFrame {
 		}
 		
 	}
-	
+	private void dados() {
+		VariaveisEstaticas ve = new VariaveisEstaticas();
+		ve.setId_nc(Integer.parseInt(txtIdNC.getText()));
+		ve.setLocal(txtLocal.getText());
+		ve.setNome_nc(txtNomeNC.getText());
+		ve.setResponsavel(txtResponsavel.getText());
+		
+	}
 }
