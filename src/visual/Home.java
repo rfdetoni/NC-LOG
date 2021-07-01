@@ -179,13 +179,14 @@ public class Home extends javax.swing.JFrame {
 		JLabel lblNewLabel = new JLabel("ID");
 		
 		txtID_User = new JTextField();
+		txtID_User.setEditable(false);
 		txtID_User.setColumns(10);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(layout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap()
 					.addGroup(layout.createParallelGroup(Alignment.LEADING)
 						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 							.addGroup(layout.createSequentialGroup()
@@ -196,7 +197,7 @@ public class Home extends javax.swing.JFrame {
 								.addComponent(lblNewLabel)
 								.addGap(5)
 								.addComponent(txtID_User, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE))
+							.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE))
 						.addComponent(btnNewButton, Alignment.TRAILING))
 					.addContainerGap())
 		);
