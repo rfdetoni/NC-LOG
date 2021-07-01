@@ -369,11 +369,11 @@ public class PesquisaNC extends javax.swing.JFrame {
 			PlanoDAO plano = new PlanoDAO();
 			plano.PegarIdPLano(txtIdNC.getText());
 
-			//VariaveisEstaticas ve = new VariaveisEstaticas();
+			// VariaveisEstaticas ve = new VariaveisEstaticas();
 
 			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
-			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3 ).toString());
-			//txtPlano.setText(Integer.toString(ve.getId_plano()));
+			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			// txtPlano.setText(Integer.toString(ve.getId_plano()));
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
@@ -445,9 +445,9 @@ public class PesquisaNC extends javax.swing.JFrame {
 		}
 
 	}
-	
 
-	private void criar() { //valida se há plano de ação para a NC selecionada, se não tiver, permite criar uma.
+	private void criar() { // valida se há plano de ação para a NC selecionada, se não tiver, permite criar
+							// uma.
 		String plano = txtPlano.getText();
 		if (plano.equals("0")) {
 			CreatePlanodeAcao create = new CreatePlanodeAcao();

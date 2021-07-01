@@ -11,6 +11,8 @@ import DAO.UsuarioDAO;
 import DTO.UsuarioDTO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -91,22 +93,7 @@ public class RegisterScreen extends JFrame {
 			 * e abre a tela de LoginPincipal.java denovo.
 			 */
 			public void actionPerformed(ActionEvent e) {
-			UsuarioDTO reg = new UsuarioDTO();
-			String passText = new String(txtSetUserPassword.getPassword());
-			
-			reg.setNome_User(txtSetUserRegister.getText());
-			reg.setSenha(passText);
-			reg.setDica_Senha(txtSetPasswordTip.getText());	
-			reg.setEmail(txtEmail.getText());
-			reg.setNome_Completo(txtNomeCompleto.getText());
-			
-			UsuarioDAO objuserdao = new UsuarioDAO();
-			objuserdao.registerUser(reg);
-			
-			
-			Login maincallback = new Login();
-			maincallback.setVisible(true);
-			dispose();
+			cadastrar();
 				
 			}
 		});
@@ -142,9 +129,9 @@ public class RegisterScreen extends JFrame {
 		btCancel.setBounds(121, 215, 89, 23);
 		contentPane.add(btCancel);
 		
-		JLabel lblNewLabel = new JLabel("Nome");
+		JLabel lblNewLabel = new JLabel("Nome completo");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel.setBounds(143, 95, 36, 16);
+		lblNewLabel.setBounds(81, 95, 98, 16);
 		contentPane.add(lblNewLabel);
 		
 		txtNomeCompleto = new JTextField();
@@ -161,5 +148,47 @@ public class RegisterScreen extends JFrame {
 		txtEmail.setBounds(180, 123, 128, 22);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
+	}
+	
+	private void cadastrar() {
+		String nome_user,dica, email, nome_completo;
+		nome_user = txtSetUserRegister.getText();
+		dica = txtSetPasswordTip.getText();
+		email = txtEmail.getText();
+		nome_completo = txtNomeCompleto.getText();
+		String passText = new String(txtSetUserPassword.getPassword());
+		
+		if(nome_user.equals("")) {
+			JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio");
+		}else if(nome_completo.equals("") ) {
+			JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio");
+		}else if(email.equals("")) {
+			JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio");
+		} else if(passText.equals("") ) {
+			JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio");
+		} else if(dica.equals("") ){
+		JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio");
+		}
+		
+		else {
+			UsuarioDTO reg = new UsuarioDTO();
+			
+			
+			reg.setNome_User(nome_user);
+			reg.setSenha(passText);
+			reg.setDica_Senha(dica);	
+			reg.setEmail(email);
+			reg.setNome_Completo(nome_completo);
+			
+			UsuarioDAO objuserdao = new UsuarioDAO();
+			if(objuserdao.registerUser(reg)){
+				dispose();
+			}
+			
+			
+			
+			
+			
+		}
 	}
 }

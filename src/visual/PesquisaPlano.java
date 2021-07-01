@@ -154,7 +154,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 		JButton btnNewButton = new JButton("Salvar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SalvarEdit();
+				salvarEdit();
 			}
 		});
 		
@@ -363,7 +363,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	
 	private void btnOpenActionPerformed(java.awt.event.ActionEvent evt) {
 		//resPesquisa();
-		Carregar();
+		carregar();
 		
 
 		
@@ -386,7 +386,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	
 	
 	//carrega dados da planilha para campo de edição
-	private  void Carregar() {
+	private  void carregar() {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
 			
@@ -407,7 +407,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	}
 	
 	
-	private void SalvarEdit() {
+	private void salvarEdit() {
 		int id_NC, id_Plano;
 		
 		String nome_Plano, criador_Plano, descricao, time_responsavel;

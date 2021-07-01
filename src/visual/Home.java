@@ -277,7 +277,8 @@ public class Home extends javax.swing.JFrame {
 			model.setNumRows(0);
 
 			// cria um arrayList com os dados do objnc.pesquisarNC();
-			ArrayList<NcDTO> lista = objnc.pesquisarNC();
+			String s= "";
+			ArrayList<NcDTO> lista = objnc.PesquisaNC(s);
 
 			// transforma em tabela;
 			for (int num = 0; num < lista.size(); num++) {
@@ -310,7 +311,7 @@ public class Home extends javax.swing.JFrame {
 		}
 	}
 
-	public void setUser(String user) {
+	public void setUser(String user) { //configura o usuário logado;
 		//UsuarioDAO objuserDAO = new UsuarioDAO();
 		VariaveisEstaticas ve = new VariaveisEstaticas();
 		ve.setUsuario_logado(user);

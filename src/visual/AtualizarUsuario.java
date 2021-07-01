@@ -35,7 +35,7 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 	}
 
 	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
+	
 	private void initComponents() {
 
 		jLabel1 = new javax.swing.JLabel();
@@ -217,7 +217,7 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		getContentPane().setLayout(layout);
 
 		pack();
-	}// </editor-fold>
+	}//
 
 	/**
 	 * @param args the command line arguments
@@ -297,7 +297,7 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 
 	}
 
-	private void Carregar() {
+	private void Carregar() { //carrega dados da linha selecionada na tabela;
 
 		try {
 			int setar = tblFuncionario.getSelectedRow();

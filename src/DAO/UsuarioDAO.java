@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
 import DTO.UsuarioDTO;
+import visual.Login;
+import visual.RegisterScreen;
 
 public class UsuarioDAO {
 	public static String userOn;
@@ -55,8 +57,35 @@ public class UsuarioDAO {
 		
 
 	}
+	public boolean validaUsuario(UsuarioDTO objuser) {//valida se nome de usuário ja foi usado
+		conn = new ConexaoDAO().conectaDB();
+		
+		try {
+			
+			String sql = "select * from usuario where nome_User = ?";
+			PreparedStatement pstm = conn.prepareStatement(sql);
 
-	public void registerUser(UsuarioDTO userDTO) {
+			pstm.setString(1, objuser.getNome_User());
+		
+			ResultSet rs = pstm.executeQuery();
+			
+			if(rs.next()) {
+			return true;
+			} 
+			
+		} catch (SQLException erro) {
+
+			JOptionPane.showMessageDialog(null, "UsuarioDAO: " + erro);
+			
+		} return false;
+		
+		
+
+	}
+
+	public boolean registerUser(UsuarioDTO userDTO) {
+		
+		if(!validaUsuario(userDTO)) {
 		String sql = "insert into usuario (nome_User,senha,dica_Senha,nome_Completo,email ) values (?,?,?,?,?)";
 		conn = new ConexaoDAO().conectaDB();
 		try {
@@ -71,15 +100,25 @@ public class UsuarioDAO {
 			pstm.close();
 			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
 			
+			Login login = new Login();
+			login.setVisible(true);
+			
+			
+			return true;
 			
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "RegisterDAO " + erro);
-		}
+			JOptionPane.showMessageDialog(null, "Erro! favor informar UsuarioDAO registerUser");
+		}}else {
+			JOptionPane.showMessageDialog(null, "Nome de usuário já utilizado, favor selecionar outro");
+			
+			
+		} return false;
 		
 		
 		
 	}
 	
+	/*
 	public void EditarUser(UsuarioDTO userDTO) {
 		String sql = "update usuario set nome_User = ?, senha = ?, dica_Senha = ?, email = ?, nome_Completo = ? where id_User = ?";
 		conn = new ConexaoDAO().conectaDB();
@@ -104,7 +143,7 @@ public class UsuarioDAO {
 			JOptionPane.showMessageDialog(null, "UsuarioDAO - EditarUser " + erro);
 		}
 
-	}
+	}*/
 	
 	public ArrayList<UsuarioDTO> PesquisarUsuario() {
 
@@ -113,12 +152,6 @@ public class UsuarioDAO {
 			String sql = "select * from usuario where nome_User ="+"'"+this.getUserOn()+"'";
 			
 			
-			//debug sql
-			//JOptionPane.showMessageDialog(null, sql);
-			
-		
-			
-
 			conn = new ConexaoDAO().conectaDB();
 
 			pstm = conn.prepareStatement(sql);
@@ -138,8 +171,7 @@ public class UsuarioDAO {
 				userDTO.setSenha(rs.getString("senha"));
 				
 				
-				// debug descrição
-				// JOptionPane.showMessageDialog(null, objnc.getDescricao_Nc());
+				
 				lista.add(userDTO);
 
 			}
