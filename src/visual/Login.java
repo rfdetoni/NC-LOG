@@ -135,7 +135,7 @@ public class Login extends JFrame {
 					ve.setUsuario_logado(user);
 					
 					if(rsuserdao.next()) {
-						
+						VariaveisEstaticas.id_user = (rsuserdao.getInt("id_User"));
 							//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
 						
 						Home homenc = new Home();

@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class Home extends javax.swing.JFrame {
 
@@ -173,6 +175,11 @@ public class Home extends javax.swing.JFrame {
 				listarNc();
 			}
 		});
+		
+		JLabel lblNewLabel = new JLabel("ID");
+		
+		txtID_User = new JTextField();
+		txtID_User.setColumns(10);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
@@ -183,8 +190,12 @@ public class Home extends javax.swing.JFrame {
 						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 							.addGroup(layout.createSequentialGroup()
 								.addComponent(jLabel1)
-								.addGap(18)
-								.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE))
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(lblNewLabel)
+								.addGap(5)
+								.addComponent(txtID_User, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
 							.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 582, GroupLayout.PREFERRED_SIZE))
 						.addComponent(btnNewButton, Alignment.TRAILING))
 					.addContainerGap())
@@ -198,8 +209,10 @@ public class Home extends javax.swing.JFrame {
 					.addComponent(btnNewButton)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(jLabel1)
 						.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(jLabel1))
+						.addComponent(lblNewLabel)
+						.addComponent(txtID_User, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(14))
 		);
 		getContentPane().setLayout(layout);
@@ -265,13 +278,14 @@ public class Home extends javax.swing.JFrame {
 	private final Action action_1 = new SwingAction_1();
 	private JMenu mnNewMenu;
 	private JMenuItem mntmNewMenuItem;
+	private JTextField txtID_User;
 	// End of variables declaration
 
 	private static void listarNc() { // adiciona os dados das NCs ao jTable;
 		try {
 
 			NCDAO objnc = new NCDAO();
-			// this.setPesquisa(txtSearch.getText());
+			
 
 			DefaultTableModel model = (DefaultTableModel) tblNC.getModel();
 			model.setNumRows(0);
@@ -315,11 +329,12 @@ public class Home extends javax.swing.JFrame {
 		//UsuarioDAO objuserDAO = new UsuarioDAO();
 		VariaveisEstaticas ve = new VariaveisEstaticas();
 		ve.setUsuario_logado(user);
+		String u =ve.getUsuario_logado();
 		txtUserON.setText(ve.getUsuario_logado());
 		NCDAO ncdao = new NCDAO();
 		ncdao.setRespNc(user);
 		UsuarioDAO.userOn = user;
-	
+		txtID_User.setText(Integer.toString(VariaveisEstaticas.id_user));
 
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import DTO.NcDTO;
 import DTO.UsuarioDTO;
+import DTO.VariaveisEstaticas;
 import visual.Login;
 import visual.RegisterScreen;
 
@@ -43,14 +44,18 @@ public class UsuarioDAO {
 			// set nome usuário da sessão;
 
 			ResultSet rs = pstm.executeQuery();
+	
+				
+			
 			return rs;
-
+			
 		} catch (SQLException erro) {
 
 			JOptionPane.showMessageDialog(null, "UsuarioDAO: " + erro);
 			return null;
 
 		}
+		
 
 	}
 
@@ -112,29 +117,7 @@ public class UsuarioDAO {
 
 	}
 
-	/*
-	 * public void EditarUser(UsuarioDTO userDTO) { String sql =
-	 * "update usuario set nome_User = ?, senha = ?, dica_Senha = ?, email = ?, nome_Completo = ? where id_User = ?"
-	 * ; conn = new ConexaoDAO().conectaDB();
-	 * 
-	 * try {
-	 * 
-	 * pstm = conn.prepareStatement(sql); pstm.setString(1, userDTO.getNome_User());
-	 * 
-	 * pstm.setString(2, userDTO.getSenha()); pstm.setString(3,
-	 * userDTO.getDica_Senha()); pstm.setString(4, userDTO.getEmail());
-	 * pstm.setString(5, userDTO.getNome_Completo()); pstm.setInt(6,
-	 * userDTO.getId_user());
-	 * 
-	 * pstm.execute(); pstm.close();
-	 * 
-	 * JOptionPane.showMessageDialog(null, "Usuário atualizado");
-	 * 
-	 * } catch (Exception erro) { JOptionPane.showMessageDialog(null,
-	 * "UsuarioDAO - EditarUser " + erro); }
-	 * 
-	 * }
-	 */
+
 
 	public ArrayList<UsuarioDTO> PesquisarUsuario() {
 

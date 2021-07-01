@@ -5,6 +5,7 @@ public class VariaveisEstaticas {
 	private static int id_nc, id_plano;
 	private static String responsavel, nome_nc, local;
 	public static String usuario_logado = "";
+	public static int id_user;
 	
 	
 	public  String getResponsavel() {
