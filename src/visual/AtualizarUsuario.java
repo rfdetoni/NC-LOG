@@ -43,6 +43,7 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 		txtNomeCompleto = new javax.swing.JTextField();
 		jLabel3 = new javax.swing.JLabel();
 		txtUsuario = new javax.swing.JTextField();
+		txtUsuario.setEditable(false);
 		txtEmail = new javax.swing.JTextField();
 		jLabel4 = new javax.swing.JLabel();
 		jLabel5 = new javax.swing.JLabel();
@@ -349,7 +350,12 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 			userDTO.setNome_Completo(nome_completo);
 			userDTO.setSenha(senha);
 			
-			userDAO.salvarUsuario(userDTO);
+			if(userDAO.salvarUsuario(userDTO)) {
+				dispose();
+				
+				VariaveisEstaticas.usuario_logado =nome_user;
+				
+			}
 			
 			
 		} }catch (Exception e) {

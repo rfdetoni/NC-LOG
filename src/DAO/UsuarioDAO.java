@@ -15,7 +15,7 @@ import visual.RegisterScreen;
 
 public class UsuarioDAO {
 	public static String userOn;
-	
+
 	public String getUserOn() {
 		return userOn;
 	}
@@ -26,23 +26,21 @@ public class UsuarioDAO {
 
 	ArrayList<UsuarioDTO> lista = new ArrayList<>();
 	ResultSet rs;
-	
-
 
 	Connection conn;
-	PreparedStatement pstm;	
+	PreparedStatement pstm;
 
 	public ResultSet autUsuario(UsuarioDTO objuser) {
 		conn = new ConexaoDAO().conectaDB();
 
 		try {
-			
+
 			String sql = "select * from usuario where nome_User = ? and senha = ?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 
 			pstm.setString(1, objuser.getNome_User());
 			pstm.setString(2, objuser.getSenha());
-			//set nome usuário da sessão;
+			// set nome usuário da sessão;
 
 			ResultSet rs = pstm.executeQuery();
 			return rs;
@@ -53,105 +51,97 @@ public class UsuarioDAO {
 			return null;
 
 		}
-		
-		
 
 	}
-	public boolean validaUsuario(UsuarioDTO objuser) {//valida se nome de usuário ja foi usado
+
+	public boolean validaUsuario(UsuarioDTO objuser) {// valida se nome de usuário ja foi usado
 		conn = new ConexaoDAO().conectaDB();
-		
+
 		try {
-			
+
 			String sql = "select * from usuario where nome_User = ?";
 			PreparedStatement pstm = conn.prepareStatement(sql);
 
 			pstm.setString(1, objuser.getNome_User());
-		
+
 			ResultSet rs = pstm.executeQuery();
-			
-			if(rs.next()) {
-			return true;
-			} 
-			
+
+			if (rs.next()) {
+				return true;
+			}
+
 		} catch (SQLException erro) {
 
 			JOptionPane.showMessageDialog(null, "UsuarioDAO: " + erro);
-			
-		} return false;
-		
-		
+
+		}
+		return false;
 
 	}
 
 	public boolean registerUser(UsuarioDTO userDTO) {
-		
-		if(!validaUsuario(userDTO)) {
-		String sql = "insert into usuario (nome_User,senha,dica_Senha,nome_Completo,email ) values (?,?,?,?,?)";
-		conn = new ConexaoDAO().conectaDB();
-		try {
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, userDTO.getNome_User());
-			pstm.setString(2, userDTO.getSenha());
-			pstm.setString(3, userDTO.getDica_Senha());
-			pstm.setString(4, userDTO.getNome_Completo());
-			pstm.setString(5, userDTO.getEmail());
-			
-			pstm.execute();
-			pstm.close();
-			JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
-			
-			Login login = new Login();
-			login.setVisible(true);
-			
-			
-			return true;
-			
-		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "Erro! favor informar UsuarioDAO registerUser");
-		}}else {
+
+		if (!validaUsuario(userDTO)) {
+			String sql = "insert into usuario (nome_User,senha,dica_Senha,nome_Completo,email ) values (?,?,?,?,?)";
+			conn = new ConexaoDAO().conectaDB();
+			try {
+				pstm = conn.prepareStatement(sql);
+				pstm.setString(1, userDTO.getNome_User());
+				pstm.setString(2, userDTO.getSenha());
+				pstm.setString(3, userDTO.getDica_Senha());
+				pstm.setString(4, userDTO.getNome_Completo());
+				pstm.setString(5, userDTO.getEmail());
+
+				pstm.execute();
+				pstm.close();
+				JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso!");
+
+				Login login = new Login();
+				login.setVisible(true);
+
+				return true;
+
+			} catch (Exception erro) {
+				JOptionPane.showMessageDialog(null, "Erro! favor informar UsuarioDAO registerUser");
+			}
+		} else {
 			JOptionPane.showMessageDialog(null, "Nome de usuário já utilizado, favor selecionar outro");
-			
-			
-		} return false;
-		
-		
-		
-	}
-	
-	/*
-	public void EditarUser(UsuarioDTO userDTO) {
-		String sql = "update usuario set nome_User = ?, senha = ?, dica_Senha = ?, email = ?, nome_Completo = ? where id_User = ?";
-		conn = new ConexaoDAO().conectaDB();
 
-		try {
-
-			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, userDTO.getNome_User());
-
-			pstm.setString(2, userDTO.getSenha());
-			pstm.setString(3, userDTO.getDica_Senha());
-			pstm.setString(4, userDTO.getEmail());
-			pstm.setString(5, userDTO.getNome_Completo());
-			pstm.setInt(6, userDTO.getId_user());
-		
-			pstm.execute();
-			pstm.close();
-
-			JOptionPane.showMessageDialog(null, "Usuário atualizado");
-
-		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "UsuarioDAO - EditarUser " + erro);
 		}
+		return false;
 
-	}*/
-	
+	}
+
+	/*
+	 * public void EditarUser(UsuarioDTO userDTO) { String sql =
+	 * "update usuario set nome_User = ?, senha = ?, dica_Senha = ?, email = ?, nome_Completo = ? where id_User = ?"
+	 * ; conn = new ConexaoDAO().conectaDB();
+	 * 
+	 * try {
+	 * 
+	 * pstm = conn.prepareStatement(sql); pstm.setString(1, userDTO.getNome_User());
+	 * 
+	 * pstm.setString(2, userDTO.getSenha()); pstm.setString(3,
+	 * userDTO.getDica_Senha()); pstm.setString(4, userDTO.getEmail());
+	 * pstm.setString(5, userDTO.getNome_Completo()); pstm.setInt(6,
+	 * userDTO.getId_user());
+	 * 
+	 * pstm.execute(); pstm.close();
+	 * 
+	 * JOptionPane.showMessageDialog(null, "Usuário atualizado");
+	 * 
+	 * } catch (Exception erro) { JOptionPane.showMessageDialog(null,
+	 * "UsuarioDAO - EditarUser " + erro); }
+	 * 
+	 * }
+	 */
+
 	public ArrayList<UsuarioDTO> PesquisarUsuario() {
 
 		try {
 
-			String sql = "select * from usuario where nome_User ="+"'"+this.getUserOn()+"'";
-			
-			
+			String sql = "select * from usuario where nome_User =" + "'" + this.getUserOn() + "'";
+
 			conn = new ConexaoDAO().conectaDB();
 
 			pstm = conn.prepareStatement(sql);
@@ -159,9 +149,6 @@ public class UsuarioDAO {
 
 			while (rs.next()) {
 				UsuarioDTO userDTO = new UsuarioDTO();
-				
-				
-			
 
 				userDTO.setNome_Completo(rs.getString("nome_Completo"));
 				userDTO.setEmail(rs.getString("email"));
@@ -169,9 +156,7 @@ public class UsuarioDAO {
 				userDTO.setId_user(rs.getInt("id_User"));
 				userDTO.setNome_User(rs.getString("nome_User"));
 				userDTO.setSenha(rs.getString("senha"));
-				
-				
-				
+
 				lista.add(userDTO);
 
 			}
@@ -181,29 +166,35 @@ public class UsuarioDAO {
 		}
 		return lista;
 	}
-	
-	public void salvarUsuario(UsuarioDTO userDTO) {
-		try {
-			String sql = "update usuario set nome_User =?, dica_Senha = ?, senha = ?, email = ?, nome_Completo = ? where id_User =?  ";
-			conn =  new ConexaoDAO().conectaDB();
-			pstm = conn.prepareStatement(sql);
-			
-			pstm.setString(1, userDTO.getNome_User());
-			pstm.setString(2, userDTO.getDica_Senha());
-			pstm.setString(3, userDTO.getSenha());
-			pstm.setString(4, userDTO.getEmail());
-			pstm.setString(5, userDTO.getNome_Completo());
-			pstm.setInt(6, userDTO.getId_user());
-			
-			
-			pstm.execute();
-			pstm.close();
-			
-			
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "UsuarioDAO SalvarUsuario - "+e);
+
+	public boolean salvarUsuario(UsuarioDTO userDTO) {
+		if (!validaUsuario(userDTO)) {
+			try {
+				String sql = "update usuario set nome_User =?, dica_Senha = ?, senha = ?, email = ?, nome_Completo = ? where id_User =?  ";
+				conn = new ConexaoDAO().conectaDB();
+				pstm = conn.prepareStatement(sql);
+
+				pstm.setString(1, userDTO.getNome_User());
+				pstm.setString(2, userDTO.getDica_Senha());
+				pstm.setString(3, userDTO.getSenha());
+				pstm.setString(4, userDTO.getEmail());
+				pstm.setString(5, userDTO.getNome_Completo());
+				pstm.setInt(6, userDTO.getId_user());
+
+				pstm.execute();
+				pstm.close();
+				JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso!");
+				return true;
+
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "UsuarioDAO SalvarUsuario - " + e);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Nome de usuário já utilizado, favor selecionar outro");
+
 		}
-		
+		return false;
+
 	}
 
 }
