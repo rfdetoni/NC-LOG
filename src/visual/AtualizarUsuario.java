@@ -317,21 +317,42 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 	}
 	private void Salvar() {
 		try {
-			UsuarioDAO userDAO = new UsuarioDAO();
-			UsuarioDTO userDTO = new UsuarioDTO();
+			String nome_user,dica, email, nome_completo;
+			nome_user = txtUsuario.getText();
+			dica = txtDica.getText();
+			email = txtEmail.getText();
+			nome_completo = txtNomeCompleto.getText();
 			String senha = new String(txtPass.getPassword());
 			
-			userDTO.setDica_Senha(txtDica.getText());
-			userDTO.setEmail(txtEmail.getText());
+
+			if(nome_user.equals("")) {
+				JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio");
+			}else if(nome_completo.equals("") ) {
+				JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio");
+			}else if(email.equals("")) {
+				JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio");
+			} else if(senha.equals("") ) {
+				JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio");
+			} else if(dica.equals("") ){
+			JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio");
+			}
+			
+			else {
+			UsuarioDAO userDAO = new UsuarioDAO();
+			UsuarioDTO userDTO = new UsuarioDTO();
+		
+			
+			userDTO.setDica_Senha(dica);
+			userDTO.setEmail(email);
 			userDTO.setId_user(Integer.parseInt(txtID.getText()));
-			userDTO.setNome_User(txtUsuario.getText());
-			userDTO.setNome_Completo(txtNomeCompleto.getText());
+			userDTO.setNome_User(nome_user);
+			userDTO.setNome_Completo(nome_completo);
 			userDTO.setSenha(senha);
 			
 			userDAO.salvarUsuario(userDTO);
 			
 			
-		} catch (Exception e) {
+		} }catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Favor verificar informações - Erro: " + e);
 		}
 		
