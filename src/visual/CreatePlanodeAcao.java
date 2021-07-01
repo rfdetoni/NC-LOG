@@ -5,6 +5,7 @@ import java.util.Date;
 
 import DAO.NCDAO;
 import DAO.PlanoDAO;
+import DTO.NcDTO;
 import DTO.PlanoDTO;
 import DTO.VariaveisEstaticas;
 
@@ -303,13 +304,23 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
     }
     
     private void Load() {
+    	
     	VariaveisEstaticas ve = new VariaveisEstaticas();
     	txtidnc.setText(Integer.toString(ve.getId_nc())); 
     	txtNomeNC.setText(ve.getNome_nc());
     	txtresp.setText(ve.getResponsavel());
     	txtLocal.setText(ve.getLocal());
     	
+    	
+    }
+    public void dados(NcDTO objncDTO) {
 
+    	txtidnc.setText(Integer.toString(objncDTO.getId_Nc()));
+    	txtLocal.setText(objncDTO.getLocal_Nc());
+    	txtNomeNC.setText(objncDTO.getNome_Nc());
+    	txtresp.setText(objncDTO.getResponsavel_Nc());
+
+    	
     }
 
     // Variables declaration - do not modify                     
