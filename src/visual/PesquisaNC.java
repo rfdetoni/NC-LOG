@@ -172,6 +172,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 		JLabel lblNewLabel_6 = new JLabel("Status");
 
 		comboStatus = new JComboBox();
+		
 		comboStatus.setModel(new DefaultComboBoxModel(
 				new String[] { "Aberto", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o", "Cancelada" }));
 
@@ -365,20 +366,26 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private void Carregar() {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
-
+			
 			PlanoDAO plano = new PlanoDAO();
 			plano.PegarIdPLano(txtIdNC.getText());
-
+			String combo = tblPesquisa.getModel().getValueAt(setar, 6).toString();
+			String idplano = tblPesquisa.getModel().getValueAt(setar, 3).toString();
+			if(combo.equals("Aberto") && idplano.equals("0")) {
+				comboStatus.setEnabled(false);
+				comboStatus.setToolTipText("Para alterar o status \u00E9 necess\u00E1rio a cria\u00E7\u00E3o de um plano de a\u00E7\u00E3o, inclusive para descrever o motivo do cancelamento do plano.");
+								
+			}
 			// VariaveisEstaticas ve = new VariaveisEstaticas();
 
 			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
-			txtPlano.setText(tblPesquisa.getModel().getValueAt(setar, 3).toString());
+			txtPlano.setText(idplano);
 			// txtPlano.setText(Integer.toString(ve.getId_plano()));
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
 			txtDesc.setText(tblPesquisa.getModel().getValueAt(setar, 4).toString());
-			comboStatus.setSelectedItem(tblPesquisa.getModel().getValueAt(setar, 6).toString());
+			comboStatus.setSelectedItem(combo);
 
 			Bloqueio();
 		} catch (Exception e) {
@@ -437,7 +444,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 			txtLocal.setEditable(false);
 			txtNomeNC.setEditable(false);
 			txtResponsavel.setEditable(false);
-
+			
+			
 			lblCancelado.setText("NC CANCELADA");
 
 		} else {

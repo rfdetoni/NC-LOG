@@ -270,6 +270,10 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        PlanoDAO pldao = new PlanoDAO();
        pldao.registerPlan(plan);
        dispose();
+       PesquisaPlano pp = new PesquisaPlano();
+       pp.resPesquisa();
+       pp.setVisible(true);
+       
      
     }                                         
 
