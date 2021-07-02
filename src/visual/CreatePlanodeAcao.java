@@ -270,9 +270,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        PlanoDAO pldao = new PlanoDAO();
        pldao.registerPlan(plan);
        dispose();
-       Home home= new Home();
-       home.setVisible(true);
-       
+     
     }                                         
 
     public static void main(String args[]) {
