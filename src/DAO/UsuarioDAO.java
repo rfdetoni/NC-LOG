@@ -151,18 +151,18 @@ public class UsuarioDAO {
 	}
 
 	public boolean salvarUsuario(UsuarioDTO userDTO) {
-		if (!validaUsuario(userDTO)) {
+		
 			try {
-				String sql = "update usuario set nome_User =?, dica_Senha = ?, senha = ?, email = ?, nome_Completo = ? where id_User =?  ";
+				String sql = "update usuario set  dica_Senha = ?, senha = ?, email = ?, nome_Completo = ? where id_User =?  ";
 				conn = new ConexaoDAO().conectaDB();
 				pstm = conn.prepareStatement(sql);
 
-				pstm.setString(1, userDTO.getNome_User());
-				pstm.setString(2, userDTO.getDica_Senha());
-				pstm.setString(3, userDTO.getSenha());
-				pstm.setString(4, userDTO.getEmail());
-				pstm.setString(5, userDTO.getNome_Completo());
-				pstm.setInt(6, userDTO.getId_user());
+				
+				pstm.setString(1, userDTO.getDica_Senha());
+				pstm.setString(2, userDTO.getSenha());
+				pstm.setString(3, userDTO.getEmail());
+				pstm.setString(4, userDTO.getNome_Completo());
+				pstm.setInt(5, userDTO.getId_user());
 
 				pstm.execute();
 				pstm.close();
@@ -172,10 +172,8 @@ public class UsuarioDAO {
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(null, "UsuarioDAO SalvarUsuario - " + e);
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Nome de usuário já utilizado, favor selecionar outro");
+		
 
-		}
 		return false;
 
 	}
