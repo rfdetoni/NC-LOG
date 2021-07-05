@@ -351,8 +351,8 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 			userDTO.setSenha(senha);
 			
 			if(userDAO.salvarUsuario(userDTO)) {
-				dispose();
-				
+			//prevemos validação de cargo
+				Pesquisar();
 				VariaveisEstaticas.usuario_logado =nome_user;
 				
 			}
