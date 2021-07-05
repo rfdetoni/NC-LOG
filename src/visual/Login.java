@@ -136,7 +136,7 @@ public class Login extends JFrame {
 					
 					if(rsuserdao.next()) {
 						VariaveisEstaticas.id_user = (rsuserdao.getInt("id_User"));
-							//JOptionPane.showMessageDialog(null, "Bem vindo! " +user );
+							
 						
 						Home homenc = new Home();
 						homenc.setUser(user);
@@ -153,7 +153,7 @@ public class Login extends JFrame {
 						JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos");
 					}
 				} catch(SQLException erro) {
-					JOptionPane.showMessageDialog(null,"mainScreen login" + erro);
+					JOptionPane.showMessageDialog(null,"Informe ao desenvolvedor > Home login" ,"ERRO", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

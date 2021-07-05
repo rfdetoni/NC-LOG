@@ -14,6 +14,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.GroupLayout;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import java.awt.Toolkit;
 
 public class CreatePlanodeAcao extends javax.swing.JFrame {
@@ -260,6 +262,8 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {                                          
        PlanoDTO plan = new PlanoDTO();
+try {
+	
 
        plan.setNome_Criador(txtnome_criador.getText());
        plan.setNome_Plano(txtNome_planodeacao.getText());
@@ -273,7 +277,9 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
        PesquisaPlano pp = new PesquisaPlano();
        pp.resPesquisa();
        pp.setVisible(true);
-       
+} catch (Exception e) {
+	JOptionPane.showMessageDialog(null,"Informe ao desenvolvedor CreatePlanodeAcao btnSalvar","ERRO",JOptionPane.ERROR_MESSAGE);
+}
      
     }                                         
 

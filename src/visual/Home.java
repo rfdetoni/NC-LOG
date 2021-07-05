@@ -6,8 +6,9 @@ import java.util.TimerTask;
 import java.util.Timer;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
 
 import DAO.NCDAO;
 import DAO.UsuarioDAO;
@@ -23,6 +24,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
+
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Toolkit;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -30,12 +34,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class Home extends javax.swing.JFrame {
+	String STATUS;
 
-	
 	public Home() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/imagens/icon.jpg")));
 		initComponents();
-		
+
 		// timer para atualizar as informações da tabela de ncs do usuário, atualiza a
 		// cada 5 minutos;
 
@@ -51,7 +56,7 @@ public class Home extends javax.swing.JFrame {
 			}
 		};
 		timer.scheduleAtFixedRate(carregar, 0, segundos);
-
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -61,6 +66,7 @@ public class Home extends javax.swing.JFrame {
 		jMenuItem1 = new javax.swing.JMenuItem();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		tblNC = new javax.swing.JTable();
+		tblNC.setEnabled(false);
 		jLabel1 = new javax.swing.JLabel();
 		txtUserON = new javax.swing.JTextField();
 		jMenuBar1 = new javax.swing.JMenuBar();
@@ -93,9 +99,9 @@ public class Home extends javax.swing.JFrame {
 		setTitle("NC-LOG");
 
 		tblNC.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null }, { null, null, null, null, null },
-						{ null, null, null, null, null }, { null, null, null, null, null }, },
-				new String[] { "ID NC", "Nome da NC", "Respons\u00E1vel", "Local", "Status" }));
+				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
+						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
+				new String[] { "ID NC", "ID PLANO", "Nome da NC", "Respons\u00E1vel", "Local", "Status" }));
 		jScrollPane1.setViewportView(tblNC);
 
 		jLabel1.setText("Usu\u00E1rio conectado:");
@@ -103,7 +109,7 @@ public class Home extends javax.swing.JFrame {
 		txtUserON.setEditable(false);
 
 		jMenu1.setText("Não Conformidade");
-
+		
 		menuInserirNC.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N,
 				java.awt.event.InputEvent.CTRL_DOWN_MASK));
 		menuInserirNC.setText("Inserir nova");
@@ -149,7 +155,7 @@ public class Home extends javax.swing.JFrame {
 		jMenuBar1.add(jMenu3);
 
 		setJMenuBar(jMenuBar1);
-		
+
 		mnNewMenu = new JMenu("NC-LOG");
 		mnNewMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -158,7 +164,7 @@ public class Home extends javax.swing.JFrame {
 			}
 		});
 		jMenuBar1.add(mnNewMenu);
-		
+
 		mntmNewMenuItem = new JMenuItem("Sobre");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -167,55 +173,44 @@ public class Home extends javax.swing.JFrame {
 			}
 		});
 		mnNewMenu.add(mntmNewMenuItem);
-		
+
 		JButton btnNewButton = new JButton("Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				listarNc();
 			}
 		});
-		
+
 		JLabel lblNewLabel = new JLabel("ID");
-		
+
 		txtID_User = new JTextField();
 		txtID_User.setEditable(false);
 		txtID_User.setColumns(10);
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		layout.setHorizontalGroup(
-			layout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(layout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(layout.createParallelGroup(Alignment.LEADING)
-						.addGroup(layout.createParallelGroup(Alignment.TRAILING)
-							.addGroup(layout.createSequentialGroup()
-								.addComponent(jLabel1)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
+		layout.setHorizontalGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
+				.addContainerGap()
+				.addGroup(layout.createParallelGroup(Alignment.LEADING)
+						.addGroup(layout.createParallelGroup(Alignment.TRAILING).addGroup(layout.createSequentialGroup()
+								.addComponent(jLabel1).addPreferredGap(ComponentPlacement.UNRELATED)
 								.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(lblNewLabel)
-								.addGap(5)
+								.addPreferredGap(ComponentPlacement.RELATED).addComponent(lblNewLabel).addGap(5)
 								.addComponent(txtID_User, GroupLayout.PREFERRED_SIZE, 48, GroupLayout.PREFERRED_SIZE))
-							.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE))
+								.addComponent(jScrollPane1, GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE))
 						.addComponent(btnNewButton, Alignment.TRAILING))
-					.addContainerGap())
-		);
-		layout.setVerticalGroup(
-			layout.createParallelGroup(Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-					.addGap(38)
-					.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(layout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(jLabel1)
-						.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel)
-						.addComponent(txtID_User, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(14))
-		);
+				.addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addGap(38)
+						.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnNewButton).addPreferredGap(ComponentPlacement.UNRELATED)
+						.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(jLabel1)
+								.addComponent(txtUserON, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+										GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel).addComponent(txtID_User, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(14)));
 		getContentPane().setLayout(layout);
 
 		pack();
@@ -258,7 +253,6 @@ public class Home extends javax.swing.JFrame {
 			}
 		});
 
-	
 	}
 
 	// Variables declaration - do not modify
@@ -286,24 +280,24 @@ public class Home extends javax.swing.JFrame {
 		try {
 
 			NCDAO objnc = new NCDAO();
-			
 
 			DefaultTableModel model = (DefaultTableModel) tblNC.getModel();
 			model.setNumRows(0);
 
 			// cria um arrayList com os dados do objnc.pesquisarNC();
-			String s= "";
+			String s = "";
 			ArrayList<NcDTO> lista = objnc.PesquisaNC(s);
-
+			
 			// transforma em tabela;
 			for (int num = 0; num < lista.size(); num++) {
-				model.addRow(new Object[] { lista.get(num).getId_Nc(), lista.get(num).getNome_Nc(),
-						lista.get(num).getResponsavel_Nc(), lista.get(num).getLocal_Nc(), lista.get(num).getStatus() });
+				model.addRow(new Object[] { lista.get(num).getId_Nc(), lista.get(num).getId_Plano(),
+						lista.get(num).getNome_Nc(), lista.get(num).getResponsavel_Nc(), lista.get(num).getLocal_Nc(),
+						lista.get(num).getStatus() });
 
 			}
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "Home listarNc " + erro);
+			JOptionPane.showMessageDialog(null, "Informar ao desenvolvedor > Home listarNc ","ERRO", JOptionPane.ERROR_MESSAGE );
 		}
 
 	}
@@ -326,11 +320,11 @@ public class Home extends javax.swing.JFrame {
 		}
 	}
 
-	public void setUser(String user) { //configura o usuário logado;
-		//UsuarioDAO objuserDAO = new UsuarioDAO();
+	public void setUser(String user) { // configura o usuário logado;
+	
 		VariaveisEstaticas ve = new VariaveisEstaticas();
 		ve.setUsuario_logado(user);
-		String u =ve.getUsuario_logado();
+		String u = ve.getUsuario_logado();
 		txtUserON.setText(ve.getUsuario_logado());
 		NCDAO ncdao = new NCDAO();
 		ncdao.setRespNc(user);
@@ -338,4 +332,8 @@ public class Home extends javax.swing.JFrame {
 		txtID_User.setText(Integer.toString(VariaveisEstaticas.id_user));
 
 	}
+
+	
+	
+
 }

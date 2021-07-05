@@ -355,7 +355,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 			}
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "PesquisarNC resPesquisa " + erro);
+			JOptionPane.showMessageDialog(null, " Informar ao desenvolvedor > PesquisarNC resPesquisa ", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}

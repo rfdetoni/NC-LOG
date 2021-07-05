@@ -293,7 +293,7 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 			}
 
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "AtualizarUsuario - Carregar() " + e);
+			JOptionPane.showMessageDialog(null, "Informe ao desenvolvedor > AtualizarUsuario - Carregar ","ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -327,15 +327,15 @@ public class AtualizarUsuario extends javax.swing.JFrame {
 			
 
 			if(nome_user.equals("")) {
-				JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio");
+				JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 			}else if(nome_completo.equals("") ) {
-				JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio");
+				JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 			}else if(email.equals("")) {
-				JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio");
+				JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 			} else if(senha.equals("") ) {
-				JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio");
+				JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 			} else if(dica.equals("") ){
-			JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio");
+			JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 			}
 			
 			else {

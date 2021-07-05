@@ -159,15 +159,15 @@ public class RegisterScreen extends JFrame {
 		String passText = new String(txtSetUserPassword.getPassword());
 		
 		if(nome_user.equals("")) {
-			JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio");
+			JOptionPane.showMessageDialog(null, "Campo Usuário não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 		}else if(nome_completo.equals("") ) {
-			JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio");
+			JOptionPane.showMessageDialog(null, "Campo Nome completo não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 		}else if(email.equals("")) {
-			JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio");
+			JOptionPane.showMessageDialog(null, "Campo Email não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 		} else if(passText.equals("") ) {
-			JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio");
+			JOptionPane.showMessageDialog(null, "Campo senha  não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 		} else if(dica.equals("") ){
-		JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio");
+		JOptionPane.showMessageDialog(null, "Campo Dica de senha não pode estar vazio","AVISO", JOptionPane.WARNING_MESSAGE);
 		}
 		
 		else {

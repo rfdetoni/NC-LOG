@@ -334,7 +334,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 			}
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(btnOpen, "PesquisarNC resPesquisa " + erro);
+			JOptionPane.showMessageDialog(null, "Informe ao desenvolvedor >PesquisarNC resPesquisa ","ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -444,6 +444,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 			txtLocal.setEditable(false);
 			txtNomeNC.setEditable(false);
 			txtResponsavel.setEditable(false);
+			JOptionPane.showMessageDialog(null, "Para editar NC com Status cancelado, favor alterar o STATUS para Aberto ou Em Execução.", "AVISO", JOptionPane.WARNING_MESSAGE); 
 			
 			
 			lblCancelado.setText("NC CANCELADA");

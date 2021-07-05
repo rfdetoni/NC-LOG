@@ -71,11 +71,10 @@ public class NCDAO {
 	
 
 	public ArrayList<NcDTO> PesquisaNC(String Pesquisa) { // pesquisa implementada de Ncs para HOME e PesquisaNC;
-	//String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'"
-		//		+ " and nome_Nc like  " + "'%" + Pesquisa + "%'" ;
+	String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'"
+			+ " and nome_Nc like  " + "'%" + Pesquisa + "%'" ;
 		
-		String  sql = "select nc.id_Nc, nc.descricao_Nc, nc.local_Nc, nc.nome_Nc, nc.responsavel_NC, nc.status, pl.id_Plano"
-		+ " from naoConformidade nc join planoDeAcao pl on nc.id_Nc = pl.id_Nc where nc.responsavel_Nc = " + "'" + resp_nc +"'"+ " and nome_Nc like " + "'%" + Pesquisa + "%'";
+	//	String  sql = "select * from naoConformidade, planoDeAcao where naoConformidade.responsavel_Nc = " + "'" + resp_nc +"'"+ " and naoConformidade.nome_Nc like " + "'%" + Pesquisa + "%' order by naoConformidade.id_Nc";
 		
 		
 		conn = new ConexaoDAO().conectaDB();
@@ -129,7 +128,7 @@ public class NCDAO {
 			JOptionPane.showMessageDialog(null, "NC atualizada");
 
 		} catch (Exception erro) {
-			JOptionPane.showMessageDialog(null, "NCDAO - EditarNC " + erro);
+			JOptionPane.showMessageDialog(null, "Informar ao desenvolvedor > NCDAO - EditarNC ", "ERRO", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
@@ -161,6 +160,28 @@ public class NCDAO {
 			JOptionPane.showMessageDialog(null, "NCDAO - pesquisarNC " + erro);
 		}
 		return lista_id;
+	}
+	
+	public void inserePlano(String nc, int plano) {
+		String sql = "update naoConformidade set id_Plano = " + plano + " where id_Nc = "+nc;
+		conn = new ConexaoDAO().conectaDB();
+
+		try {
+
+			pstm = conn.prepareStatement(sql);
+		
+			
+			pstm.execute();
+			pstm.close();
+
+			
+
+		} catch (Exception erro) {
+			JOptionPane.showMessageDialog(null, "Informar ao desenvolvedor . NCDAO - inserePlano ", "ERRO", JOptionPane.ERROR_MESSAGE);
+		}
+
+		
+		
 	}
 
 }
