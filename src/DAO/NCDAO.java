@@ -71,8 +71,13 @@ public class NCDAO {
 	
 
 	public ArrayList<NcDTO> PesquisaNC(String Pesquisa) { // pesquisa implementada de Ncs para HOME e PesquisaNC;
-		String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'"
-				+ " and nome_Nc like  " + "'%" + Pesquisa + "%'" ;
+	//String sql = "select * from naoConformidade where responsavel_Nc = " + "'" + resp_nc + "'"
+		//		+ " and nome_Nc like  " + "'%" + Pesquisa + "%'" ;
+		
+		String  sql = "select nc.id_Nc, nc.descricao_Nc, nc.local_Nc, nc.nome_Nc, nc.responsavel_NC, nc.status, pl.id_Plano"
+		+ " from naoConformidade nc join planoDeAcao pl on nc.id_Nc = pl.id_Nc where nc.responsavel_Nc = " + "'" + resp_nc +"'"+ " and nome_Nc like " + "'%" + Pesquisa + "%'";
+		
+		
 		conn = new ConexaoDAO().conectaDB();
 
 		try {

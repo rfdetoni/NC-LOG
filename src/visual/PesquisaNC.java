@@ -362,7 +362,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JComboBox comboStatus;
 	private JLabel lblCancelado;
 
-	// carrega dados da planilha para campo de edição
+	// carrega dados da planilha para campo de edição;
 	private void Carregar() {
 		try {
 			int setar = tblPesquisa.getSelectedRow();
@@ -376,11 +376,10 @@ public class PesquisaNC extends javax.swing.JFrame {
 				comboStatus.setToolTipText("Para alterar o status \u00E9 necess\u00E1rio a cria\u00E7\u00E3o de um plano de a\u00E7\u00E3o, inclusive para descrever o motivo do cancelamento do plano.");
 								
 			}
-			// VariaveisEstaticas ve = new VariaveisEstaticas();
-
+			
 			txtIdNC.setText(tblPesquisa.getModel().getValueAt(setar, 0).toString());
 			txtPlano.setText(idplano);
-			// txtPlano.setText(Integer.toString(ve.getId_plano()));
+		
 			txtLocal.setText(tblPesquisa.getModel().getValueAt(setar, 5).toString());
 			txtNomeNC.setText(tblPesquisa.getModel().getValueAt(setar, 1).toString());
 			txtResponsavel.setText(tblPesquisa.getModel().getValueAt(setar, 2).toString());
@@ -409,7 +408,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 		descricao = txtDesc.getText();
 		status = comboStatus.getSelectedItem().toString();
 		id_Plano = Integer.parseInt(txtPlano.getText());
-
+		
+	
 		objncDTO.setId_Nc(id_NC);
 		objncDTO.setDescricao_Nc(descricao);
 		objncDTO.setLocal_Nc(local);

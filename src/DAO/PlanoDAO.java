@@ -126,7 +126,9 @@ public class PlanoDAO {
 	
 	//atualiza plano de açao
 		public void EditarPlano(PlanoDTO objplanoDTO) {
-			String sql = "update planoDeAcao set nome_Plano = ?, time_Resp = ?, nome_Criador = ?, estrategia = ?, time_resp = ? where id_Plano = ?";
+			//String sql = "update planoDeAcao set nome_Plano = ?, time_Resp = ?, nome_Criador = ?, estrategia = ?, time_resp = ? where id_Plano = ?";
+			
+			String sql = "update planoDeAcao p inner join naoConformidade n on p.id_Nc = n.id_Nc set p.nome_Plano = ?, p.time_Resp = ?, p.nome_Criador = ?, p.estrategia = ?, p.time_resp = ?, n.id_Plano = ? where p.id_Plano = ?";
 			conn = new ConexaoDAO().conectaDB();
 
 			try {
@@ -139,7 +141,7 @@ public class PlanoDAO {
 				pstm.setString(4, objplanoDTO.getEstrategia());
 				pstm.setString(5, objplanoDTO.getTime_resp());
 				pstm.setInt(6, objplanoDTO.getId_Plano());
-				
+				pstm.setInt(7, objplanoDTO.getId_Plano());
 			
 
 				pstm.execute();
