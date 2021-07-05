@@ -4,6 +4,7 @@ package visual;
 import DAO.NCDAO;
 import DTO.NcDTO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -19,7 +20,6 @@ public class CreateNC extends javax.swing.JFrame {
 		initComponents();
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
@@ -56,6 +56,7 @@ public class CreateNC extends javax.swing.JFrame {
 
 		txtdescricao_Nc.setColumns(20);
 		txtdescricao_Nc.setRows(5);
+		txtdescricao_Nc.setLineWrap(true);
 		jScrollPane1.setViewportView(txtdescricao_Nc);
 
 		btnCancelar.setText("Cancelar");
@@ -71,11 +72,12 @@ public class CreateNC extends javax.swing.JFrame {
 				btnSalvarActionPerformed(evt);
 			}
 		});
-		
+
 		lblNewLabel = new JLabel("Status");
-		
+
 		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Aberto", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o", "Cancelado"}));
+		comboBox.setModel(new DefaultComboBoxModel(
+				new String[] { "Aberto", "Conclu\u00EDdo", "Em Execu\u00E7\u00E3o", "Cancelado" }));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
 		layout.setHorizontalGroup(
@@ -97,10 +99,6 @@ public class CreateNC extends javax.swing.JFrame {
 						.addComponent(txtNome_Nc, 201, 201, 201))
 					.addGap(189))
 				.addGroup(layout.createSequentialGroup()
-					.addGap(255)
-					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-					.addGap(254))
-				.addGroup(layout.createSequentialGroup()
 					.addGap(252)
 					.addComponent(jLabel4, GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
 					.addGap(246))
@@ -108,7 +106,7 @@ public class CreateNC extends javax.swing.JFrame {
 					.addGroup(layout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(layout.createSequentialGroup()
 							.addGap(167)
-							.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+							.addComponent(jLabel3, GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
 						.addGroup(layout.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(txtlocal_Nc, 201, 201, 201)))
@@ -124,6 +122,10 @@ public class CreateNC extends javax.swing.JFrame {
 					.addContainerGap(253, Short.MAX_VALUE)
 					.addComponent(jLabel1)
 					.addGap(218))
+				.addGroup(layout.createSequentialGroup()
+					.addGap(273)
+					.addComponent(jLabel2, GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+					.addGap(236))
 		);
 		layout.setVerticalGroup(
 			layout.createParallelGroup(Alignment.TRAILING)
@@ -132,7 +134,7 @@ public class CreateNC extends javax.swing.JFrame {
 					.addComponent(jLabel1)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtNome_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGap(11)
 					.addComponent(jLabel2)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(txtresponsavel_Nc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -164,28 +166,46 @@ public class CreateNC extends javax.swing.JFrame {
 	}
 
 	private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
-		
+
 		dispose();
 	}
 
 	private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) { // botão salvar;
 		NcDTO objnc = new NcDTO();
-		objnc.setNome_Nc(txtNome_Nc.getText());
-		objnc.setResponsavel_Nc(txtresponsavel_Nc.getText());
-		objnc.setLocal_Nc(txtlocal_Nc.getText());
-		objnc.setDescricao_Nc(txtdescricao_Nc.getText());
+		String nome_nc, responsavel, local, descricao;
+		nome_nc = txtNome_Nc.getText();
+		responsavel = txtresponsavel_Nc.getText();
+		local =txtlocal_Nc.getText();
+		descricao = txtdescricao_Nc.getText();
+		if(nome_nc.equals("")) {
+			JOptionPane.showMessageDialog(null,"Campo Titulo da NC não pode estar vazio", "AVISO",JOptionPane.WARNING_MESSAGE);
+		}else if(responsavel.equals("")){
+			JOptionPane.showMessageDialog(null,"Campo Responsável não pode estar vazio", "AVISO",JOptionPane.WARNING_MESSAGE);
+		}else if(local.equals("")){
+			JOptionPane.showMessageDialog(null,"Campo Local não pode estar vazio", "AVISO",JOptionPane.WARNING_MESSAGE);
+		}else if(descricao.equals("")){
+			JOptionPane.showMessageDialog(null,"Campo Descrição não pode estar vazio", "AVISO",JOptionPane.WARNING_MESSAGE);
+		}else {
+		
+		
+
+		objnc.setNome_Nc(nome_nc);
+
+		objnc.setResponsavel_Nc(responsavel);
+		objnc.setLocal_Nc(local);
+		objnc.setDescricao_Nc(descricao);
 		objnc.setStatus(comboBox.getSelectedItem().toString());
 
 		NCDAO objncdao = new NCDAO();
 
 		objncdao.registerNC(objnc);
-		
-		String nome, descricao;
-		nome = txtNome_Nc.getText();
-		descricao = txtdescricao_Nc.getText();
-		objncdao.PegarID(nome, descricao);
-		dispose();
 
+		
+		
+		descricao = txtdescricao_Nc.getText();
+		objncdao.PegarID(nome_nc, descricao);
+		dispose();
+		}
 	}
 
 	public void setTxtNome(String txtNome) {
@@ -204,12 +224,11 @@ public class CreateNC extends javax.swing.JFrame {
 		txtdescricao_Nc.setText(descricao);
 	}
 
-	
 	/**
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-		
+
 		try {
 			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
