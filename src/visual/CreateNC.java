@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 public class CreateNC extends javax.swing.JFrame {
 
 	public CreateNC() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CreateNC.class.getResource("/imagens/icon.jpg")));
 		initComponents();
 	}

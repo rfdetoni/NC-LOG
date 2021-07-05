@@ -29,6 +29,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.Dimension;
 
 public class PesquisaPlano extends javax.swing.JFrame {
 
@@ -76,6 +77,8 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	}
 
 	public PesquisaPlano() {
+		setResizable(false);
+		setMinimumSize(new Dimension(1024, 600));
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PesquisaPlano.class.getResource("/imagens/icon.jpg")));
 		setTitle("Pesquisa/Edi\u00E7\u00E3o de planos de a\u00E7\u00E3o");
 		initComponents();
@@ -200,26 +203,26 @@ public class PesquisaPlano extends javax.swing.JFrame {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblNewLabel_2)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(txtTime, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
-					.addGap(46))
+					.addComponent(txtTime, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+					.addGap(19))
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(250)
 					.addComponent(lblNewLabel_5))
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(431, Short.MAX_VALUE)
+					.addContainerGap(516, Short.MAX_VALUE)
 					.addComponent(btnVoltar)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnNewButton)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(456, Short.MAX_VALUE)
+					.addContainerGap(558, Short.MAX_VALUE)
 					.addComponent(btnOpen)
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+						.addComponent(scrollPesquisa, GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(jLabel1)
 							.addGap(18)
@@ -229,7 +232,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 					.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(txtEstrategia, GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+					.addComponent(txtEstrategia)
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
