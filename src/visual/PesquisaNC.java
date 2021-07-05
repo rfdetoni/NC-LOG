@@ -492,7 +492,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 			lblCancelado.setText("NC CANCELADA");
 
 		} else {
-			lblCancelado.setVisible(false);
+			lblCancelado.setText("");
 		}
 
 	}
