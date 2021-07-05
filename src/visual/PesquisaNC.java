@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -167,7 +169,8 @@ public class PesquisaNC extends javax.swing.JFrame {
 			}
 		});
 
-		txtDesc = new JTextPane();
+		txtDesc = new JTextArea();
+		txtDesc.setLineWrap(true);
 
 		JLabel lblNewLabel_6 = new JLabel("Status");
 
@@ -397,7 +400,7 @@ public class PesquisaNC extends javax.swing.JFrame {
 	private JTextField txtIdNC;
 	private JTextField txtPlano;
 	private JButton btnVoltar;
-	private JTextPane txtDesc;
+	private JTextArea txtDesc;
 	private JComboBox comboStatus;
 	private JLabel lblCancelado;
 

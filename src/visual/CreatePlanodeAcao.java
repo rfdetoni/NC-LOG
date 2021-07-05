@@ -185,6 +185,7 @@ public class CreatePlanodeAcao extends javax.swing.JFrame {
         
                 txtestrategia.setColumns(20);
                 txtestrategia.setRows(5);
+                txtestrategia.setLineWrap(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(

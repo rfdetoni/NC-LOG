@@ -24,6 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -167,8 +169,8 @@ public class PesquisaPlano extends javax.swing.JFrame {
 			}
 		});
 		
-		txtEstrategia = new JTextPane();
-		
+		txtEstrategia = new JTextArea();
+		txtEstrategia.setLineWrap(true);
 		JLabel lblNewLabel_2 = new JLabel("Time respons\u00E1vel");
 		
 		txtTime = new JTextField();
@@ -381,7 +383,7 @@ public class PesquisaPlano extends javax.swing.JFrame {
 	private JTextField txtIdNC;
 	private JTextField txtPlano;
 	private JButton btnVoltar;
-	private JTextPane txtEstrategia;
+	private JTextArea txtEstrategia;
 	private JTextField txtTime;
 	
 	
