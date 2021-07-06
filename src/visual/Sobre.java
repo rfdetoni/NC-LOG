@@ -55,7 +55,7 @@ public class Sobre extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("NC-LOG\n\nDesenvolvido por:\n\nRodrigo Felipe de Toni Grave\nLuiz Sesna Mafra Junior\nGilvane Freire da Silva\nLucas Patrick Casara\n\nFocado em gestão de não conformidades, o NC-LOG veio para agilizar\ne simplificar a resolução e prevenção de não conformidades.");
+        jTextArea1.setText("NC-LOG\n\nDesenvolvido por:\n\nRodrigo Felipe de Toni Grave\nLuiz Sesna Mafra Junior\nLucas Patrick Casara\n\nFocado em gestão de não conformidades, o NC-LOG veio para agilizar\ne simplificar a resolução e prevenção de não conformidades.");
         jScrollPane1.setViewportView(jTextArea1);
 
         btnAbrir.setText("Abrir repositorio GitHub");
